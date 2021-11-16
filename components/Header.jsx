@@ -50,7 +50,7 @@ const MainNavigation = () => {
               <Link href="/auth">Login</Link>
             </li>
           )}
-          <li>
+          {/* <li>
             <button onClick={toggleMode} className="flex items-center">
               {isDark ? (
                 <svg
@@ -76,6 +76,22 @@ const MainNavigation = () => {
                 </svg>
               )}
             </button>
+          </li> */}
+          <li>
+            <div onClick={toggleMode} className="flex items-center justify-center">
+              <div className="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                <input
+                  type="checkbox"
+                  name="toggle"
+                  id="toggle"
+                  className="bg-yellow-300 border-yellow-500 mr-1 focus:ring-transparent toggle-checkbox absolute block w-6 h-6 rounded-full border-2 appearance-none cursor-pointer"
+                />
+                <label
+                  htmlFor="toggle" onClick={toggleMode}
+                  className="toggle-label block h-8 -ml-1 -mt-1 rounded-full bg-yellow-600 cursor-pointer"
+                ></label>
+              </div>
+            </div>
           </li>
         </ul>
       </nav>
