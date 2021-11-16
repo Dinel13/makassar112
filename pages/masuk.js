@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/client";
 
 import PendingButton from "../components/button/Pending";
 import SubmitFull from "../components/button/Submit";
@@ -18,27 +19,39 @@ export default function Login() {
   const loginHandler = async (e) => {
     e.preventDefault();
     setPending(true);
-    try {
-      const response = await await fetch(
-        `${process.env.REACT_APP_SERVER_URL}/user/login`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: email.current.value,
-            password: password.current.value,
-          }),
-          headers: {
-            // "Content-Type": "application/json",
-          },
-        }
-      );
 
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error.message || "Tidak bisa masuk");
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: email.current.value,
+        password: password.current.value,
+      });
+
+      console.log(res);
+
+      if (!res.error) {
+        router.replace("/dashbord");
+        // dispatch(loginSlice(res.user));
       }
-      router.push("/dashbord");
-      dispatch(loginSlice(result.user));
+      // const response = await await fetch(
+      //   `${process.env.REACT_APP_SERVER_URL}/user/login`,
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify({
+      //       email: email.current.value,
+      //       password: password.current.value,
+      //     }),
+      //     headers: {
+      //       // "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+
+      // const result = await response.json();
+      // if (!response.ok) {
+      //   throw new Error(result.error.message || "Tidak bisa masuk");
+      // }
+      // dispatch(loginSlice(result.user));
     } catch (error) {
       dispatch(
         showNotif({

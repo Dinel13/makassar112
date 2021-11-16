@@ -1,6 +1,6 @@
-const pgp = require("pg-promise")({
-  noWarnings: true,
-});
+import { db } from "../../lib/db";
+import { hash } from "bcryptjs";
+
 
 export default function handler(req, res) {
   if (req.method !== "POST") {
@@ -14,20 +14,31 @@ export default function handler(req, res) {
       const { nama, email, password, kode } = body;
       console.log(body);
 
-      if (!nama || !email || !password || !kode) {
-        return res.status(422).send({ error: ["isisan tidak lengkap"] });
+      if (!nama || !email.includes("@") || password.trim().length < 5 || !kode) {
+        return res.status(422).send({ error: ["isisan tidak lengkap atau paswword terlalau pendek"] });
       }
 
       if (kode !== "Rahassia@112") {
         return res.status(422).send({ error: ["kode tidak sesuai"] });
       }
 
-      const product = await db.one(
-        "INSERT INTO users(nama, email, password) VALUES($1, $2, $3) RETURNING id, nama, email",
-        [nama, email, password]
+      const userExits = await db.oneOrNone(
+        `SELECT * FROM users WHERE email = $1`,
+        [email]
       );
 
-      res.status(200).json(product);
+      if (userExits) {
+        return res.status(422).send({ error: ["email sudah terdaftar"] });
+      }
+
+      const hashPassword = await hash(password, 12);
+
+      const newUser = await db.one(
+        "INSERT INTO users(nama, email, password) VALUES($1, $2, $3) RETURNING id, nama, email",
+        [nama, email, hashPassword]
+      );
+
+      res.status(200).json(newUser);
     } catch (error) {
       console.log(error);
       // console.error(error);
@@ -38,5 +49,3 @@ export default function handler(req, res) {
   }
   run();
 }
-
-const db = pgp(`postgres://din:postgres@localhost:5432/makassar112`);

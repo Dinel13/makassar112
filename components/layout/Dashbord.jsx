@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { getSession, signOut } from "next-auth/client";
 
 import DarkModeButton from "./DarkModeButton";
 import UserButton from "./UserButton";
@@ -7,6 +8,13 @@ import SideNav from "./SideNav";
 
 export default function Dashbord({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    getSession().then((session) => {
+      setSession(session);
+    });
+  }, []);
 
   const toglesidebar = () => {
     console.log(isSidebarOpen);
@@ -90,7 +98,9 @@ export default function Dashbord({ children }) {
           </div>
 
           <div className="flex items-center">
-            <UserButton />
+            {session && <UserButton />}
+            {!session && <button onClick={() => signOut()}>logout</button>}
+
             <DarkModeButton />
           </div>
         </header>

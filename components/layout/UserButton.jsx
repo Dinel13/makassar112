@@ -1,21 +1,23 @@
 import { useState } from "react";
 import Image from "next/image";
+import { signOut } from "next-auth/client";
+import Link from "next/link";
 
 export default function UserButton() {
-   const [isDrdwnUser, setIsDrdwnUser] = useState(false);
- 
-   const togledrdwnUser = () => {
-     console.log(isDrdwnUser);
-     setIsDrdwnUser(!isDrdwnUser);
-   };
+  const [isDrdwnUser, setIsDrdwnUser] = useState(false);
 
-   return (
-      <div className="relative mr-3">
+  const togledrdwnUser = () => {
+    console.log(isDrdwnUser);
+    setIsDrdwnUser(!isDrdwnUser);
+  };
+
+  return (
+    <div className="relative mr-3">
       <button
         onClick={() => togledrdwnUser()}
         className="flex items-center focus:outline-none"
       >
-       <span className="pr-1">Profile</span>
+        <span className="pr-1">Profile</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8"
@@ -38,29 +40,21 @@ export default function UserButton() {
             onClick={() => togledrdwnUser()}
             className="fixed inset-0 h-full w-full z-10"
           ></div>
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-40">
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >
-              Profile
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >
-              Products
-            </a>
-            <a
-              href="/login"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+          <div className="absolute right-0 mt-2 w-48 py-2.5 bg-white dark:bg-dark3 rounded-md overflow-hidden shadow-xl z-40">
+            <Link href="/profile">
+              <a className="block px-4 py-2 text-sm 0 hover:text-gray-600 dark:hover:text-gray-300">
+                Profile
+              </a>
+            </Link>
+            <button
+              onClick={() => signOut()}
+              className="block px-4 py-2 text-sm hover:text-gray-600 dark:hover:text-gray-300"
             >
               Logout
-            </a>
+            </button>
           </div>
         </>
       )}
     </div>
-    
-   )
+  );
 }

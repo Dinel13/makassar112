@@ -11,3 +11,6 @@ create table "users"
 
 create unique index user_id_uindex
     on "user" (id);
+
+create unique 
+    on "user" (email);
