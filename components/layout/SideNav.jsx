@@ -1,8 +1,9 @@
-import React from 'react'
+import React from "react";
+import Image from "next/image";
 
 export default function SideNav() {
-   return (
-      <nav className="mt-10">
+  return (
+    <nav className="mt-10">
       <a
         className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
         href="#"
@@ -50,7 +51,7 @@ export default function SideNav() {
           ></path>
         </svg>
 
-        <span className="mx-3">UI Elements</span>
+        <span className="mx-3">Report</span>
       </a>
 
       <a
@@ -72,7 +73,7 @@ export default function SideNav() {
           ></path>
         </svg>
 
-        <span className="mx-3">Tables</span>
+        <span className="mx-3">Analitics</span>
       </a>
 
       <a
@@ -94,9 +95,41 @@ export default function SideNav() {
           ></path>
         </svg>
 
-        <span className="mx-3">Forms</span>
+        <span className="mx-3">Monitoring Agent</span>
+      </a>
+      <a
+        className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
+        href="/forms"
+      >
+        <svg
+         className="h-6 w-6"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 28 28"
+         stroke="currentColor"
+        >
+          <path
+            d="M26 14V4C26 3.46957 25.7893 2.96086 25.4142 2.58579C25.0391 2.21071 24.5304 2 24 2H4C3.46957 2 2.96086 2.21071 2.58579 2.58579C2.21071 2.96086 2 3.46957 2 4V24C2 24.5304 2.21071 25.0391 2.58579 25.4142C2.96086 25.7893 3.46957 26 4 26H14"
+          />
+          <path
+            d="M26 14V4C26 3.46957 25.7893 2.96086 25.4142 2.58579C25.0391 2.21071 24.5304 2 24 2H4C3.46957 2 2.96086 2.21071 2.58579 2.58579C2.21071 2.96086 2 3.46957 2 4V24C2 24.5304 2.21071 25.0391 2.58579 25.4142C2.96086 25.7893 3.46957 26 4 26H14"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M19.3334 23.3333C21.5425 23.3333 23.3334 21.5425 23.3334 19.3333C23.3334 17.1242 21.5425 15.3333 19.3334 15.3333C17.1242 15.3333 15.3334 17.1242 15.3334 19.3333C15.3334 21.5425 17.1242 23.3333 19.3334 23.3333Z"
+            strokeWidth="3"
+          />
+          <path
+            d="M22.6667 22L26 24.6667M7.33337 8.66667H20.6667M7.33337 14H12.6667"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+
+        <span className="mx-3">History Report</span>
       </a>
     </nav>
-
-   )
+  );
 }
