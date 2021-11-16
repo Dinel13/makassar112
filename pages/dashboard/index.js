@@ -20,16 +20,16 @@ export default function Dashbord() {
   }
 
   return (
-    <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+    <main className="flex-1 overflow-x-hidden overflow-y-auto">
       <div className="container mx-auto px-6 py-8">
-        <h3 className="text-gray-700 text-3xl font-medium">Dashboard</h3>
+        <h3 className="text-3xl font-medium">Dashboard</h3>
         <div className="mt-4">
           <div className="flex flex-wrap -mx-6">
             <div className="w-full px-6 sm:w-1/2 xl:w-1/3">
-              <div className="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                <div className="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+              <div className="flex items-center px-5 py-6 shadow-sm rounded-md dark-card">
+                <div className="p-3 rounded-full">
                   <svg
-                    className="h-8 w-8 text-white"
+                    className="h-8 w-8"
                     viewBox="0 0 28 30"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,19 +62,19 @@ export default function Dashbord() {
                 </div>
 
                 <div className="mx-5">
-                  <h4 className="text-2xl font-semibold text-gray-700">
+                  <h4 className="text-2xl font-semibold">
                     8,282
                   </h4>
-                  <div className="text-gray-500">New Users</div>
+                  <div className="">New Users</div>
                 </div>
               </div>
             </div>
 
             <div className="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-              <div className="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                <div className="p-3 rounded-full bg-orange-600 bg-opacity-75">
+              <div className="flex items-center px-5 py-6 shadow-sm rounded-md dark-card">
+                <div className="p-3 rounded-full">
                   <svg
-                    className="h-8 w-8 text-white"
+                    className="h-8 w-8 dark-card"
                     viewBox="0 0 28 28"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -95,19 +95,19 @@ export default function Dashbord() {
                 </div>
 
                 <div className="mx-5">
-                  <h4 className="text-2xl font-semibold text-gray-700">
+                  <h4 className="text-2xl font-semibold">
                     200,521
                   </h4>
-                  <div className="text-gray-500">Total Orders</div>
+                  <div className="">Total Orders</div>
                 </div>
               </div>
             </div>
 
             <div className="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-              <div className="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                <div className="p-3 rounded-full bg-pink-600 bg-opacity-75">
+              <div className="flex items-center px-5 py-6 shadow-sm rounded-md dark-card">
+                <div className="p-3 rounded-full">
                   <svg
-                    className="h-8 w-8 text-white"
+                    className="h-8 w-8"
                     viewBox="0 0 28 28"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -128,10 +128,10 @@ export default function Dashbord() {
                 </div>
 
                 <div className="mx-5">
-                  <h4 className="text-2xl font-semibold text-gray-700">
+                  <h4 className="text-2xl font-semibold">
                     215,542
                   </h4>
-                  <div className="text-gray-500">Available Products</div>
+                  <div className="">Available Products</div>
                 </div>
               </div>
             </div>
@@ -142,27 +142,27 @@ export default function Dashbord() {
 
         <div className="flex flex-col mt-8">
           <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b dark-card">
               <table className="min-w-full">
                 <thead>
                   <tr>
-                    <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider">
                       Title
                     </th>
-                    <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider">
                       Role
                     </th>
-                    <th className="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                    <th className="px-6 py-3 border-b border-gray-200"></th>
                   </tr>
                 </thead>
 
-                <tbody className="bg-white">
+                <tbody className="">
                   <tr>
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                       <div className="flex items-center">
@@ -175,10 +175,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5">
                             john@example.com
                           </div>
                         </div>
@@ -186,10 +186,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -200,7 +200,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -225,10 +225,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -236,10 +236,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -250,7 +250,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -275,10 +275,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -286,10 +286,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -300,7 +300,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -325,10 +325,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -336,10 +336,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -350,7 +350,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -375,10 +375,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -386,10 +386,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -400,7 +400,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -425,10 +425,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -436,10 +436,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -450,7 +450,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -475,10 +475,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -486,10 +486,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -500,7 +500,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 
@@ -525,10 +525,10 @@ export default function Dashbord() {
                         </div>
 
                         <div className="ml-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900">
+                          <div className="text-sm leading-5 font-medium ">
                             John Doe
                           </div>
-                          <div className="text-sm leading-5 text-gray-500">
+                          <div className="text-sm leading-5 ">
                             john@example.com
                           </div>
                         </div>
@@ -536,10 +536,10 @@ export default function Dashbord() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div className="text-sm leading-5 text-gray-900">
+                      <div className="text-sm leading-5 ">
                         Software Engineer
                       </div>
-                      <div className="text-sm leading-5 text-gray-500">
+                      <div className="text-sm leading-5 ">
                         Web dev
                       </div>
                     </td>
@@ -550,7 +550,7 @@ export default function Dashbord() {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 ">
                       Owner
                     </td>
 

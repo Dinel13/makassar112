@@ -39,7 +39,7 @@ export default function Login() {
       if (!response.ok) {
         throw new Error(result.error.message || "Tidak bisa buat akun");
       }
-      router.push("/dashbord");
+      router.push("/masuk");
       dispatch(loginSlice(result.user));
     } catch (error) {
       dispatch(

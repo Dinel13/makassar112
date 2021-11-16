@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function Footer(){
   return (
-    <footer className="bg-red-500 dark:bg-dark1 text-white ">
+    <footer className="dark-nav">
       <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <Link href="/">
@@ -13,7 +13,7 @@ function Footer(){
               <span className="text-xl font-semibold">Makassar 112</span>
             </a>
           </Link>
-          <p className="mt-2 text-sm text-gray-300">
+          <p className="mt-2 text-sm ">
             lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
         </div>
@@ -22,24 +22,24 @@ function Footer(){
             <h2 className="title-font font-medium tracking-widest text-sm mb-1.5">
               CATEGORIES
             </h2>
-            <nav className="list-none mb-10 text-gray-300">
+            <nav className="list-none mb-10 ">
               <li>
                 <Link href="/bacaan/kategori/Info kegiatan">
-                  <a href="" className="hover:text-gray-800">
+                  <a href="" className="">
                     sadsadas
                   </a>
                 </Link>
               </li>
               <li>
                 <Link href="/bacaan/kategori/Materi Kuliah">
-                  <a href="" className="hover:text-gray-800">
+                  <a href="" className="">
                     dsad
                   </a>
                 </Link>
               </li>
               <li>
                 <Link href="/bacaan/kategori/Inspirasif">
-                  <a href="" className="hover:text-gray-800">
+                  <a href="" className="">
                     dsad
                   </a>
                 </Link>
@@ -50,17 +50,17 @@ function Footer(){
             <h2 className="title-font font-medium tracking-widest text-sm mb-1.5">
               HALAMAN LAIN
             </h2>
-            <nav className="list-none mb-10 text-gray-300 ">
+            <nav className="list-none mb-10  ">
               <li>
                 <Link href="/about">
-                  <a href="" className="hover:text-gray-800">
+                  <a href="" className="">
                     Tentang kami
                   </a>
                 </Link>
               </li>
               <li>
                 <Link href="/developper">
-                  <a href="" className="hover:text-gray-800">
+                  <a href="" className="">
                     Tentang Pengembang
                   </a>
                 </Link>
@@ -71,7 +71,7 @@ function Footer(){
       </div>
       <div className="bg-purple-700">
         <div className="container mx-auto py-3 px-5 flex flex-wrap flex-col sm:flex-row">
-          <p className="text-gray-300 text-sm text-center sm:text-left">
+          <p className=" text-sm text-center sm:text-left">
             ©2021 jalur-wisata by
             <a
               href="https://github.com/Dinel13"

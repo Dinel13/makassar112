@@ -2,9 +2,9 @@ import Link from "next/link";
 import DarkModeButton from "./DarkModeButton";
 // import { useState } from "react";
 
-const MainNavigation = () => {
+const MainNavigation = ({toggleMode} ) => {
   return (
-    <header className="w-full sticky top-0 z-40 bg-red-500 dark:bg-dark1 text-white px-6 py-4 flex justify-between items-center">
+    <header className="w-full sticky top-0 z-40 dark-nav px-6 py-4 flex justify-between items-center">
       <Link href="/">
         <a>
           <div className="text-2xl font-bold">Makassar 112</div>
@@ -20,7 +20,7 @@ const MainNavigation = () => {
             <Link href="/masuk">Login</Link>
           </li>
           <li className="flex items-center ">
-            <DarkModeButton />
+            <DarkModeButton toggleMode={toggleMode} />
           </li>
         </ul>
       </nav>

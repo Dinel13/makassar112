@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getSession, signOut } from "next-auth/client";
+import Link from "next/link";
 
 import DarkModeButton from "./DarkModeButton";
 import UserButton from "./UserButton";
 import SideNav from "./SideNav";
 
-export default function Dashbord({ children }) {
+export default function Dashbord({ children, toggleMode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [session, setSession] = useState(null);
 
@@ -31,23 +32,28 @@ export default function Dashbord({ children }) {
         onClick={() => toglesidebar()}
       ></div>
 
-      {/* sidebar */}
+      {/* sidebar bg-gray-300 dark:bg-dark2 text-gray-800 dark:text-white */}
       <div
         className={
           isSidebarOpen
-            ? "translate-x-0 ease-out z-20 bg-gray-300 dark:bg-dark2 text-gray-800 dark:text-white fixed inset-y-0 left-0 w-52 transition duration-300 transform overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
-            : "-translate-x-full ease-in bg-gray-300 dark:bg-dark2 text-gray-800 dark:text-white fixed inset-y-0 left-0 w-52 transition duration-300 transform overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
+            ? "translate-x-0 ease-out z-20 dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
+            : "-translate-x-full ease-in dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
         }
       >
         <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
-            <span className="text-2xl mx-2 font-semibold">Makassar 112</span>
+            <Link href="/dashboard">
+              <a className="text-lg sm:text-xl lg:text-2xl mx-2 font-semibold">
+                Makassar 112
+              </a>
+            </Link>
           </div>
         </div>
         <SideNav />
       </div>
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex justify-between items-center py-4 px-6 bg-white dark:bg-dark1 text-gray-800 dark:text-white">
+        {/* <header className="flex justify-between items-center py-4 px-6 bg-white dark:bg-dark1 text-gray-800 dark:text-white"> */}
+        <header className="flex justify-between items-center py-4 px-6 dark-nav">
           <div className="flex items-center">
             {/* BUTTON TO SHOW THE SIDEBAR */}
             <button
@@ -93,7 +99,9 @@ export default function Dashbord({ children }) {
                 type="text"
                 placeholder="Search"
               /> */}
-              <h1>Makassar 112</h1>
+              <Link href="/dashboard">
+                <a className="text-lg md:text-xl">Makassar 112 </a>
+              </Link>
             </div>
           </div>
 
@@ -101,10 +109,10 @@ export default function Dashbord({ children }) {
             {session && <UserButton />}
             {!session && <button onClick={() => signOut()}>logout</button>}
 
-            <DarkModeButton />
+            <DarkModeButton toggleMode={toggleMode} />
           </div>
         </header>
-        {children}
+        <div className="dark-main">{children}</div>
       </div>
     </div>
   );

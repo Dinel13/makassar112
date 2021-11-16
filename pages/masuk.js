@@ -30,7 +30,7 @@ export default function Login() {
       console.log(res);
 
       if (!res.error) {
-        router.replace("/dashbord");
+        router.replace("/dashboard");
         // dispatch(loginSlice(res.user));
       }
       // const response = await await fetch(

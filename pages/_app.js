@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Provider } from "react-redux";
-import { Provider as NextProvider } from "next-auth";
+import { Provider as NextProvider } from "next-auth/client";
 
 import store from "../store/index";
 import Layout from "../components/layout/Layout";

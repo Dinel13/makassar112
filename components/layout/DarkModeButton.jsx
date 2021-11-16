@@ -1,32 +1,6 @@
 import React from "react";
 
-export default function DarkModeButton() {
-  // const [isDark, seTIsDark] = useState(true);
-
-  const toggleMode = () => {
-    if (localStorage.theme === undefined) {
-      localStorage.theme = "dark";
-    }
-    localStorage.theme === "light"
-      ? (localStorage.theme = "dark")
-      : (localStorage.theme = "light");
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-      // seTIsDark(true);
-    } else {
-      document.documentElement.classList.remove("dark");
-      // seTIsDark(false);
-    }
-  };
-
-  React.useEffect(() => {
-    toggleMode();
-  }, []);
-
+export default function DarkModeButton({toggleMode}) {
   return (
     //    <button onClick={toggleMode} className="flex items-center">
     //    {isDark ? (
@@ -59,12 +33,12 @@ export default function DarkModeButton() {
           type="checkbox"
           name="toggle"
           id="toggle"
-          className="bg-yellow-300 border-yellow-500 mr-1 focus:ring-transparent toggle-checkbox absolute block w-6 h-6 rounded-full border-2 appearance-none cursor-pointer"
+          className="bg-yellow-200 mr-1 focus:ring-transparent toggle-checkbox absolute block w-6 h-6 rounded-full appearance-none cursor-pointer"
         />
         <label
           htmlFor="toggle"
           onClick={toggleMode}
-          className="toggle-label block h-8 -ml-1 -mt-1 rounded-full bg-yellow-600 cursor-pointer"
+          className="toggle-label block h-8 -ml-1 -mt-1 rounded-full bg-yellow-400 cursor-pointer"
         ></label>
       </div>
     </div>
