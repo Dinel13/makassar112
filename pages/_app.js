@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 
 import store from "../store/index";
-import Layout from "../components/Layout";
+import Layout from "../components/layout/Layout";
 import ErrorModal from "../components/modal/notifModal";
 import "../styles/globals.css";
 
