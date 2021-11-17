@@ -50,13 +50,13 @@ export default function ErrorModal() {
                <div className="relative w-auto my-6 mx-auto py-5 max-w-3xl">
                   <div
                      style={{ minWidth: "300px", maxWidth: "380px" }}
-                     className="rounded-xl shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none"
+                     className="rounded-xl shadow-xl relative flex flex-col w-full dark-main outline-none focus:outline-none"
                   >
-                     <div className="flex items-start justify-between p-5 bg-yellow-300 rounded-t-xl">
-                        <h3 className="text-2xl text-white font-semibold">{status}</h3>
+                     <div className="flex items-start justify-between p-5 dark-nav rounded-t-xl">
+                        <h3 className="text-2xl font-semibold">{status}</h3>
                      </div>
                      <div className="relative p-5 flex-auto">
-                        <p className="my-3 text-gray-800 text-lg leading-relaxed">
+                        <p className="my-3 text-lg leading-relaxed">
                            {message}
                         </p>
                      </div>
@@ -80,9 +80,9 @@ export default function ErrorModal() {
                            </button>
                         </div>
                      ) : (
-                        <div className="flex items-center justify-end p-4 border-t border-solid border-blueGray-200 rounded-b">
+                        <div className="flex items-center justify-end p-4 border-t border-gray-400 rounded-b">
                            <button
-                              className="btn-pri font-medium uppercase text-sm px-6 py-2"
+                              className="btn-sec font-medium uppercase text-sm px-6 py-2"
                               type="button"
                               onClick={hideModal}
                            >
@@ -93,7 +93,7 @@ export default function ErrorModal() {
                   </div>
                </div>
             </div>
-            <div className="opacity-40 fixed inset-0 z-40 bg-black"></div>
+            <div className="opacity-70 fixed inset-0 z-40 bg-gray-900"></div>
          </>
       )
    );
