@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRef, useState } from "react";
+
 import Loading from "../components/loading/Loading";
 import Hasil from "../components/phonebook/Hasil";
 import Sering from "../components/phonebook/Sering";
@@ -35,20 +36,26 @@ export default function Home() {
   return (
     <>
       <div
-        className="w-full bg-center bg-cover h-128"
+        className="w-full bg-center bg-cover  h-128"
         style={{
           backgroundImage:
-            "url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)",
+            "url(/bgg.jpg)",
         }}
       >
         <div className="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl text-white font-semibold  uppercase lg:text-3xl">
+            <Image
+              src="/kominfo.png"
+              alt="logo kominfo"
+              width="180"
+              height="170"
+            />
+            <h1 className="text-title my-4 text-white font-semibold  uppercase lg:text-3xl">
               Layanan Informasi <span className="text-blue-400">Publik</span>
             </h1>
             <form
               onSubmit={submitHandler}
-              className="dark-card mt-4 flex py-3 px-4 max-w-md mx-auto border-2 border-gray-600 rounded-full"
+              className="dark-card flex py-3 px-4 max-w-md mx-auto border-2 border-gray-600 rounded-full"
             >
               <div className="grid grid-cols-2 divide-x divide-gray-400">
                 <label className="">
@@ -116,9 +123,7 @@ export default function Home() {
         {!hasil && !loading && everSeach && (
           <div className="mb-16 text-center">
             <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
-            <h className="text-subtitle my-10 font-normal">
-              Tidak ada hasil
-            </h>
+            <h className="text-subtitle my-10 font-normal">Tidak ada hasil</h>
             <p>Pebaiki keyword pencarian kamu</p>
           </div>
         )}

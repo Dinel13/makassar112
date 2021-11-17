@@ -1,21 +1,22 @@
 import Link from "next/link";
 import DarkModeButton from "./DarkModeButton";
+import Image from "next/image";
 // import { useState } from "react";
 
-const MainNavigation = ({toggleMode} ) => {
+const MainNavigation = ({ toggleMode }) => {
   return (
-    <header className="w-full sticky top-0 z-40 dark-nav px-6 py-4 flex justify-between items-center">
+    <header className="w-full sticky top-0 z-40 dark-nav px-6 py-3 flex justify-between items-center">
       <Link href="/">
-        <a>
-          <div className="text-2xl font-bold">Makassar 112</div>
+        <a className="flex items-center">
+          <Image src="/makassar.png" alt="makassar" width="38" height="42"></Image>
+          <span className="text-xl font-medium ml-2">Makassar</span>
         </a>
       </Link>
       <nav>
         <ul className="flex justify-end items-center space-x-3 relative">
           <li>
-            <Link href="phonebook">Phonebook</Link>
+            <Link href="/">Beranda</Link>
           </li>
-
           <li>
             <Link href="/masuk">Login</Link>
           </li>

@@ -43,8 +43,14 @@ export default function Dashbord({ children, toggleMode }) {
         <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
             <Link href="/dashboard">
-              <a className="text-lg sm:text-xl lg:text-2xl mx-2 font-semibold">
-                Makassar 112
+              <a className="flex items-center text-lg sm:text-xl lg:text-2xl font-medium">
+                <Image
+                  src="/makassar.png"
+                  alt="makassar"
+                  width="40"
+                  height="44"
+                ></Image>
+                Makassar
               </a>
             </Link>
           </div>
@@ -99,9 +105,19 @@ export default function Dashbord({ children, toggleMode }) {
                 type="text"
                 placeholder="Search"
               /> */}
-              <Link href="/dashboard">
-                <a className="text-lg md:text-xl">Makassar 112 </a>
-              </Link>
+              <div className="lg:hidden">
+                <Link href="/dashboard">
+                  <a className="flex items-center text-lg sm:text-xl font-medium">
+                    <Image
+                      src="/makassar.png"
+                      alt="makassar"
+                      width="36"
+                      height="40"
+                    ></Image>
+                    Makassar
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
 

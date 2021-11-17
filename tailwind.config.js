@@ -10,7 +10,7 @@ module.exports = {
         roboto: ["Roboto", "sans-serif"],
       },
       spacing: {
-        128: "32rem",
+        128: "34rem",
       },
     },
     screens: {
