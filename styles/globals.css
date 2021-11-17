@@ -47,7 +47,11 @@
   }
 
   .input-field {
-    @apply px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none focus:ring;
+    @apply w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none focus:ring;
+  }
+
+  .input-field-sm {
+    @apply  px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none focus:ring;
   }
 
   .text-title {
@@ -76,6 +80,11 @@
 
   .dark-card {
     @apply dark:text-gray-100 dark:bg-d2 bg-white text-gray-800 shadow-md;
+  }
+
+
+  .dark-modal {
+    @apply dark:text-gray-100 dark:bg-d2 bg-gray-200 text-gray-800 shadow-md;
   }
 
   .dark-link {

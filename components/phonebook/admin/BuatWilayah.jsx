@@ -53,10 +53,10 @@ export default function BuatWilayah({ cancel }) {
     <>
       <div className="opacity-20 fixed inset-0 z-40 bg-black"></div>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="max-w-md mx-auto dark-card rounded-lg overflow-hidden md:max-w-lg ">
+        <div className="max-w-md mx-auto dark-modal rounded-lg overflow-hidden md:max-w-lg ">
           <div className="md:flex">
             <div className="w-full">
-              <div className="p-4 border-b-2">
+              <div className="p-4 border-b-2  border-gray-400">
                 <span className="px-3 text-lg font-bold">
                   Buat Wilayah Baru
                 </span>
@@ -65,7 +65,7 @@ export default function BuatWilayah({ cancel }) {
                 <label className="flex flex-wrap items-center btn-las w-full py-2 px-3">
                   <span className="text-sm mr-2">Nama wilayah</span>
                   
-                  <input ref={namaRef} className="input-field" type="text" maxLength="50" required />
+                  <input ref={namaRef} className="input-field-sm" type="text" maxLength="50" required />
                 </label>
 
                 <div className="flex mt-6 text-center pb-3">

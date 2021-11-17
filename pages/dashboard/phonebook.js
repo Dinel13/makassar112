@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
-import {useDispatch} from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getSession } from "next-auth/client";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 import Hasil from "../../components/phonebook/admin/Hasil";
@@ -24,28 +26,46 @@ export default function Phonebook() {
   const [buatWilayah, setBuatWilayah] = useState(false);
   const [buatPB, setBuatPB] = useState(false);
   const [updatePB, setUpdatePB] = useState(false);
-  const [status, setStatus] = useState({});
+  const [statusData, setStatus] = useState({});
   const searchRef = useRef(null);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true)
+  const router = useRouter()
+
+  useEffect(() => {
+    getSession().then(session => {
+      if (!session) {
+        router.push("/masuk")
+      }
+      setIsLoading(false)
+    })
+  }, [router])
+
+  if (isLoading) {
+    return <div className="text-center">Loading...</div>
+  }
 
   const submitSearch = async (e) => {
     e.preventDefault();
     setStatus({
       loading: true,
       hasil: null,
-      search : true,
+      search: true,
     });
     try {
       // const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/search`, {
-        const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/get`, {
-        method: "POST",
-        headers: {
-          // "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: searchRef.current.value,
-        }),
-      });
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/get`,
+        {
+          method: "POST",
+          headers: {
+            // "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: searchRef.current.value,
+          }),
+        }
+      );
       const data = await result.json();
       if (!result.ok) {
         console.log(data);
@@ -54,13 +74,13 @@ export default function Phonebook() {
       setStatus({
         loading: false,
         hasil: data,
-        search : true,
+        search: true,
       });
     } catch (error) {
       setStatus({
         loading: false,
         hasil: null,
-        search : true,
+        search: true,
       });
       dispatch(
         showNotif({
@@ -86,12 +106,15 @@ export default function Phonebook() {
                 ref={searchRef}
                 type="text"
                 placeholder="Cari"
-                required 
+                required
                 maxLength="50"
                 className="dark-nav bg-transparent focus:outline-none rounded-xl py-2 px-3 w-40"
               ></input>
             </label>
-            <button className="btn-sec ml-2.5 py-2.5 px-3 rounded-full" type="submit">
+            <button
+              className="btn-sec ml-2.5 py-2.5 px-3 rounded-full"
+              type="submit"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -238,23 +261,21 @@ export default function Phonebook() {
           <BuatWilayah cancel={() => setBuatWilayah(!buatWilayah)} />
         )}
         {buatPB && <BuatPhoneBook cancel={() => setBuatPB(!buatPB)} />}
-        {status.hasil && !status.loading && (
+        {statusData.hasil && !statusData.loading && (
           <div className="my-16">
             <Hasil />
           </div>
         )}
-        {status.loading && (
+        {statusData.loading && (
           <div className="my-16">
             <h2 className="text-title mb-3 text-center">Hasil Pencarian</h2>{" "}
             <Loading />{" "}
           </div>
         )}
-        {!status.hasil && !status.loading && status.search && (
+        {!statusData.hasil && !statusData.loading && statusData.search && (
           <div className="mb-16 text-center my-16">
             <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
-            <h className="text-subtitle my-10 font-normal">
-              Tidak ada hasil
-            </h>
+            <h className="text-subtitle my-10 font-normal">Tidak ada hasil</h>
             <p>Pebaiki keyword pencarian kamu</p>
           </div>
         )}
