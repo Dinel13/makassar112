@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import Loading from "../components/loading/Loading";
+import Hasil from "../components/phonebook/Hasil";
 import Sering from "../components/phonebook/Sering";
 
 import { kategori, wilayah } from "../data";
@@ -12,12 +14,22 @@ export default function Home() {
   const [wilayahSelect, setWilayahSelect] = useState(wilayah);
   const [kategoriData, setKategoriData] = useState(null);
   const [wilayahData, setWilayahData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [hasil, setHasil] = useState(null);
+  const [everSeach, setEverSearch] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setEverSearch(true);
     console.log(kategoriRef.current.value);
     console.log(wilayahRef.current.value);
     console.log("submit");
+    try {
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -90,8 +102,28 @@ export default function Home() {
         </div>
       </div>
       <div className="container m-0 mx-auto px-1 sm:px-2 md:px-3 lg:px-5 xl:px-7 2xl:px-9 py-2 sm:py-4 md:py-7 lg:py-10 xl:py-12 2xl:py-14">
+        {hasil && !loading && (
+          <div className="mb-16">
+            <Hasil />
+          </div>
+        )}
+        {loading && (
+          <div className="mb-16">
+            <h2 className="text-title mb-3 text-center">Hasil Pencarian</h2>{" "}
+            <Loading />{" "}
+          </div>
+        )}
+        {!hasil && !loading && everSeach && (
+          <div className="mb-16 text-center">
+            <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
+            <h className="text-subtitle my-10 font-normal">
+              Tidak ada hasil
+            </h>
+            <p>Pebaiki keyword pencarian kamu</p>
+          </div>
+        )}
         <Sering />
-    </div>
+      </div>
     </>
   );
 }

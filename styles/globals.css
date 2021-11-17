@@ -55,7 +55,7 @@
   }
 
   .text-subtitle {
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold;
+    @apply sm:text-lg md:text-xl lg:text-2xl font-semibold;
   }
 
   .wrapper {
