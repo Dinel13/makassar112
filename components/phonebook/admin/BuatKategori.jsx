@@ -62,9 +62,10 @@ export default function BuatKategori({ cancel }) {
                 </span>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
-                <label className="inline-flex items-center btn-las w-full py-2 px-3">
-                  Nama kategori
-                  <input ref={namaRef} type="text" maxLength="60" required />
+                <label className="flex flex-wrap items-center btn-las w-full py-2 px-3">
+                  <span className="text-sm mr-2">Nama kategori</span>
+                  
+                  <input ref={namaRef} className="input-field" type="text" maxLength="50" required />
                 </label>
 
                 <div className="flex mt-6 text-center pb-3">
@@ -73,14 +74,14 @@ export default function BuatKategori({ cancel }) {
                   ) : (
                     <>
                       <button
-                        className="w-full btn-ter h-12 text-lg"
+                        className="w-full btn-ter py-2 text-lg"
                         type="submit"
                       >
                         Upload
                       </button>
                       <button
                         onClick={cancel}
-                        className="w-full btn-sec h-12 text-lg ml-4"
+                        className="w-full btn-sec py-2 text-lg ml-4"
                       >
                         batal
                       </button>

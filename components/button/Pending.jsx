@@ -5,11 +5,11 @@ export default function PendingButton() {
     <button
       type="button"
       disabled
-      className="w-full flex justify-center items-center px-4 py-2.5 text-white bg-yellow-300 rounded-full"
+      className="w-full flex justify-center items-center px-4 py-2.5 dark-sidebar rounded-full"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="animate-spin h-5 w-5 mr-3 text-white"
+        className="animate-spin h-5 w-5 mr-3"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
