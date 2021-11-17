@@ -18,30 +18,30 @@ export default function Sering() {
           >
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-opacity-70">
-                <tr>
+              <tr>
                   <th
                     scope="col"
                     className=" px-6  py-3 text-left text-xs font-medium uppercase tracking-wider "
                   >
-                    Name
+                    Kategori
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
                   >
-                    Title
+                    Wilayah
                   </th>
                   <th
                     scope="col"
                     className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
                   >
-                    Email
+                    Alamat
                   </th>
                   <th
                     scope="col"
                     className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
                   >
-                    Role
+                    No. Telp
                   </th>
                 </tr>
               </thead>
