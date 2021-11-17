@@ -23,7 +23,7 @@
   }
 
   .btn-sec {
-    @apply text-white bg-yellow-400 focus:outline-none hover:shadow-lg hover:bg-yellow-500 rounded-full transition-colors duration-150;
+    @apply dark-sidebar focus:outline-none hover:shadow-lg rounded-full transition-colors duration-150;
   }
 
   .btn-ter {
@@ -51,11 +51,11 @@
   }
 
   .text-title {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-800;
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold;
   }
 
   .text-subtitle {
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold;
   }
 
   .wrapper {
