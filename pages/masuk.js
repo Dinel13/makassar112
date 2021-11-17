@@ -33,25 +33,6 @@ export default function Login() {
         router.replace("/dashboard");
         // dispatch(loginSlice(res.user));
       }
-      // const response = await await fetch(
-      //   `${process.env.REACT_APP_SERVER_URL}/user/login`,
-      //   {
-      //     method: "POST",
-      //     body: JSON.stringify({
-      //       email: email.current.value,
-      //       password: password.current.value,
-      //     }),
-      //     headers: {
-      //       // "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-
-      // const result = await response.json();
-      // if (!response.ok) {
-      //   throw new Error(result.error.message || "Tidak bisa masuk");
-      // }
-      // dispatch(loginSlice(result.user));
     } catch (error) {
       dispatch(
         showNotif({
@@ -67,15 +48,15 @@ export default function Login() {
 
   return (
     <div className="py-16">
-      <div className="form-card dark:bg-gray-800">
-        <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
+      <div className="form-card dark-card">
+        <h1 className="text-3xl font-semibold text-center">
           Masuk ke Dashbord
         </h1>
         <form className="mt-6" onSubmit={loginHandler}>
           <div>
             <label
               htmlFor="email"
-              className="block text-sm text-gray-800 dark:text-gray-200"
+              className="block text-sm "
             >
               Email
             </label>
@@ -91,15 +72,15 @@ export default function Login() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm text-gray-800 dark:text-gray-200"
+                className="block text-sm "
               >
                 Password
               </label>
-              <Link href="/akunku/lupa-sandi">
+              {/* <Link href="/akunku/lupa-sandi">
                 <a className="text-xs text-indigo-600 dark:text-gray-400 hover:underline">
                   Lupa Password?
                 </a>
-              </Link>
+              </Link> */}
             </div>
             <input
               ref={password}
@@ -115,11 +96,11 @@ export default function Login() {
           </div>
         </form>
 
-        <p className="mt-6 text-sm font-light text-center text-gray-700">
+        <p className="mt-6 text-sm font-light text-center ">
           Belum Punya Akun?{" "}
           <button
             onClick={() => router.push("/daftar")}
-            className="font-medium text-indigo-600 dark:text-gray-200 hover:underline"
+            className="font-semibold hover:underline"
           >
             DAFTAR
           </button>
