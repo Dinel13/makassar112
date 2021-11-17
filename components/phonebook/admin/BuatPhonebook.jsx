@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatKategori({ cancel }) {
+export default function BuatPhoneBook({ cancel }) {
   const namaRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function BuatKategori({ cancel }) {
     setPending(true);
 
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/post`, {
+      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/post`, {
         method: "POST",
         headers: {
           // "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export default function BuatKategori({ cancel }) {
       const data = await result.json();
       if (!result.ok) {
         console.log(data);
-        throw new Error(data.error || "Tidak bisa buat kategori");
+        throw new Error(data.error || "Tidak bisa buat nomor");
       }
       dispatch(
         showNotif({
@@ -58,12 +58,12 @@ export default function BuatKategori({ cancel }) {
             <div className="w-full">
               <div className="p-4 border-b-2">
                 <span className="px-3 text-lg font-bold">
-                  Buat Kategori Baru
+                  Buat Nomor Baru
                 </span>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
                 <label className="flex flex-wrap items-center btn-las w-full py-2 px-3">
-                  <span className="text-sm mr-2">Nama kategori</span>
+                  <span className="text-sm mr-2">Nama</span>
                   
                   <input ref={namaRef} className="input-field" type="text" maxLength="50" required />
                 </label>

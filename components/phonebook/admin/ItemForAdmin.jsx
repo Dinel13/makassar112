@@ -17,10 +17,13 @@ export default function ItemForAdmin() {
         <div className="text-sm ">nida.povey@example.com</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">Admin</td>
-      <td className=" px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-          Edit
-        </a>
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+        <button className="pr-2">
+          Update
+        </button>
+        <button className="">
+          Hapus
+        </button>
       </td>
     </tr>
   );

@@ -22,7 +22,7 @@ export default function Dashbord() {
   return (
     <main className="flex-1 overflow-x-hidden overflow-y-auto">
       <div className="container mx-auto px-6 py-8">
-        <h3 className="text-3xl font-medium">Dashboard</h3>
+        <h3 className="text-title font-medium">Dashboard</h3>
         <div className="mt-4">
           <div className="flex flex-wrap -mx-6">
             <div className="w-full px-6 sm:w-1/2 xl:w-1/3">
