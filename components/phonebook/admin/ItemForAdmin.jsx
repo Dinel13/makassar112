@@ -56,7 +56,5 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
 
 const parseDateSQLtoString = (date) => {
   const dateObj = new Date(date);
-  return `${dateObj.getDate()}/${dateObj.getMonth() +
-    1}/${dateObj.getFullYear()}`;
+  return `${dateObj.getFullYear()}/${dateObj.getMonth()+1}/${dateObj.getDate()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
 }
-

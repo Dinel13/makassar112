@@ -2,7 +2,6 @@ CREATE TABLE "phones" (
    "id" bigserial NOT NULL,
    "nama" VARCHAR NOT NULL,
    "phone" VARCHAR NOT NULL,
-   "kategori_id" INT NOT NULL,
    "kategori" VARCHAR NOT NULL,
    "lokasi" TEXT NOT NULL,
    "status" VARCHAR NOT NULL,

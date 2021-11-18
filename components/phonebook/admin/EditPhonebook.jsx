@@ -10,7 +10,7 @@ export default function BuatPhoneBook({ cancel, data }) {
   const kategoriIdRef = useRef(data.kategori_id);
   const kategoriRef = useRef(data.kategori);
   const lokasiRef = useRef(data.lokasi);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(data.status);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,7 +31,6 @@ export default function BuatPhoneBook({ cancel, data }) {
             id: phoneId,
             nama: namaRef.current.value,
             phone: phoneRef.current.value,
-            kategori_id: kategoriIdRef.current.value,
             kategori: kategoriRef.current.value,
             lokasi: lokasiRef.current.value,
             status,
@@ -64,7 +63,6 @@ export default function BuatPhoneBook({ cancel, data }) {
     }
   };
 
-  console.log(data);
   return (
     <>
       <div className="opacity-20 fixed inset-0 z-40 bg-black"></div>
@@ -102,26 +100,23 @@ export default function BuatPhoneBook({ cancel, data }) {
                   />
                 </label>
                 <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">Nama</span>
-                  <input
-                    ref={kategoriIdRef}
-                    className="input-field-sm"
-                    type="text"
-                    maxLength="50"
-                    defaultValue={data.kategori_id}
-                    required
-                  />
-                </label>
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">kategori</span>
-                  <input
+                  <span className="text-sm mr-2">Kategori</span>
+                  <select
                     ref={kategoriRef}
-                    className="input-field-sm"
-                    type="text"
-                    maxLength="50"
                     defaultValue={data.kategori}
+                    className="input-field-sm text-sm w-56"
                     required
-                  />
+                  >
+                    <option value=""></option>
+                    <option value="dsadsa">Kategorid</option>
+                    <option value="s">Kategoridsa</option>
+                    <option value="sds">Kategoridsa</option>
+                    {/* {kategoriSelect.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.nama}
+                      </option>
+                    ))} */}
+                  </select>
                 </label>
                 <label className="flex flex-wrap items-center py-2 px-3">
                   <span className="text-sm mr-2">lokasi</span>

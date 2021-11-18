@@ -7,7 +7,6 @@ import { showNotif } from "../../../store/notifSlice";
 export default function BuatPhoneBook({ cancel }) {
   const namaRef = useRef(null);
   const phoneRef = useRef(null);
-  const kategoriIdRef = useRef(null);
   const kategoriRef = useRef(null);
   const lokasiRef = useRef(null);
   const [status, setStatus] = useState(null);
@@ -29,7 +28,6 @@ export default function BuatPhoneBook({ cancel }) {
           body: JSON.stringify({
             nama: namaRef.current.value,
             phone: phoneRef.current.value,
-            kategori_id: kategoriIdRef.current.value,
             kategori: kategoriRef.current.value,
             lokasi: lokasiRef.current.value,
             status
@@ -97,24 +95,22 @@ export default function BuatPhoneBook({ cancel }) {
                   />
                 </label>
                 <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">Nama</span>
-                  <input
-                    ref={kategoriIdRef}
-                    className="input-field-sm"
-                    type="text"
-                    maxLength="50"
-                    required
-                  />
-                </label>
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">kategori</span>
-                  <input
+                  <span className="text-sm mr-2">Kategori</span>
+                  <select
                     ref={kategoriRef}
-                    className="input-field-sm"
-                    type="text"
-                    maxLength="50"
+                    className="input-field-sm text-sm  w-56"
                     required
-                  />
+                  >
+                    <option value=""></option>
+                    <option value="1">Kategorid</option>
+                    <option value="s">Kategoridsa</option>
+                    <option value="sds">Kategoridsa</option>
+                    {/* {kategoriSelect.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.nama}
+                      </option>
+                    ))} */}
+                  </select>
                 </label>
                 <label className="flex flex-wrap items-center py-2 px-3">
                   <span className="text-sm mr-2">lokasi</span>
