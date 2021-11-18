@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { showNotif } from "../../../store/notifSlice";
+import Pagination from "../../button/Pagination";
 import Item from "./ItemForAdmin";
 
-export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
+export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
   const [data, setData] = useState(null);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
   const removeItem = (id) => {
-    setData(prev => prev.filter(item => item.id !== id));
-  }
+    setData((prev) => prev.filter((item) => item.id !== id));
+  };
 
-  useEffect(() => {
-    async function getData() {
+  const getData = useCallback(async (page) => {
       try {
         const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin`,
+          `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin/${page}`,
           {
             method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
           }
         );
         const resJson = await result.json();
@@ -37,12 +35,46 @@ export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
           })
         );
       }
-    }
-    getData();
-  }, [dispatch, needRefh, needRefsh]);
+    }, [dispatch])
+
+  useEffect(() => {
+    getData(page);
+  }, [page, getData, needRefh, needRefsh]);
   // refresh jika item dihapus
   // needRefh jika item ditmabhag
   // needRefsh jika item diupdate
+
+  const prevHandler = async (e) => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+      getData(page);
+    } else {
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: "Kamu sudah di halaman awal",
+          action: null,
+        })
+      );
+      return
+    }
+  };
+
+  const nextHandler = async (e) => {
+    if (data.length === 0) {
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: "Sudah tidak ada halaman selanjutnya",
+          action: null,
+        })
+      );
+      return
+    } else {
+      setPage((prev) => prev + 1);
+      getData(page);
+    }
+  };
 
   return (
     <div className="flex flex-col my-12">
@@ -92,14 +124,21 @@ export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
                 </tr>
               </thead>
               <tbody className=" divide-y divide-gray-200">
-                {data && data.map((item) => (
-                  <Item key={item.id} data={item} onUpdate={onUpdate} removeItem={removeItem} />
-                ))}
+                {data &&
+                  data.map((item) => (
+                    <Item
+                      key={item.id}
+                      data={item}
+                      onUpdate={onUpdate}
+                      removeItem={removeItem}
+                    />
+                  ))}
               </tbody>
             </table>
           </div>
         </div>
       </div>
+      <Pagination page={page} lanjut={nextHandler} belum={prevHandler} />
     </div>
   );
 }
