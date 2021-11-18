@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-export default function ItemForAdmin({data, onUpdate}) {
+import { showNotif } from "../../../store/notifSlice";
+
+export default function ItemForAdmin({ data, onUpdate, removeItem }) {
+  const dispatch = useDispatch();
 
   const deleteHandler = (id) => {
-    console.log(id);
-  }
+    dispatch(
+      showNotif({
+        status: "Confirm",
+        message: "Kamu yakin akan menghapus data ini",
+        action: ["hapusPhone", id, () => removeItem(id)],
+      })
+    );
+    ;
+  };
 
   return (
     <tr>
-       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.phone}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.kategori}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">

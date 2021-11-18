@@ -5,7 +5,14 @@ import Item from "./ItemForAdmin";
 
 export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
   const [data, setData] = useState(null);
+  const [refresh, setRefresh] = useState(false);
   const dispatch = useDispatch();
+
+  console.log(refresh);
+
+  const removeItem = (id) => {
+    setData(prev => prev.filter(item => item.id !== id));
+  }
 
   useEffect(() => {
     async function getData() {
@@ -35,7 +42,10 @@ export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
       }
     }
     getData();
-  }, [dispatch, needRefh, needRefsh]);
+  }, [dispatch, needRefh, needRefsh, refresh]);
+  // refresh jika item dihapus
+  // needRefh jika item ditmabhag
+  // needRefsh jika item diupdate
 
   return (
     <div className="flex flex-col my-12">
@@ -86,7 +96,7 @@ export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
               </thead>
               <tbody className=" divide-y divide-gray-200">
                 {data && data.map((item) => (
-                  <Item key={item.id} data={item} onUpdate={onUpdate} />
+                  <Item key={item.id} data={item} onUpdate={onUpdate} removeItem={removeItem} />
                 ))}
               </tbody>
             </table>

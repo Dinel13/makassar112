@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       }
 
       const deletedPhones = await db.oneOrNone(
-        `DELETE FROM phonebook WHERE id = $1 RETURNING *`,
+        `DELETE FROM phones WHERE id = $1 RETURNING *`,
         [id]
       );
 
