@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatKategori({ cancel }) {
+export default function BuatKategori({ cancel, updateKategorilist}) {
   const namaRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
@@ -35,6 +35,8 @@ export default function BuatKategori({ cancel }) {
           action: null,
         })
       );
+      console.log(data);
+      updateKategorilist(data);
       cancel();
     } catch (error) {
       dispatch(
@@ -74,16 +76,16 @@ export default function BuatKategori({ cancel }) {
                   ) : (
                     <>
                       <button
+                        onClick={cancel}
+                        className="w-full btn-sec py-2 text-lg mr-4"
+                      >
+                        batal
+                      </button>
+                      <button
                         className="w-full btn-ter py-2 text-lg"
                         type="submit"
                       >
                         Upload
-                      </button>
-                      <button
-                        onClick={cancel}
-                        className="w-full btn-sec py-2 text-lg ml-4"
-                      >
-                        batal
                       </button>
                     </>
                   )}

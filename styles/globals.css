@@ -23,7 +23,7 @@
   }
 
   .btn-sec {
-    @apply text-gray-800 dark:text-gray-50 bg-blue-400 dark:bg-d2 hover:bg-blue-500 dark:hover:bg-d3 focus:outline-none hover:shadow-lg rounded-full transition-colors duration-150;
+    @apply text-gray-800 dark:text-gray-50 bg-gray-300 dark:bg-d2 hover:bg-blue-200 dark:hover:bg-d3 focus:outline-none hover:shadow-lg rounded-full transition-colors duration-150;
   }
 
   .btn-ter {

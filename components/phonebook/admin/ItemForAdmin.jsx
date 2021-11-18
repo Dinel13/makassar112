@@ -18,10 +18,11 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
   };
 
   return (
-    <tr>
+    <tr >
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.phone}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.kategori}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
+        {/* <p className="overflow-hidden truncate overflow-ellipsis w-52"></p> </td> */}
+      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">
         <a target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg

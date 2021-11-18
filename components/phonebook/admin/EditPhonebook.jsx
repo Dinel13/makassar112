@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatPhoneBook({ cancel, data }) {
+export default function BuatPhoneBook({ cancel, data, kategoriList }) {
   const namaRef = useRef(data.nama);
   const phoneRef = useRef(data.phone);
   const kategoriIdRef = useRef(data.kategori_id);
@@ -67,7 +67,7 @@ export default function BuatPhoneBook({ cancel, data }) {
     <>
       <div className="opacity-20 fixed inset-0 z-40 bg-black"></div>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="max-w-2xl mx-auto dark-modal rounded-lg overflow-hidden  ">
+        <div className="max-w-lg mx-auto dark-modal rounded-lg overflow-hidden  ">
           <div className="md:flex">
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
@@ -77,54 +77,52 @@ export default function BuatPhoneBook({ cancel, data }) {
                 onSubmit={handleSubmit}
                 className="flex flex-wrap items-center justify-between p-4 mt-2"
               >
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">Nama</span>
+                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                  <span className="">Nama</span>
                   <input
                     ref={namaRef}
-                    className="input-field-sm"
+                    className="input-field-sm w-full mt-2"
                     type="text"
-                    maxLength="50"
+                    maxLength="45"
                     defaultValue={data.nama}
                     required
                   />
                 </label>
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">Nomor</span>
+                <label className="flex w-full flex-wrap items-center py-2 px-3">
+                  <span className="">Nomor</span>
                   <input
                     ref={phoneRef}
-                    className="input-field-sm"
+                    className="input-field-sm w-full mt-2"
                     type="text"
-                    maxLength="50"
+                    maxLength="45"
                     defaultValue={data.phone}
                     required
                   />
                 </label>
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">Kategori</span>
+                <label className="flex w-full flex-wrap items-center py-2 px-3">
+                  <span className="">Kategori</span>
                   <select
                     ref={kategoriRef}
                     defaultValue={data.kategori}
-                    className="input-field-sm text-sm w-56"
+                    className="input-field-sm w-full mt-2"
                     required
                   >
                     <option value=""></option>
-                    <option value="dsadsa">Kategorid</option>
-                    <option value="s">Kategoridsa</option>
-                    <option value="sds">Kategoridsa</option>
-                    {/* {kategoriSelect.map((item) => (
-                      <option key={item.id} value={item.id}>
+                    {kategoriList.map((item) => (
+                      <option key={item.id} value={item.nama}>
                         {item.nama}
                       </option>
-                    ))} */}
+                    ))}
                   </select>
                 </label>
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">lokasi</span>
+                <label className="flex w-full flex-wrap items-center py-2 px-3">
+                  <span className="">lokasi</span>
                   <input
                     ref={lokasiRef}
-                    className="input-field-sm"
+                    className="input-field-sm w-full mt-2"
                     type="text"
                     defaultValue={data.lokasi}
+                    maxLength="200"
                     required
                   />
                 </label>
@@ -132,7 +130,7 @@ export default function BuatPhoneBook({ cancel, data }) {
                   className="flex flex-wrap items-center py-2 px-3"
                   onChange={(e) => setStatus(e.target.value)}
                 >
-                  <span className="text-sm mr-4">Status</span>
+                  <span className="mr-4">Status</span>
                   <label className="inline-flex items-center">
                     {data.status === "publik" ? (
                       <input

@@ -8,6 +8,7 @@ import Hasil from "../../components/phonebook/admin/Hasil";
 import Loading from "../../components/loading/Loading";
 import { showNotif } from "../../store/notifSlice";
 import PhoneBookList from "../../components/phonebook/admin/PhoneBookList";
+import { kategori } from "../../data";
 
 const BuatPhoneBook = dynamic(
   () => import("../../components/phonebook/admin/BuatPhonebook"),
@@ -27,6 +28,7 @@ const BuatWilayah = dynamic(
 );
 
 export default function Phonebook() {
+  const [kategoriList, setKategoriList] = useState(kategori);
   const [buatKategori, setBuatKategori] = useState(false);
   const [buatWilayah, setBuatWilayah] = useState(false);
   const [buatPB, setBuatPB] = useState(false);
@@ -37,11 +39,30 @@ export default function Phonebook() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
+  const getKategori = async () => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/get`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mendapat kategori");
+      }
+      setKategoriList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getSession().then((session) => {
       if (!session) {
         router.push("/masuk");
       }
+      getKategori();
       setIsLoading(false);
     });
   }, [router]);
@@ -80,6 +101,7 @@ export default function Phonebook() {
         hasil: data,
         search: true,
       });
+      searchRef.current.value = "";
     } catch (error) {
       setStatus({
         loading: false,
@@ -98,7 +120,14 @@ export default function Phonebook() {
 
   const lihatSemuaData = () => {
     setStatus({ hasil: null, loading: false, search: false });
-  }
+  };
+
+  const updateKategorilist = (data) => {
+    const newKategori = [...kategoriList, data];
+    setKategoriList(newKategori);
+  };
+
+  console.log(kategoriList);
 
   return (
     <main className="relative">
@@ -220,7 +249,7 @@ export default function Phonebook() {
                 <span className="ml-3">Buat kategori baru</span>
               </button>
             </div>{" "}
-            <div className="p-4 ">
+            {/* <div className="p-4 ">
               <button
                 onClick={() => setBuatWilayah(!buatWilayah)}
                 className="flex items-center px-4 py-3 justify-center shadow-sm rounded-xl dark-card"
@@ -259,13 +288,17 @@ export default function Phonebook() {
 
                 <span className="ml-3">Buat Wilayah baru</span>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         {statusData.hasil &&
           !statusData.loading &&
           statusData.hasil.length > 0 && (
-              <Hasil data={statusData.hasil} onUpdate={setUpdatePB} cancel={lihatSemuaData} />
+            <Hasil
+              data={statusData.hasil}
+              onUpdate={setUpdatePB}
+              cancel={lihatSemuaData}
+            />
           )}
 
         {statusData.hasil &&
@@ -278,7 +311,7 @@ export default function Phonebook() {
               <p>
                 Pebaiki keyword pencarian kamu atau{" "}
                 <button
-                className="underline font-semibold"
+                  className="underline font-semibold"
                   onClick={lihatSemuaData}
                 >
                   lihat semua data
@@ -301,14 +334,14 @@ export default function Phonebook() {
         )}
       </div>
       {buatKategori && (
-        <BuatKategori cancel={() => setBuatKategori(!buatKategori)} />
+        <BuatKategori cancel={() => setBuatKategori(!buatKategori)} updateKategorilist={updateKategorilist} />
       )}
       {buatWilayah && (
         <BuatWilayah cancel={() => setBuatWilayah(!buatWilayah)} />
       )}
-      {buatPB && <BuatPhoneBook cancel={() => setBuatPB(!buatPB)} />}
+      {buatPB && <BuatPhoneBook kategoriList={kategoriList} cancel={() => setBuatPB(!buatPB)} />}
       {updatePB && (
-        <EditPhoneBook cancel={() => setUpdatePB(null)} data={updatePB} />
+        <EditPhoneBook kategoriList={kategoriList} cancel={() => setUpdatePB(null)} data={updatePB} />
       )}
     </main>
   );
