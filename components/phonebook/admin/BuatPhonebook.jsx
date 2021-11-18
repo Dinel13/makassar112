@@ -6,6 +6,11 @@ import { showNotif } from "../../../store/notifSlice";
 
 export default function BuatPhoneBook({ cancel }) {
   const namaRef = useRef(null);
+  const phoneRef = useRef(null);
+  const kategoriIdRef = useRef(null);
+  const kategoriRef = useRef(null);
+  const lokasiRef = useRef(null);
+  const statusRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
 
@@ -14,15 +19,23 @@ export default function BuatPhoneBook({ cancel }) {
     setPending(true);
 
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/post`, {
-        method: "POST",
-        headers: {
-          // "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nama: namaRef.current.value,
-        }),
-      });
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/post`,
+        {
+          method: "POST",
+          headers: {
+            // "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nama: namaRef.current.value,
+            phone: phoneRef.current.value,
+            kategori_id: kategoriIdRef.current.value,
+            kategori: kategoriRef.current.value,
+            lokasi: lokasiRef.current.value,
+            status: statusRef.current.value,
+          }),
+        }
+      );
       const data = await result.json();
       if (!result.ok) {
         console.log(data);
@@ -53,37 +66,91 @@ export default function BuatPhoneBook({ cancel }) {
     <>
       <div className="opacity-20 fixed inset-0 z-40 bg-black"></div>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="max-w-md mx-auto dark-modal rounded-lg overflow-hidden md:max-w-lg ">
+        <div className="max-w-2xl mx-auto dark-modal rounded-lg overflow-hidden  ">
           <div className="md:flex">
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
-                <span className="px-3 text-lg font-bold">
-                  Buat Nomor Baru
-                </span>
+                <span className="px-3 text-lg font-bold">Buat Nomor Baru</span>
               </div>
-              <form onSubmit={handleSubmit} className="p-4 mt-2">
-                <label className="flex flex-wrap items-center btn-las w-full py-2 px-3">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-wrap items-center justify-between p-4 mt-2"
+              >
+                <label className="flex flex-wrap items-center py-2 px-3">
                   <span className="text-sm mr-2">Nama</span>
-                  
-                  <input ref={namaRef} className="input-field-sm" type="text" maxLength="50" required />
+                  <input
+                    ref={namaRef}
+                    className="input-field-sm"
+                    type="text"
+                    maxLength="50"
+                    required
+                  />
                 </label>
-
-                <div className="flex mt-6 text-center pb-3">
+                <label className="flex flex-wrap items-center py-2 px-3">
+                  <span className="text-sm mr-2">Nomor</span>
+                  <input
+                    ref={phoneRef}
+                    className="input-field-sm"
+                    type="text"
+                    maxLength="50"
+                    required
+                  />
+                </label>
+                <label className="flex flex-wrap items-center py-2 px-3">
+                  <span className="text-sm mr-2">Nama</span>
+                  <input
+                    ref={kategoriIdRef}
+                    className="input-field-sm"
+                    type="text"
+                    maxLength="50"
+                    required
+                  />
+                </label>
+                <label className="flex flex-wrap items-center py-2 px-3">
+                  <span className="text-sm mr-2">kategori</span>
+                  <input
+                    ref={kategoriRef}
+                    className="input-field-sm"
+                    type="text"
+                    maxLength="50"
+                    required
+                  />
+                </label>
+                <label className="flex flex-wrap items-center py-2 px-3">
+                  <span className="text-sm mr-2">lokasi</span>
+                  <input
+                    ref={lokasiRef}
+                    className="input-field-sm"
+                    type="text"
+                    required
+                  />
+                </label>
+                <label className="flex flex-wrap items-center py-2 px-3">
+                  <span className="text-sm mr-2">Status</span>
+                  <input
+                    ref={statusRef}
+                    className="input-field-sm"
+                    type="text"
+                    maxLength="50"
+                    required
+                  />
+                </label>
+                <div className="flex mt-6 justify-end w-full gap-2 pb-3">
                   {pending ? (
                     <PendingButton />
                   ) : (
                     <>
                       <button
-                        className="w-full btn-ter py-2 text-lg"
+                        onClick={cancel}
+                        className="btn-pri py-2 px-6 text-lg"
+                      >
+                        batal
+                      </button>
+                      <button
+                        className="btn-ter py-2 px-6 text-lg"
                         type="submit"
                       >
                         Upload
-                      </button>
-                      <button
-                        onClick={cancel}
-                        className="w-full btn-sec py-2 text-lg ml-4"
-                      >
-                        batal
                       </button>
                     </>
                   )}

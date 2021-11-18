@@ -7,9 +7,14 @@ import dynamic from "next/dynamic";
 import Hasil from "../../components/phonebook/admin/Hasil";
 import Loading from "../../components/loading/Loading";
 import { showNotif } from "../../store/notifSlice";
+import PhoneBookList from "../../components/phonebook/admin/PhoneBookList";
 
 const BuatPhoneBook = dynamic(
   () => import("../../components/phonebook/admin/BuatPhonebook"),
+  { loading: () => <p>Loading...</p> }
+);
+const EditPhoneBook = dynamic(
+  () => import("../../components/phonebook/admin/EditPhonebook"),
   { loading: () => <p>Loading...</p> }
 );
 const BuatKategori = dynamic(
@@ -29,20 +34,20 @@ export default function Phonebook() {
   const [statusData, setStatus] = useState({});
   const searchRef = useRef(null);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    getSession().then(session => {
+    getSession().then((session) => {
       if (!session) {
-        router.push("/masuk")
+        router.push("/masuk");
       }
-      setIsLoading(false)
-    })
-  }, [router])
+      setIsLoading(false);
+    });
+  }, [router]);
 
   if (isLoading) {
-    return <div className="text-center">Loading...</div>
+    return <div className="text-center">Loading...</div>;
   }
 
   const submitSearch = async (e) => {
@@ -254,13 +259,16 @@ export default function Phonebook() {
             </div>
           </div>
         </div>
-        {buatKategori && (
+        <PhoneBookList onUpdate={setUpdatePB} needRefh={buatPB} needRefsh={updatePB} />
+      </div>
+      {buatKategori && (
           <BuatKategori cancel={() => setBuatKategori(!buatKategori)} />
         )}
         {buatWilayah && (
           <BuatWilayah cancel={() => setBuatWilayah(!buatWilayah)} />
         )}
         {buatPB && <BuatPhoneBook cancel={() => setBuatPB(!buatPB)} />}
+        {updatePB && <EditPhoneBook cancel={() => setUpdatePB(null)} data={updatePB} />}
         {statusData.hasil && !statusData.loading && (
           <div className="my-16">
             <Hasil />
@@ -279,7 +287,6 @@ export default function Phonebook() {
             <p>Pebaiki keyword pencarian kamu</p>
           </div>
         )}
-      </div>
     </main>
   );
 }

@@ -10,27 +10,18 @@ export default async function handler(req, res) {
     });
   }
 
-  if (req.method !== "POST") {
-    res.status(400).send({ message: "Only POST requests allowed" });
+  if (req.method !== "GET") {
+    res.status(400).send({ message: "Only GET requests allowed" });
     return;
   }
 
   async function run() {
     try {
-      const body = JSON.parse(req.body);
-      const { query } = body;
-
-      if (!query) {
-        return res.status(422).send({
-          error: ["isisan tidak lengkap"],
-        });
-      }
-
-      const resultSearch = await db.query(
-         `SELECT * FROM phonebook WHERE name LIKE '%${query}%'`
+      const allPhone = await db.manyOrNone(
+        "SELECT * FROM phones Order By updated_at LIMIT 20"
       );
 
-      res.status(200).json(resultSearch);
+      res.status(200).json(allPhone);
     } catch (error) {
       console.error(error);
       res

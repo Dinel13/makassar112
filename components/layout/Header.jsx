@@ -18,7 +18,7 @@ const MainNavigation = ({ toggleMode }) => {
             <Link href="/">Beranda</Link>
           </li>
           <li>
-            <Link href="/masuk">Login</Link>
+            <Link href="/masuk">Lo</Link>
           </li>
           <li className="flex items-center ">
             <DarkModeButton toggleMode={toggleMode} />

@@ -55,7 +55,7 @@ export default function Home() {
             </h1>
             <form
               onSubmit={submitHandler}
-              className="dark-card flex py-3 px-4 max-w-md mx-auto border-2 border-gray-600 rounded-full"
+              className="dark-card flex py-2 px-3 max-w-md mx-auto border-2 border-gray-600 rounded-full"
             >
               <div className="grid grid-cols-2 divide-x divide-gray-400">
                 <label className="">
@@ -63,10 +63,9 @@ export default function Home() {
                     ref={kategoriRef}
                     className="dark-nav bg-transparent focus:outline-none rounded-xl text-sm py-2 px-3 w-40"
                   >
-                    <option value="">Kategori {"   "}</option>
+                    <option value="">Kategori</option>
                     {kategoriSelect.map((item) => (
                       <option key={item.id} value={item.id}>
-                        {" "}
                         {item.nama}
                       </option>
                     ))}
@@ -77,10 +76,9 @@ export default function Home() {
                     ref={wilayahRef}
                     className="dark-nav bg-transparent focus:outline-none rounded-xl text-sm  py-2 px-3 w-40"
                   >
-                    <option value="">Wilayah {"   "}</option>
+                    <option value="">Wilayah</option>
                     {wilayahSelect.map((item) => (
                       <option key={item.id} value={item.id}>
-                        {" "}
                         {item.nama}
                       </option>
                     ))}
@@ -88,7 +86,7 @@ export default function Home() {
                 </label>
               </div>
               <button
-                className="btn-sec ml-2.5 px-4 rounded-full"
+                className="btn-pri ml-2.5 px-4 rounded-full"
                 type="submit"
               >
                 <svg

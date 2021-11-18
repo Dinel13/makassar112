@@ -65,7 +65,7 @@ export default function Dashbord() {
                   <h4 className="text-2xl font-semibold">
                     8,282
                   </h4>
-                  <div className="">New Users</div>
+                  <div className="">Phonebook</div>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function Dashbord() {
                   <h4 className="text-2xl font-semibold">
                     200,521
                   </h4>
-                  <div className="">Total Orders</div>
+                  <div className="">Laporan</div>
                 </div>
               </div>
             </div>

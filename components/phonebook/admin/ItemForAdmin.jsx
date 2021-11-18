@@ -1,27 +1,40 @@
 import React from "react";
 
-export default function ItemForAdmin() {
+export default function ItemForAdmin({data, onUpdate}) {
+
+  const deleteHandler = (id) => {
+    console.log(id);
+  }
+
   return (
     <tr>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="flex items-center">
-          <div className="ml-4">
-            <div className="text-sm font-medium ">Nida Povey</div>
-          </div>
-        </div>
+       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.phone}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.kategori}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">
+        <a target="_blank" rel="noreferrer" href={data.lokasi}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+            />
+          </svg>
+        </a>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm ">CMO, Marketing</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm ">nida.povey@example.com</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">Admin</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.status}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <button className="pr-2">
+        <button onClick={() => onUpdate(data)} className="pr-2">
           Update
         </button>
-        <button className="">
+        <button onClick={() => deleteHandler(data.id)} className="">
           Hapus
         </button>
       </td>
