@@ -41,6 +41,7 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
         </a>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.status}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{parseDateSQLtoString(data.updated_at)}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
         <button onClick={() => onUpdate(data)} className="pr-2">
           Update
@@ -52,3 +53,10 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
     </tr>
   );
 }
+
+const parseDateSQLtoString = (date) => {
+  const dateObj = new Date(date);
+  return `${dateObj.getDate()}/${dateObj.getMonth() +
+    1}/${dateObj.getFullYear()}`;
+}
+

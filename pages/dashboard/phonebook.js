@@ -101,7 +101,7 @@ export default function Phonebook() {
   }
 
   return (
-    <main className="flex-1 overflow-x-hidden overflow-y-auto">
+    <main className="relative">
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-wrap items-center justify-between">
           <h3 className="text-title font-medium">Phone Book</h3>

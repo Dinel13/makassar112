@@ -119,6 +119,12 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                     scope="col"
                     className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
                   >
+                    Diupdet
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  >
                     Aksi
                   </th>
                 </tr>

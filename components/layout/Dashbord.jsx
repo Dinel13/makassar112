@@ -128,7 +128,7 @@ export default function Dashbord({ children, toggleMode }) {
             <DarkModeButton toggleMode={toggleMode} />
           </div>
         </header>
-        <div className="dark-main">{children}</div>
+        <div className="dark-main overflow-y-auto overflow-x-hidden ">{children}</div>
       </div>
     </div>
   );

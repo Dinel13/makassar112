@@ -10,7 +10,7 @@ export default function BuatPhoneBook({ cancel, data }) {
   const kategoriIdRef = useRef(data.kategori_id);
   const kategoriRef = useRef(data.kategori);
   const lokasiRef = useRef(data.lokasi);
-  const statusRef = useRef(data.status);
+  const [status, setStatus] = useState(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
 
@@ -28,13 +28,13 @@ export default function BuatPhoneBook({ cancel, data }) {
             // "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id : phoneId,
+            id: phoneId,
             nama: namaRef.current.value,
             phone: phoneRef.current.value,
             kategori_id: kategoriIdRef.current.value,
             kategori: kategoriRef.current.value,
             lokasi: lokasiRef.current.value,
-            status: statusRef.current.value,
+            status,
           }),
         }
       );
@@ -133,17 +133,53 @@ export default function BuatPhoneBook({ cancel, data }) {
                     required
                   />
                 </label>
-                <label className="flex flex-wrap items-center py-2 px-3">
-                  <span className="text-sm mr-2">Status</span>
-                  <input
-                    ref={statusRef}
-                    className="input-field-sm"
-                    type="text"
-                    maxLength="50"
-                    defaultValue={data.status}
-                    required
-                  />
-                </label>
+                <div
+                  className="flex flex-wrap items-center py-2 px-3"
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <span className="text-sm mr-4">Status</span>
+                  <label className="inline-flex items-center">
+                    {data.status === "publik" ? (
+                      <input
+                        type="radio"
+                        className="form-radio"
+                        name="status"
+                        required
+                        value="publik"
+                        checked
+                      />
+                    ) : (
+                      <input
+                        type="radio"
+                        className="form-radio"
+                        name="status"
+                        required
+                        value="publik"
+                      />
+                    )}
+
+                    <span className="text-sm ml-2">Publik</span>
+                  </label>
+                  <label className="inline-flex items-center ml-6">
+                    {data.status === "private" ? (
+                      <input
+                        type="radio"
+                        className="form-radio"
+                        name="status"
+                        value="private"
+                        checked
+                      />
+                    ) : (
+                      <input
+                        type="radio"
+                        className="form-radio"
+                        name="status"
+                        value="private"
+                      />
+                    )}
+                    <span className="text-sm ml-2">Private</span>
+                  </label>
+                </div>
                 <div className="flex mt-6 justify-end w-full gap-2 pb-3">
                   {pending ? (
                     <PendingButton />
