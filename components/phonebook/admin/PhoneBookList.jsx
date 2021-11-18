@@ -5,10 +5,7 @@ import Item from "./ItemForAdmin";
 
 export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
   const [data, setData] = useState(null);
-  const [refresh, setRefresh] = useState(false);
   const dispatch = useDispatch();
-
-  console.log(refresh);
 
   const removeItem = (id) => {
     setData(prev => prev.filter(item => item.id !== id));
@@ -42,14 +39,14 @@ export default function PhoneBookList({onUpdate, needRefh, needRefsh}) {
       }
     }
     getData();
-  }, [dispatch, needRefh, needRefsh, refresh]);
+  }, [dispatch, needRefh, needRefsh]);
   // refresh jika item dihapus
   // needRefh jika item ditmabhag
   // needRefsh jika item diupdate
 
   return (
     <div className="flex flex-col my-12">
-      <h2 className="text-title mb-3 text-center">Data Phone Book</h2>
+      <h2 className="text-title mb-3 text-center">Semua Data Phone Book</h2>
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className=" shadow overflow-hidden border-b border-gray-600 sm:rounded-lg dark-card">

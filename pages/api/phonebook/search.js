@@ -19,6 +19,7 @@ export default async function handler(req, res) {
     try {
       const body = JSON.parse(req.body);
       const { query } = body;
+      console.log(query);
 
       if (!query) {
         return res.status(422).send({
@@ -27,7 +28,7 @@ export default async function handler(req, res) {
       }
 
       const resultSearch = await db.query(
-         `SELECT * FROM phonebook WHERE name LIKE '%${query}%'`
+         `SELECT * FROM phones WHERE nama LIKE '%${query}%'`
       );
 
       res.status(200).json(resultSearch);

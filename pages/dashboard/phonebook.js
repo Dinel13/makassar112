@@ -60,7 +60,7 @@ export default function Phonebook() {
     try {
       // const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/search`, {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/get`,
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/search`,
         {
           method: "POST",
           headers: {
@@ -73,7 +73,6 @@ export default function Phonebook() {
       );
       const data = await result.json();
       if (!result.ok) {
-        console.log(data);
         throw new Error(data.error || "Tidak bisa mencari");
       }
       setStatus({
@@ -96,6 +95,10 @@ export default function Phonebook() {
       );
     }
   };
+
+  const lihatSemuaData = () => {
+    setStatus({ hasil: null, loading: false, search: false });
+  }
 
   return (
     <main className="flex-1 overflow-x-hidden overflow-y-auto">
@@ -259,20 +262,36 @@ export default function Phonebook() {
             </div>
           </div>
         </div>
-        <PhoneBookList onUpdate={setUpdatePB} needRefh={buatPB} needRefsh={updatePB} />
-      </div>
-      {buatKategori && (
-          <BuatKategori cancel={() => setBuatKategori(!buatKategori)} />
-        )}
-        {buatWilayah && (
-          <BuatWilayah cancel={() => setBuatWilayah(!buatWilayah)} />
-        )}
-        {buatPB && <BuatPhoneBook cancel={() => setBuatPB(!buatPB)} />}
-        {updatePB && <EditPhoneBook cancel={() => setUpdatePB(null)} data={updatePB} />}
-        {statusData.hasil && !statusData.loading && (
-          <div className="my-16">
-            <Hasil />
-          </div>
+        {statusData.hasil &&
+          !statusData.loading &&
+          statusData.hasil.length > 0 && (
+              <Hasil data={statusData.hasil} onUpdate={setUpdatePB} cancel={lihatSemuaData} />
+          )}
+
+        {statusData.hasil &&
+          statusData.hasil.length == 0 &&
+          !statusData.loading &&
+          statusData.search && (
+            <div className="mb-16 text-center my-16">
+              <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
+              <h className="text-subtitle my-10 font-normal">Tidak ada hasil</h>
+              <p>
+                Pebaiki keyword pencarian kamu atau{" "}
+                <button
+                className="underline font-semibold"
+                  onClick={lihatSemuaData}
+                >
+                  lihat semua data
+                </button>
+              </p>
+            </div>
+          )}
+        {!statusData.hasil && !statusData.loading && (
+          <PhoneBookList
+            onUpdate={setUpdatePB}
+            needRefh={buatPB}
+            needRefsh={updatePB}
+          />
         )}
         {statusData.loading && (
           <div className="my-16">
@@ -280,13 +299,17 @@ export default function Phonebook() {
             <Loading />{" "}
           </div>
         )}
-        {!statusData.hasil && !statusData.loading && statusData.search && (
-          <div className="mb-16 text-center my-16">
-            <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
-            <h className="text-subtitle my-10 font-normal">Tidak ada hasil</h>
-            <p>Pebaiki keyword pencarian kamu</p>
-          </div>
-        )}
+      </div>
+      {buatKategori && (
+        <BuatKategori cancel={() => setBuatKategori(!buatKategori)} />
+      )}
+      {buatWilayah && (
+        <BuatWilayah cancel={() => setBuatWilayah(!buatWilayah)} />
+      )}
+      {buatPB && <BuatPhoneBook cancel={() => setBuatPB(!buatPB)} />}
+      {updatePB && (
+        <EditPhoneBook cancel={() => setUpdatePB(null)} data={updatePB} />
+      )}
     </main>
   );
 }
