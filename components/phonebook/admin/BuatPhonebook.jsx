@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatPhoneBook({ cancel }) {
+export default function BuatPhoneBook({ cancel, kategoriList }) {
   const namaRef = useRef(null);
   const phoneRef = useRef(null);
+  const alamatRef = useRef(null);
   const kategoriRef = useRef(null);
   const lokasiRef = useRef(null);
   const [status, setStatus] = useState(null);
@@ -29,6 +30,7 @@ export default function BuatPhoneBook({ cancel }) {
             nama: namaRef.current.value,
             phone: phoneRef.current.value,
             kategori: kategoriRef.current.value,
+            alamat: alamatRef.current.value,
             lokasi: lokasiRef.current.value,
             status
           }),
@@ -101,19 +103,26 @@ export default function BuatPhoneBook({ cancel }) {
                     className="input-field-sm w-full mt-2"
                     required
                   >
-                    <option value=""></option>
-                    <option value="1">Kategorid</option>
-                    <option value="s">Kategoridsa</option>
-                    <option value="sds">Kategoridsa</option>
-                    {/* {kategoriSelect.map((item) => (
-                      <option key={item.id} value={item.id}>
+                     <option value=""></option>
+                    {kategoriList.map((item) => (
+                      <option key={item.id} value={item.nama}>
                         {item.nama}
                       </option>
-                    ))} */}
+                    ))}
                   </select>
                 </label>
                 <label className="flex flex-wrap w-full items-center py-2 px-3">
-                  <span className="">lokasi</span>
+                  <span className="">Alamat</span>
+                  <input
+                    ref={alamatRef}
+                    className="input-field-sm w-full mt-2"
+                    type="text"
+                    maxLength="200"
+                    required
+                  />
+                </label>
+                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                  <span className="">Lokasi di peta</span>
                   <input
                     ref={lokasiRef}
                     className="input-field-sm w-full mt-2"

@@ -30,7 +30,7 @@ export default function SideNav() {
         </a>
       </Link>
 
-      <Link href="/dashboard/filter">
+      <Link href="/dashboard/laporan">
         <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
           <svg
             className="h-6 w-6"
@@ -47,28 +47,7 @@ export default function SideNav() {
             ></path>
           </svg>
 
-          <span className="mx-3">Filter</span>
-        </a>
-      </Link>
-
-      <Link href="/">
-        <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900  hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
-          <svg
-            className="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-            ></path>
-          </svg>
-
-          <span className="mx-3">Front Page</span>
+          <span className="mx-3">Laporan</span>
         </a>
       </Link>
       <Link href="/dashboard/phonebook">
@@ -99,6 +78,26 @@ export default function SideNav() {
           </svg>
 
           <span className="mx-3">Phonebook</span>
+        </a>
+      </Link>
+      <Link href="/">
+        <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900  hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
+          <svg
+            className="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            ></path>
+          </svg>
+
+          <span className="mx-3">Front Page</span>
         </a>
       </Link>
     </nav>

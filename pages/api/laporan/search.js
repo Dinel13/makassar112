@@ -28,10 +28,7 @@ export default async function handler(req, res) {
       }
 
       const resultSearch = await db.query(
-        `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') 
-         OR LOWER(kategori) LIKE LOWER('%${query}%') 
-         OR LOWER(alamat) LIKE LOWER('%${query}%') 
-         LIMIT 50 `
+         `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') LIMIT 30`
       );
 
       res.status(200).json(resultSearch);

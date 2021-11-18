@@ -3,6 +3,7 @@ CREATE TABLE "phones" (
    "nama" VARCHAR NOT NULL,
    "phone" VARCHAR NOT NULL,
    "kategori" VARCHAR NOT NULL,
+   "alamat" VARCHAR NOT NULL,
    "lokasi" TEXT NOT NULL,
    "status" VARCHAR NOT NULL,
    "created_at" timestamptz NOT NULL DEFAULT (now()),

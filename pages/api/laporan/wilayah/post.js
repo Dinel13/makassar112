@@ -1,4 +1,4 @@
-import { db } from "../../../lib/db";
+import { db } from "../../../../lib/db";
 import { getSession } from "next-auth/client";
 
 export default async function handler(req, res) {
@@ -18,23 +18,29 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { query } = body;
-      console.log(query);
+      const { nama } = body;
 
-      if (!query) {
+      if (!nama) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["isian tidak lengkap"],
         });
       }
 
-      const resultSearch = await db.query(
-        `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') 
-         OR LOWER(kategori) LIKE LOWER('%${query}%') 
-         OR LOWER(alamat) LIKE LOWER('%${query}%') 
-         LIMIT 50 `
+      const isExits = await db.oneOrNone(
+        `SELECT id, nama FROM wilayahs WHERE nama = $1`,
+        [nama]
       );
 
-      res.status(200).json(resultSearch);
+      if (isExits) {
+        return res.status(422).send({ error: ["wilayah sudah ada"] });
+      }
+
+      const newWilayah = await db.one(
+        "INSERT INTO wilayahs(nama) VALUES($1) RETURNING id, nama",
+        [nama]
+      );
+
+      res.status(200).json(newWilayah);
     } catch (error) {
       console.error(error);
       res

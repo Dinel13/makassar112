@@ -10,31 +10,29 @@ export default async function handler(req, res) {
     });
   }
 
-  if (req.method !== "POST") {
-    res.status(400).send({ message: "Only POST requests allowed" });
+  if (req.method !== "PUT") {
+    res.status(400).send({ message: "Only PUT requests allowed" });
     return;
   }
 
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { query } = body;
-      console.log(query);
+      const {id, nama, phone, kategori, lokasi, status } = body;
 
-      if (!query) {
+      if (!id|| !nama || !phone || !kategori || !lokasi || !status) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["isian tidak lengkap"],
         });
       }
+      console.log(body);
 
-      const resultSearch = await db.query(
-        `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') 
-         OR LOWER(kategori) LIKE LOWER('%${query}%') 
-         OR LOWER(alamat) LIKE LOWER('%${query}%') 
-         LIMIT 50 `
+      const updatedPhonebook = await db.one(
+         `UPDATE phones SET nama = $1, phone = $2, kategori = $3, lokasi = $4, status = $5, updated_at = NOW() WHERE id = $6 RETURNING *`,
+         [nama, phone, kategori, lokasi, status, id]
       );
 
-      res.status(200).json(resultSearch);
+      res.status(200).json(updatedPhonebook);
     } catch (error) {
       console.error(error);
       res

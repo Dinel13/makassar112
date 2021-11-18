@@ -87,7 +87,7 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                 <tr>
                   <th
                     scope="col"
-                    className=" px-6  py-3 text-left text-xs font-medium uppercase tracking-wider "
+                    className=" px-6  py-4 text-left text-xs font-medium uppercase tracking-wider "
                   >
                     Nama Kontak
                   </th>
@@ -102,6 +102,12 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                     className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
                   >
                     Kategori
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  >
+                    Alamat
                   </th>
                   <th
                     scope="col"

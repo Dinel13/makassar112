@@ -10,31 +10,37 @@ export default async function handler(req, res) {
     });
   }
 
-  if (req.method !== "POST") {
-    res.status(400).send({ message: "Only POST requests allowed" });
+  if (req.method !== "DELETE") {
+    res.status(400).send({ message: "Only DELETE requests allowed" });
     return;
   }
 
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { query } = body;
-      console.log(query);
+      const { id } = body;
 
-      if (!query) {
+      if (!id) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
-      const resultSearch = await db.query(
-        `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') 
-         OR LOWER(kategori) LIKE LOWER('%${query}%') 
-         OR LOWER(alamat) LIKE LOWER('%${query}%') 
-         LIMIT 50 `
+      const deletedPhones = await db.oneOrNone(
+        `DELETE FROM phones WHERE id = $1 RETURNING *`,
+        [id]
       );
 
-      res.status(200).json(resultSearch);
+      if (!deletedPhones) {
+        return res.status(404).send({
+          error: ["data tidak ditemukan"],
+        });
+      }
+
+      res.status(200).send({
+        message: "data telah dihapus",
+      });
+
     } catch (error) {
       console.error(error);
       res

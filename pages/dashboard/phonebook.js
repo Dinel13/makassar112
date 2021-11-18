@@ -130,13 +130,13 @@ export default function Phonebook() {
   console.log(kategoriList);
 
   return (
-    <main className="relative">
+    <>
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-wrap items-center justify-between">
           <h3 className="text-title font-medium">Phone Book</h3>
           <form
             onSubmit={submitSearch}
-            className="dark-card flex justify-between items-center py-1 pl-3 pr-1.5 max-w-sm border border-gray-500 rounded-full"
+            className="dark-card mt-2 sm:mt-0 flex justify-between items-center py-1 pl-3 pr-1.5 max-w-sm border border-gray-500 rounded-full"
           >
             <label className="">
               <input
@@ -343,6 +343,6 @@ export default function Phonebook() {
       {updatePB && (
         <EditPhoneBook kategoriList={kategoriList} cancel={() => setUpdatePB(null)} data={updatePB} />
       )}
-    </main>
+      </>
   );
 }
