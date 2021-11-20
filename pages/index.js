@@ -246,9 +246,9 @@ export default function Home() {
             statusData.search && (
               <div className="mb-16 text-center">
                 <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
-                <h className="text-subtitle my-10 font-normal">
+                <h4 className="text-subtitle my-10 font-normal">
                   Tidak ada hasil
-                </h>
+                </h4>
                 <p>Pebaiki keyword pencarian kamu</p>
               </div>
             )}

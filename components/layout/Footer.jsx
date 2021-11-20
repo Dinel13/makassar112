@@ -18,8 +18,8 @@ function Footer() {
             Sulawesi Selatan 90171
           </p>
         </div>
-        <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-          <div className="sm:w-1/2 w-full px-4">
+        <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center gap-x-3">
+          <div className="mx-auto px-4">
             <h2 className="font-semibold tracking-widest text-xl mb-1.5">
               Layanan Lain
             </h2>
@@ -47,7 +47,7 @@ function Footer() {
               </li>
             </nav>
           </div>
-          <div className="sm:w-1/2 w-full px-4">
+          <div className="mx-auto px-4">
             <h2 className="font-semibold tracking-widest text-xl mb-1.5">
               Hubungi Kami
             </h2>
