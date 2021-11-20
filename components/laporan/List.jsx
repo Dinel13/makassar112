@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Preview, print } from "react-html2pdf";
+import printJS from "print-js";
 
 import { showNotif } from "../../store/notifSlice";
 import Pagination from "../button/Pagination";
@@ -41,8 +41,7 @@ export default function ListLaporan() {
 
   useEffect(() => {
     getData(page);
-  // }, [page, getData]);
-}, []);
+  }, [page, getData]);
 
   const prevHandler = async (e) => {
     if (page > 1) {
@@ -84,7 +83,29 @@ export default function ListLaporan() {
         </h2>
         <div className="flex justify-end items-center gap-2">
           <button
-            onClick={() => print("a", "jsx-template")}
+            type="button"
+            onClick={() =>
+              printJS({
+                printable: data,
+                header: "Laporan makassar 112",
+                // properties: [
+                //   { field: 'name', displayName: 'Full Name'},
+                properties: [
+                  "id",
+                  "kategori",
+                  "deskripsi",
+                  "alamat",
+                  "lokasi",
+                  "update_at",
+                  "status",
+                ],
+                type: "json",
+                gridHeaderStyle:
+                  "background-color: gray;  border: 2px solid #3971A5;",
+                gridStyle: "border: 2px solid #3971A5;",
+                font_size : "10",
+              })
+            }
             className="btn-pri py-1.5 text-sm px-5 tracking-wider"
           >
             PDF
@@ -101,61 +122,58 @@ export default function ListLaporan() {
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className=" shadow overflow-hidden border-b border-gray-600 sm:rounded-lg dark-card">
-            <Preview id={"jsx-template"}>
-              <table className="min-w-full divide-y divide-gray-200" id="table">
-                <thead className="bg-opacity-70">
-                  <tr>
-                    <th
-                      scope="col"
-                      className=" px-6  py-3 text-left text-xs font-medium uppercase tracking-wider "
-                    >
-                      ID
-                    </th>
+            <table className="min-w-full divide-y divide-gray-200" id="table">
+              <thead className="bg-opacity-70">
+                <tr>
+                  <th
+                    scope="col"
+                    className=" px-6  py-3 text-left text-xs font-medium uppercase tracking-wider "
+                  >
+                    ID
+                  </th>
 
-                    <th
-                      scope="col"
-                      className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
-                    >
-                      Kategori
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
-                    >
-                      Deskripsi
-                    </th>
-                    <th
-                      scope="col"
-                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                    >
-                      Alamat
-                    </th>
-                    <th
-                      scope="col"
-                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                    >
-                      Lokasi
-                    </th>
-                    <th
-                      scope="col"
-                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                    >
-                      Waktu
-                    </th>
-                    <th
-                      scope="col"
-                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                    >
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {data &&
-                    data.map((item) => <Item key={item.id} data={item} />)}
-                </tbody>
-              </table>
-            </Preview>
+                  <th
+                    scope="col"
+                    className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
+                  >
+                    Kategori
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
+                  >
+                    Deskripsi
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  >
+                    Alamat
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  >
+                    Lokasi
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  >
+                    Waktu
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {data && data.map((item) => <Item key={item.id} data={item} />)}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
