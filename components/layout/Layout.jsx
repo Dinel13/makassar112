@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { toggleTheme } from "../../store/themeSlice";
 
 import Dashbord from "./Dashbord";
 import Footer from "./Footer";
@@ -8,6 +10,7 @@ import Header from "./Header";
 function Layout(props) {
   const router = useRouter();
   const baseUrl = router.pathname.split("/")[1];
+  const dispatch = useDispatch()
 
   // const [isDark, seTIsDark] = useState(true);
 
@@ -24,12 +27,12 @@ function Layout(props) {
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
-      // seTIsDark(true);
+      dispatch(toggleTheme({ isDark : true }))
     } else {
       document.documentElement.classList.remove("dark");
-      // seTIsDark(false);
+      dispatch(toggleTheme({ isDark : false }))
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     toggleMode();

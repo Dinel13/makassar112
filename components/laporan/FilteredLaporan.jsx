@@ -1,7 +1,10 @@
 import DataTable, { createTheme } from "react-data-table-component";
+import { useSelector } from "react-redux";
+
+import { parseDateSQLtoString } from "../../lib/time";
+import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
 import ExportPDF from "../button/ExportPDF";
-// import "./table.css"
 
 const columns = [
   {
@@ -21,7 +24,7 @@ const columns = [
   },
   {
     name: "Diupdate",
-    selector: (row) => row.updated_at,
+    selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
   },
 ];
@@ -30,22 +33,22 @@ createTheme(
   "solarized",
   {
     text: {
-      primary: "#268bd2",
-      secondary: "#2aa198",
+      primary: "#F9FAFB",
+      secondary: "#F3F4F6",
     },
     background: {
-      default: "#002b36",
+      default: "#3E2C41",
     },
     context: {
       background: "#cb4b16",
-      text: "#FFFFFF",
+      text: "#fff",
     },
     divider: {
-      default: "#073642",
+      default: "#6B7280",
     },
     action: {
       button: "rgba(0,0,0,.54)",
-      hover: "rgba(0,0,0,.08)",
+      hover: "rgba(29, 28, 28, 0.51)",
       disabled: "rgba(0,0,0,.12)",
     },
   },
@@ -69,8 +72,16 @@ const SortIcon = (props) => {
   );
 };
 
+const NoData = () => {
+  return (
+    <div className="text-center p-5">
+      <h3 className="text-xl">Tidak ada data</h3>
+    </div>
+  );
+}
+
 export default function FilteredLaporan({ data }) {
-  console.log(data);
+  const isDark = useSelector(selectIsDark);
   return (
     <div className="flex flex-col my-12">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
@@ -82,18 +93,21 @@ export default function FilteredLaporan({ data }) {
           <ExportExcel data={data} />
         </div>
       </div>
-      <DataTable
-        sort
-        className="dark-card"
-        pagination
-        defaultSortFieldId={1}
-        columns={columns}
-        data={data}
-        theme="solarize"
-        sortIcon={<SortIcon />}
-        striped
-        highlightOnHover
-      ></DataTable>
+      <div className="dark-card rounded-xl py-2">
+        <DataTable
+          sort
+          className="dark-card"
+          pagination
+          defaultSortFieldId={1}
+          columns={columns}
+          data={data}
+          theme={isDark ? "solarized" : "light"}
+          sortIcon={<SortIcon />}
+          // striped
+          noDataComponent={<NoData />}
+          highlightOnHover
+        ></DataTable>
+      </div>
     </div>
   );
 }
