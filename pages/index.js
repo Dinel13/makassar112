@@ -269,7 +269,6 @@ export default function Home() {
           )}
         </div>
         {/* <Sering /> */}
-        <Phone />
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
   const namaRef = useRef(null);
   const phoneRef = useRef(null);
   const kategoriRef = useRef(null);
-  const wilayahRef = useRef(data.wilayah);
+  const wilayahRef = useRef(null);
   const lokasiRef = useRef(null);
   const [status, setStatus] = useState(null);
   const [pending, setPending] = useState(false);

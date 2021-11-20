@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 
-const data = [
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-];
 
 const columns = [
   {
-    name: "Title",
-    selector: (row) => row.title,
+    name: "Nama Kontak",
+    selector: (row) => row.nama,
     sortable: true,
   },
   {
-    name: "Year",
-    selector: (row) => row.year,
+    name: "Nomor Kontak",
+    selector: (row) => row.phone,
+    sortable: true,
+  },
+  {
+    name: "Nomor Kontak",
+    selector: (row) => row.phone,
     sortable: true,
   },
 ];
@@ -53,7 +46,7 @@ createTheme(
   "dark"
 );
 
-export default function Phone() {
+export default function Phone({data}) {
 //   const [isDark, setDark] = useState(false);
 
 //   // change theme if dark mode is enabled
