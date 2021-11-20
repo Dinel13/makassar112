@@ -1,12 +1,10 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/client";
 
 import PendingButton from "../components/button/Pending";
 import SubmitFull from "../components/button/Submit";
-import { login as loginSlice } from "../store/authSlice";
 import { showNotif } from "../store/notifSlice";
 
 export default function Login() {
@@ -27,7 +25,15 @@ export default function Login() {
         password: password.current.value,
       });
 
-      console.log(res);
+      if (res.error) {
+        dispatch(
+          showNotif({
+            status: "Error",
+            message: res.error,
+            action: null,
+          })
+        );
+      }
 
       if (!res.error) {
         router.replace("/dashboard");
