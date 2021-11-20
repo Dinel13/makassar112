@@ -38,7 +38,7 @@ export default function Login() {
           // "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: name.current.value,
+          nama: name.current.value,
           email: email.current.value,
           password: password.current.value,
           kode: kode.current.value,
