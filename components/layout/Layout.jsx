@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import Dashbord from "./Dashbord";
 import Footer from "./Footer";
@@ -11,7 +11,7 @@ function Layout(props) {
 
   // const [isDark, seTIsDark] = useState(true);
 
-  const toggleMode = () => {
+  const toggleMode = useCallback(() => {
     if (localStorage.theme === undefined) {
       localStorage.theme = "dark";
     }
@@ -29,12 +29,11 @@ function Layout(props) {
       document.documentElement.classList.remove("dark");
       // seTIsDark(false);
     }
-  };
-
+  }, []);
 
   useEffect(() => {
     toggleMode();
-  }, []);
+  }, [toggleMode]);
 
   return baseUrl === "dashboard" ? (
     <Dashbord toggleMode={toggleMode}>
@@ -48,10 +47,7 @@ function Layout(props) {
   ) : (
     <>
       <Header toggleMode={toggleMode} />
-      <main
-        className="dark-main"
-        style={{ minHeight: "70vh" }}
-      >
+      <main className="dark-main" style={{ minHeight: "70vh" }}>
         {/* <div className="container m-0 mx-auto px-1 sm:px-2 md:px-3 lg:px-5 xl:px-7 2xl:px-9 py-2 sm:py-4 md:py-7 lg:py-10 xl:py-12 2xl:py-14"> */}
         {props.children}
         {/* </div> */}
