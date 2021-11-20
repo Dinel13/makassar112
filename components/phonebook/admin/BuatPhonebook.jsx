@@ -7,8 +7,8 @@ import { showNotif } from "../../../store/notifSlice";
 export default function BuatPhoneBook({ cancel, kategoriList }) {
   const namaRef = useRef(null);
   const phoneRef = useRef(null);
-  const alamatRef = useRef(null);
   const kategoriRef = useRef(null);
+  const wilayahRef = useRef(data.wilayah);
   const lokasiRef = useRef(null);
   const [status, setStatus] = useState(null);
   const [pending, setPending] = useState(false);
@@ -30,7 +30,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
             nama: namaRef.current.value,
             phone: phoneRef.current.value,
             kategori: kategoriRef.current.value,
-            alamat: alamatRef.current.value,
+            wilayah: wilayahRef.current.value,
             lokasi: lokasiRef.current.value,
             status
           }),
@@ -112,9 +112,9 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                   </select>
                 </label>
                 <label className="flex flex-wrap w-full items-center py-2 px-3">
-                  <span className="">Alamat</span>
+                  <span className="">Wilayah</span>
                   <input
-                    ref={alamatRef}
+                    ref={wilayahRef}
                     className="input-field-sm w-full mt-2"
                     type="text"
                     maxLength="200"

@@ -18,9 +18,9 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const {id, nama, phone, kategori, alamat, lokasi, status } = body;
+      const {id, nama, phone, kategori, wilayah, lokasi, status } = body;
 
-      if (!id|| !nama || !phone || !kategori || !alamat || !lokasi || !status) {
+      if (!id|| !nama || !phone || !kategori || !wilayah || !lokasi || !status) {
         return res.status(422).send({
           error: ["isian tidak lengkap"],
         });
@@ -28,8 +28,8 @@ export default async function handler(req, res) {
       console.log(body);
 
       const updatedPhonebook = await db.one(
-         `UPDATE phones SET nama = $1, phone = $2, kategori = $3, alamat = $4, lokasi = $5, status = $6, updated_at = NOW() WHERE id = $7 RETURNING *`,
-         [nama, phone, kategori, alamat, lokasi, status, id]
+         `UPDATE phones SET nama = $1, phone = $2, kategori = $3, wilayah = $4, lokasi = $5, status = $6, updated_at = NOW() WHERE id = $7 RETURNING *`,
+         [nama, phone, kategori, wilayah, lokasi, status, id]
       );
 
       res.status(200).json(updatedPhonebook);

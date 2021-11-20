@@ -18,18 +18,18 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { nama, phone, kategori, alamat, lokasi, status } = body;
+      const { nama, phone, kategori, wilayah, lokasi, status } = body;
 
-      if (!nama || !phone || !kategori || !alamat || !lokasi || !status) {
+      if (!nama || !phone || !kategori || !wilayah || !lokasi || !status) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
       const newPhone = await db.one(
-        `INSERT INTO phones(nama, phone, kategori, alamat, lokasi, status )
+        `INSERT INTO phones(nama, phone, kategori, wilayah, lokasi, status )
         VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [nama, phone, kategori, alamat, lokasi, status]
+        [nama, phone, kategori, wilayah, lokasi, status]
       );
 
       res.status(200).json(newPhone);

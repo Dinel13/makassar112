@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { parseDateSQLtoString } from "../../../lib/time";
 import { showNotif } from "../../../store/notifSlice";
 
 export default function ItemForAdmin({ data, onUpdate, removeItem }) {
@@ -23,7 +24,7 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
         {/* <p className="overflow-hidden truncate overflow-ellipsis w-52"></p> </td> */}
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.alamat}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">
         <a target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg
@@ -56,7 +57,4 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
   );
 }
 
-const parseDateSQLtoString = (date) => {
-  const dateObj = new Date(date);
-  return `${dateObj.getFullYear()}/${dateObj.getMonth()+1}/${dateObj.getDate()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-}
+

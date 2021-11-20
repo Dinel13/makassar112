@@ -36,7 +36,7 @@ export default function Phonebook() {
   const [statusData, setStatus] = useState({});
   const searchRef = useRef(null);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // for session
   const router = useRouter();
 
   const getKategori = async () => {

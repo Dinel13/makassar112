@@ -1,14 +1,14 @@
-import React from "react";
+import { parseDateSQLtoString } from "../../lib/time";
 
 export default function Item({ data }) {
   return (
     <tr>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.id}</td>
+     <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.wilayah}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">
-        <a target="_blank" rel="noreferrer" href={data.alamat}>
+        <a target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -25,13 +25,7 @@ export default function Item({ data }) {
           </svg>
         </a>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.telp}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">
-        {data.alternatif ? data.alternatif : ""}
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">
-        {data.updated_at}
-      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{parseDateSQLtoString(data.updated_at)}</td>
     </tr>
   );
 }

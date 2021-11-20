@@ -72,7 +72,7 @@ export default function Hasil({ data, onUpdate, cancel }) {
                     scope="col"
                     className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
                   >
-                    Alamat
+                    Wilayah
                   </th>
                   <th
                     scope="col"
