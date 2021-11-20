@@ -72,19 +72,19 @@ function Footer(){
       <div className="bg-purple-700">
         <div className="container mx-auto py-3 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className=" text-sm text-center sm:text-left">
-            ©2021 jalur-wisata by
-            <a
+            ©2021 Kominfo Makassar 112. All rights reserved.
+            {/* <a
               href="https://github.com/Dinel13"
               rel="noreferrer"
               target="_blank"
               className="ml-1 font-medium"
             >
               dinel
-            </a>
+            </a> */}
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
             <a
-              href="https://www.instagram.com/salahuddin_hafid/"
+              href="https://www.instagram.com/"
               rel="noreferrer"
               target="_blank"
               className="ml-3 "
@@ -103,7 +103,7 @@ function Footer(){
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/salahuddin-hafid/"
+              href="https://www.linkedin.com/"
               rel="noreferrer"
               target="_blank"
               className="ml-3"

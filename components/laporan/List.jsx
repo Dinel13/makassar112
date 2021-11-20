@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import XLSX from 'xlsx';
+import { Preview, print } from "react-html2pdf";
 
 import { showNotif } from "../../store/notifSlice";
 import Pagination from "../button/Pagination";
 import Item from "./Item";
+import { exportToExcel } from "../../lib/exportExcel";
 
 export default function ListLaporan() {
   const [data, setData] = useState(null);
@@ -40,7 +41,8 @@ export default function ListLaporan() {
 
   useEffect(() => {
     getData(page);
-  }, [page, getData]);
+  // }, [page, getData]);
+}, []);
 
   const prevHandler = async (e) => {
     if (page > 1) {
@@ -74,74 +76,6 @@ export default function ListLaporan() {
     }
   };
 
-  function downloadCSV(csv, filename) {
-    var csvFile;
-    var downloadLink;
-
-    // CSV file
-    csvFile = new Blob([csv], { type: "text/csv" });
-
-    // Download link
-    downloadLink = document.createElement("a");
-
-    // File name
-    downloadLink.download = filename;
-
-    // Create a link to the file
-    downloadLink.href = window.URL.createObjectURL(csvFile);
-
-    // Hide download link
-    downloadLink.style.display = "none";
-
-    // Add the link to DOM
-    document.body.appendChild(downloadLink);
-
-    // Click download link
-    downloadLink.click();
-  }
-
-  function exportTableToCSV(filename) {
-    if (filename === "") {
-      filename = "export";
-    }
-    var csv = [];
-    var rows = document.querySelectorAll("table tr");
-
-    for (var i = 0; i < rows.length; i++) {
-      var row = [],
-        cols = rows[i].querySelectorAll("td, th");
-
-      for (var j = 0; j < cols.length; j++) row.push(cols[j].innerText);
-
-      csv.push(row.join(","));
-    }
-
-    // Download CSV file
-    downloadCSV(csv.join("\n"), filename);
-  }
-
-  function exportTableToExcel(filename) {
-    if (filename === "") {
-      filename = "export";
-    }
-    var wb = XLSX.utils.table_to_book(document.getElementById("table"), {
-      sheet: "Sheet JS",
-    });
-    XLSX.writeFile(wb, filename);
-  }
-
-  function exportTableToPdf(filename) {
-    if (filename === "") {
-      filename = "export";
-    }
-    var doc = new jsPDF("p", "pt", "a4");
-    doc.autoTable({
-      html: "#table",
-      margin: { top: 60 },
-    });
-    doc.save(filename + ".pdf");
-  }
-
   return (
     <div className="flex flex-col my-12">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
@@ -149,18 +83,15 @@ export default function ListLaporan() {
           Semua Data Laporan
         </h2>
         <div className="flex justify-end items-center gap-2">
-          <button 
-          onClick={exportTableToPdf} className="btn-pri py-1.5 text-sm px-5 tracking-wider">
-            PDF
-          </button>
           <button
-            onClick={exportTableToCSV}
+            onClick={() => print("a", "jsx-template")}
             className="btn-pri py-1.5 text-sm px-5 tracking-wider"
           >
-            Excel
+            PDF
           </button>
+
           <button
-            onClick={exportTableToExcel}
+            onClick={() => exportToExcel(data, "Laporan")}
             className="btn-pri py-1.5 text-sm px-5 tracking-wider"
           >
             Excel
@@ -170,58 +101,61 @@ export default function ListLaporan() {
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className=" shadow overflow-hidden border-b border-gray-600 sm:rounded-lg dark-card">
-            <table className="min-w-full divide-y divide-gray-200" id="table">
-              <thead className="bg-opacity-70">
-                <tr>
-                  <th
-                    scope="col"
-                    className=" px-6  py-3 text-left text-xs font-medium uppercase tracking-wider "
-                  >
-                    ID
-                  </th>
+            <Preview id={"jsx-template"}>
+              <table className="min-w-full divide-y divide-gray-200" id="table">
+                <thead className="bg-opacity-70">
+                  <tr>
+                    <th
+                      scope="col"
+                      className=" px-6  py-3 text-left text-xs font-medium uppercase tracking-wider "
+                    >
+                      ID
+                    </th>
 
-                  <th
-                    scope="col"
-                    className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
-                  >
-                    Kategori
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
-                  >
-                    Deskripsi
-                  </th>
-                  <th
-                    scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                  >
-                    Alamat
-                  </th>
-                  <th
-                    scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                  >
-                    Lokasi
-                  </th>
-                  <th
-                    scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                  >
-                    Waktu
-                  </th>
-                  <th
-                    scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-                  >
-                    Status
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {data && data.map((item) => <Item key={item.id} data={item} />)}
-              </tbody>
-            </table>
+                    <th
+                      scope="col"
+                      className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
+                    >
+                      Kategori
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
+                    >
+                      Deskripsi
+                    </th>
+                    <th
+                      scope="col"
+                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    >
+                      Alamat
+                    </th>
+                    <th
+                      scope="col"
+                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    >
+                      Lokasi
+                    </th>
+                    <th
+                      scope="col"
+                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    >
+                      Waktu
+                    </th>
+                    <th
+                      scope="col"
+                      className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    >
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {data &&
+                    data.map((item) => <Item key={item.id} data={item} />)}
+                </tbody>
+              </table>
+            </Preview>
           </div>
         </div>
       </div>
