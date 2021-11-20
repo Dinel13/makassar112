@@ -15,10 +15,9 @@ export default async function handler(req, res) {
           error: ["isisan tidak lengkap"],
         });
       }
-console.log(kategori);
       // get the data from the database
       const result = await db.query(
-        `SELECT * FROM phones WHERE status = 'publik' AND kategori = '${kategori}'
+        `SELECT * FROM phones WHERE status = 'publik' AND LOWER(kategori) = LOWER('${kategori}')
         LIMIT 120`
       );
 

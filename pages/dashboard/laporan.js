@@ -1,8 +1,12 @@
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
+import dynamic from "next/dynamic";
 
-import ListLaporan from "../../components/laporan/List";
+const FilteredLaporan = dynamic(
+  () => import("../../components/laporan/FilteredLaporan"),
+  { loading: () => <p>Loading...</p> }
+);
 import Search from "../../components/laporan/search";
 
 export default function Laporan() {
@@ -19,15 +23,16 @@ export default function Laporan() {
     });
   }, [router]);
 
+
   if (isLoading) {
     return <div className="text-center">Loading...</div>;
   }
 
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto px-6 py-8 min-h-screen">
       <h3 className="text-title font-medium">Filter Laporan</h3>
       <Search setStatus={setStatus} />
-      <ListLaporan />
+      {statusData.hasil && <FilteredLaporan data={statusData.hasil} />}
     </div>
   );
 }

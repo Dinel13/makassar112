@@ -48,7 +48,7 @@ export default function Search({ setStatus }) {
         hasil: data,
         search: true,
       });
-      resultRef.current.scrollIntoView({ behavior: "smooth" });
+      // resultRef.current.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       setLoading(false);
       setStatus({
@@ -82,7 +82,7 @@ export default function Search({ setStatus }) {
         >
           <option value=""></option>
           {kategoriSelect.map((item) => (
-            <option key={item.id} value={item.id}>
+            <option key={item.id} value={item.name}>
               {item.nama}
             </option>
           ))}
@@ -116,7 +116,6 @@ export default function Search({ setStatus }) {
               selectsStart
               startDate={startDate}
               endDate={endDate}
-              locale="id"
               //  isClearable
               placeholderText="Awal"
             ></DatePicker>
@@ -142,7 +141,6 @@ export default function Search({ setStatus }) {
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               selectsEnd
-              locale="id"
               startDate={startDate}
               className="pl-7 bg-transparent text-sm  focus:outline-none py-2 px-3"
               endDate={endDate}
