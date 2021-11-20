@@ -10,16 +10,14 @@ export default function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      console.log(body);
       const { nama, email, password, kode } = body;
-      console.log(body);
 
       if (!nama || !email.includes("@") || password.trim().length < 5 || !kode) {
-        return res.status(422).send({ error: ["isian tidak lengkap atau password terlalu pendek"] });
+        return res.status(422).send({ error: "Isian tidak lengkap atau password terlalu pendek" });
       }
 
       if (kode !== "Rahassia@112") {
-        return res.status(422).send({ error: ["kode tidak sesuai"] });
+        return res.status(422).send({ error: "kode operator tidak sesuai" });
       }
 
       const userExits = await db.oneOrNone(

@@ -46,7 +46,7 @@ export default function Login() {
 
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error.message || "Tidak bisa buat akun");
+        throw new Error(result.error|| "Tidak bisa buat akun");
       }
       router.push("/masuk");
     } catch (error) {
