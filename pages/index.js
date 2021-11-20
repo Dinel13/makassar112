@@ -9,6 +9,7 @@ import Sering from "../components/phonebook/Sering";
 import { showNotif } from "../store/notifSlice";
 
 import { kategori, wilayah } from "../data";
+import Phone from "../components/table/phone";
 
 export default function Home() {
   // const kategoriRef = useRef(null);
@@ -174,56 +175,101 @@ export default function Home() {
         </div>
       </div>
       <div className="container m-0 mx-auto px-1 sm:px-2 md:px-3 lg:px-5 xl:px-7 2xl:px-9 py-2 sm:py-4 md:py-7 lg:py-10 xl:py-12 2xl:py-14">
-        <h2 className="text-title">Pilih Kategori</h2>
-        <div className="mt-3">
-          <div className="flex flex-wrap -mx-4">
-            <ButtonKategori
-              text="Kesehatan"
-              onClick={() => window.alert("dasd")}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div className="my-6">
+          <h2 className="text-title">Pilih Kategori</h2>
+          <div className="my-3">
+            <div className="flex flex-wrap -mx-4">
+              <ButtonKategori
+                text="Kesehatan"
+                onClick={() => window.alert("dasd")}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </ButtonKategori>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+              </ButtonKategori>
+              <ButtonKategori
+                text="Kesehatan"
+                onClick={() => window.alert("dasd")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"
+                  />
+                </svg>
+              </ButtonKategori>
+              <ButtonKategori
+                text="Kesehatan"
+                onClick={() => window.alert("dasd")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  />
+                </svg>
+              </ButtonKategori>
+            </div>
           </div>
         </div>
-        {/* <div ref={resultRef}> */}
-        {statusData.hasil &&
-          statusData.hasil.length > 0 &&
-          !statusData.loading && (
+        <div ref={resultRef}>
+          {statusData.hasil &&
+            statusData.hasil.length > 0 &&
+            !statusData.loading && (
+              <div className="mb-16">
+                <Hasil data={statusData.hasil} />
+              </div>
+            )}
+          {statusData.hasil &&
+            statusData.hasil.length == 0 &&
+            !statusData.loading &&
+            statusData.search && (
+              <div className="mb-16 text-center">
+                <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
+                <h className="text-subtitle my-10 font-normal">
+                  Tidak ada hasil
+                </h>
+                <p>Pebaiki keyword pencarian kamu</p>
+              </div>
+            )}
+          {statusData.loading && (
             <div className="mb-16">
-              <Hasil data={statusData.hasil} />
+              <h2 className="text-title mb-3 text-center">Hasil Pencarian</h2>{" "}
+              <Loading />{" "}
             </div>
           )}
-        {statusData.hasil &&
-          statusData.hasil.length == 0 &&
-          !statusData.loading &&
-          statusData.search && (
-            <div className="mb-16 text-center">
-              <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
-              <h className="text-subtitle my-10 font-normal">Tidak ada hasil</h>
-              <p>Pebaiki keyword pencarian kamu</p>
-            </div>
-          )}
-        {statusData.loading && (
-          <div className="mb-16">
-            <h2 className="text-title mb-3 text-center">Hasil Pencarian</h2>{" "}
-            <Loading />{" "}
-          </div>
-        )}
-        {/* </div> */}
+        </div>
         {/* <Sering /> */}
+        <Phone />
       </div>
     </>
   );
