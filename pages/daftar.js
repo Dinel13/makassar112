@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/client";
 
 import PendingButton from "../components/button/Pending";
 import SubmitFull from "../components/button/Submit";
@@ -48,7 +49,26 @@ export default function Login() {
       if (!response.ok) {
         throw new Error(result.error|| "Tidak bisa buat akun");
       }
-      router.push("/masuk");
+
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: email.current.value,
+        password: password.current.value,
+      });
+
+      if (res.error) {
+        dispatch(
+          showNotif({
+            status: "Error",
+            message: res.error,
+            action: null,
+          })
+        );
+      }
+
+      if (!res.error) {
+        router.replace("/dashboard");
+      } 
     } catch (error) {
       dispatch(
         showNotif({
