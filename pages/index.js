@@ -1,35 +1,72 @@
-import Head from "next/head";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
+import ButtonKategori from "../components/button/ButtonKategori";
 import Loading from "../components/loading/Loading";
 import Hasil from "../components/phonebook/Hasil";
 import Sering from "../components/phonebook/Sering";
+import { showNotif } from "../store/notifSlice";
 
 import { kategori, wilayah } from "../data";
+import Phone from "../components/table/phone";
 
 export default function Home() {
-  const kategoriRef = useRef(null);
-  const wilayahRef = useRef(null);
-  const [kategoriSelect, setKategoriSelect] = useState(kategori);
-  const [wilayahSelect, setWilayahSelect] = useState(wilayah);
-  const [kategoriData, setKategoriData] = useState(null);
-  const [wilayahData, setWilayahData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [hasil, setHasil] = useState(null);
-  const [everSeach, setEverSearch] = useState(false);
+  // const kategoriRef = useRef(null);
+  // const wilayahRef = useRef(null);
+  // const [kategoriSelect, setKategoriSelect] = useState(kategori);
+  // const [wilayahSelect, setWilayahSelect] = useState(wilayah);
+  // const [kategoriData, setKategoriData] = useState(null);
+  // const [wilayahData, setWilayahData] = useState(null);
+  const searchRef = useRef(null);
+  const resultRef = useRef(null);
+  const dispatch = useDispatch();
+  const [statusData, setStatus] = useState({});
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setEverSearch(true);
-    console.log(kategoriRef.current.value);
-    console.log(wilayahRef.current.value);
-    console.log("submit");
+    setStatus({
+      loading: true,
+      hasil: null,
+      search: true,
+    });
     try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/user/search`,
+        {
+          method: "POST",
+          headers: {
+            // "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: searchRef.current.value,
+          }),
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mencari");
+      }
+      setStatus({
+        loading: false,
+        hasil: data,
+        search: true,
+      });
+      searchRef.current.value = "";
+      resultRef.current.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
-    } finally {
-      setLoading(false);
+      setStatus({
+        loading: false,
+        hasil: null,
+        search: true,
+      });
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
     }
   };
 
@@ -38,8 +75,7 @@ export default function Home() {
       <div
         className="w-full bg-center bg-cover  h-128"
         style={{
-          backgroundImage:
-            "url(/bgg.jpg)",
+          backgroundImage: "url(/bgg.jpg)",
         }}
       >
         <div className="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
@@ -53,7 +89,7 @@ export default function Home() {
             <h1 className="text-title my-4 text-white font-semibold  uppercase lg:text-3xl">
               Layanan Informasi <span className="text-blue-400">Publik</span>
             </h1>
-            <form
+            {/* <form
               onSubmit={submitHandler}
               className="dark-card flex py-2 px-3 max-w-md mx-auto border-2 border-gray-600 rounded-full"
             >
@@ -102,30 +138,128 @@ export default function Home() {
                   />
                 </svg>
               </button>
+            </form> */}
+            <form
+              onSubmit={submitHandler}
+              className="dark-card mt-2 sm:mt-0 flex justify-between items-center py-1 pl-3 pr-1.5 max-w-sm border border-gray-500 rounded-full"
+            >
+              <label className="">
+                <input
+                  ref={searchRef}
+                  type="text"
+                  placeholder="Wilayah"
+                  required
+                  maxLength="50"
+                  className="dark-nav bg-transparent focus:outline-none rounded-xl py-2 px-3 max-w-lg"
+                ></input>
+              </label>
+              <button
+                className="btn-pri ml-2.5 py-2.5 px-3 rounded-full"
+                type="submit"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
             </form>
           </div>
         </div>
       </div>
       <div className="container m-0 mx-auto px-1 sm:px-2 md:px-3 lg:px-5 xl:px-7 2xl:px-9 py-2 sm:py-4 md:py-7 lg:py-10 xl:py-12 2xl:py-14">
-        {hasil && !loading && (
-          <div className="mb-16">
-            <Hasil />
+        <div className="my-6">
+          <h2 className="text-title">Pilih Kategori</h2>
+          <div className="my-3">
+            <div className="flex flex-wrap -mx-4">
+              <ButtonKategori text="Kesehatan" setStatus={setStatus} resultRef={resultRef}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+              </ButtonKategori>
+              <ButtonKategori text="Lingkungan" setStatus={setStatus} resultRef={resultRef}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"
+                  />
+                </svg>
+              </ButtonKategori>
+              <ButtonKategori text="Keamanan" setStatus={setStatus} resultRef={resultRef}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                  />
+                </svg>
+              </ButtonKategori>
+            </div>
           </div>
-        )}
-        {loading && (
-          <div className="mb-16">
-            <h2 className="text-title mb-3 text-center">Hasil Pencarian</h2>{" "}
-            <Loading />{" "}
-          </div>
-        )}
-        {!hasil && !loading && everSeach && (
-          <div className="mb-16 text-center">
-            <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
-            <h className="text-subtitle my-10 font-normal">Tidak ada hasil</h>
-            <p>Pebaiki keyword pencarian kamu</p>
-          </div>
-        )}
-        <Sering />
+        </div>
+        <div ref={resultRef}>
+          {statusData.hasil &&
+            statusData.hasil.length > 0 &&
+            !statusData.loading && (
+              <div className="mb-16">
+                <Hasil data={statusData.hasil} />
+              </div>
+            )}
+          {statusData.hasil &&
+            statusData.hasil.length == 0 &&
+            !statusData.loading &&
+            statusData.search && (
+              <div className="mb-16 text-center">
+                <h2 className="text-title mb-3 ">Hasil Pencarian</h2>
+                <h className="text-subtitle my-10 font-normal">
+                  Tidak ada hasil
+                </h>
+                <p>Pebaiki keyword pencarian kamu</p>
+              </div>
+            )}
+          {statusData.loading && (
+            <div className="mb-16">
+              <h2 className="text-title mb-3 text-center">Hasil Pencarian</h2>{" "}
+              <Loading />{" "}
+            </div>
+          )}
+        </div>
+        {/* <Sering /> */}
       </div>
     </>
   );

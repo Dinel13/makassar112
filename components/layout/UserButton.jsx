@@ -41,11 +41,11 @@ export default function UserButton() {
             className="fixed inset-0 h-full w-full z-10"
           ></div>
           <div className="absolute right-0 mt-2 w-48 py-2.5 bg-white dark:bg-dark3 rounded-md overflow-hidden shadow-xl z-40">
-            <Link href="/profile">
+            {/* <Link href="/profile">
               <a className="block px-4 py-2 text-sm 0 hover:text-gray-600 dark:hover:text-gray-300">
                 Profile
               </a>
-            </Link>
+            </Link> */}
             <button
               onClick={() => signOut()}
               className="block px-4 py-2 text-sm hover:text-gray-600 dark:hover:text-gray-300"

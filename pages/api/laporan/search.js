@@ -18,21 +18,20 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { nama, phone, kategori, wilayah, lokasi, status } = body;
+      const { query } = body;
+      console.log(query);
 
-      if (!nama || !phone || !kategori || !wilayah || !lokasi || !status) {
+      if (!query) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
-      const newPhone = await db.one(
-        `INSERT INTO phones(nama, phone, kategori, wilayah, lokasi, status )
-        VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [nama, phone, kategori, wilayah, lokasi, status]
+      const resultSearch = await db.query(
+         `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') LIMIT 30`
       );
 
-      res.status(200).json(newPhone);
+      res.status(200).json(resultSearch);
     } catch (error) {
       console.error(error);
       res

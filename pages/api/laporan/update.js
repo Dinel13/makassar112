@@ -10,29 +10,29 @@ export default async function handler(req, res) {
     });
   }
 
-  if (req.method !== "POST") {
-    res.status(400).send({ message: "Only POST requests allowed" });
+  if (req.method !== "PUT") {
+    res.status(400).send({ message: "Only PUT requests allowed" });
     return;
   }
 
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { nama, phone, kategori, wilayah, lokasi, status } = body;
+      const {id, nama, phone, kategori, lokasi, status } = body;
 
-      if (!nama || !phone || !kategori || !wilayah || !lokasi || !status) {
+      if (!id|| !nama || !phone || !kategori || !lokasi || !status) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["isian tidak lengkap"],
         });
       }
+      console.log(body);
 
-      const newPhone = await db.one(
-        `INSERT INTO phones(nama, phone, kategori, wilayah, lokasi, status )
-        VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [nama, phone, kategori, wilayah, lokasi, status]
+      const updatedPhonebook = await db.one(
+         `UPDATE phones SET nama = $1, phone = $2, kategori = $3, lokasi = $4, status = $5, updated_at = NOW() WHERE id = $6 RETURNING *`,
+         [nama, phone, kategori, lokasi, status, id]
       );
 
-      res.status(200).json(newPhone);
+      res.status(200).json(updatedPhonebook);
     } catch (error) {
       console.error(error);
       res

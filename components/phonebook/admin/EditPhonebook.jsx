@@ -7,7 +7,7 @@ import { showNotif } from "../../../store/notifSlice";
 export default function BuatPhoneBook({ cancel, data, kategoriList }) {
   const namaRef = useRef(data.nama);
   const phoneRef = useRef(data.phone);
-  const kategoriIdRef = useRef(data.kategori_id);
+  const wilayahRef = useRef(data.wilayah);
   const kategoriRef = useRef(data.kategori);
   const lokasiRef = useRef(data.lokasi);
   const [status, setStatus] = useState(data.status);
@@ -32,6 +32,7 @@ export default function BuatPhoneBook({ cancel, data, kategoriList }) {
             nama: namaRef.current.value,
             phone: phoneRef.current.value,
             kategori: kategoriRef.current.value,
+            wilayah: wilayahRef.current.value,
             lokasi: lokasiRef.current.value,
             status,
           }),
@@ -115,8 +116,19 @@ export default function BuatPhoneBook({ cancel, data, kategoriList }) {
                     ))}
                   </select>
                 </label>
+                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                  <span className="">Wilayah</span>
+                  <input
+                    ref={wilayahRef}
+                    className="input-field-sm w-full mt-2"
+                    type="text"
+                    defaultValue={data.wilayah}
+                    maxLength="200"
+                    required
+                  />
+                </label>
                 <label className="flex w-full flex-wrap items-center py-2 px-3">
-                  <span className="">lokasi</span>
+                  <span className="">Lokasi di peta</span>
                   <input
                     ref={lokasiRef}
                     className="input-field-sm w-full mt-2"

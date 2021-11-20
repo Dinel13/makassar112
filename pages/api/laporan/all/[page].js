@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     }
     try {
       const allPhone = await db.manyOrNone(
-        "SELECT * FROM phones Order By updated_at DESC LIMIT 15 OFFSET $1", [page]
+        "SELECT * FROM laporans Order By updated_at DESC LIMIT 15 OFFSET $1", [page]
       );
       res.status(200).json(allPhone);
     } catch (error) {

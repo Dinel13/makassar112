@@ -10,29 +10,37 @@ export default async function handler(req, res) {
     });
   }
 
-  if (req.method !== "POST") {
-    res.status(400).send({ message: "Only POST requests allowed" });
+  if (req.method !== "DELETE") {
+    res.status(400).send({ message: "Only DELETE requests allowed" });
     return;
   }
 
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { nama, phone, kategori, wilayah, lokasi, status } = body;
+      const { id } = body;
 
-      if (!nama || !phone || !kategori || !wilayah || !lokasi || !status) {
+      if (!id) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
-      const newPhone = await db.one(
-        `INSERT INTO phones(nama, phone, kategori, wilayah, lokasi, status )
-        VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [nama, phone, kategori, wilayah, lokasi, status]
+      const deletedPhones = await db.oneOrNone(
+        `DELETE FROM phones WHERE id = $1 RETURNING *`,
+        [id]
       );
 
-      res.status(200).json(newPhone);
+      if (!deletedPhones) {
+        return res.status(404).send({
+          error: ["data tidak ditemukan"],
+        });
+      }
+
+      res.status(200).send({
+        message: "data telah dihapus",
+      });
+
     } catch (error) {
       console.error(error);
       res

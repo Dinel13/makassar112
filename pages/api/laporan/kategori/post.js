@@ -1,4 +1,4 @@
-import { db } from "../../../lib/db";
+import { db } from "../../../../lib/db";
 import { getSession } from "next-auth/client";
 
 export default async function handler(req, res) {
@@ -18,21 +18,29 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { nama, phone, kategori, wilayah, lokasi, status } = body;
+      const { nama } = body;
 
-      if (!nama || !phone || !kategori || !wilayah || !lokasi || !status) {
+      if (!nama) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
-      const newPhone = await db.one(
-        `INSERT INTO phones(nama, phone, kategori, wilayah, lokasi, status )
-        VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [nama, phone, kategori, wilayah, lokasi, status]
+      const isExits = await db.oneOrNone(
+        `SELECT id, nama FROM kategoris WHERE nama = $1`,
+        [nama]
       );
 
-      res.status(200).json(newPhone);
+      if (isExits) {
+        return res.status(422).send({ error: ["kategori sudah ada"] });
+      }
+
+      const newKategori = await db.one(
+        "INSERT INTO kategoris(nama) VALUES($1) RETURNING id, nama",
+        [nama]
+      );
+
+      res.status(200).json(newKategori);
     } catch (error) {
       console.error(error);
       res
