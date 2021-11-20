@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
+import PendingButton from "./Pending";
 
-export default function ButtonKategori({ children, text, setStatus, resultRef }) {
+export default function ButtonKategori({
+  children,
+  text,
+  setStatus,
+  resultRef,
+}) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -58,13 +64,17 @@ export default function ButtonKategori({ children, text, setStatus, resultRef })
 
   return (
     <div className="p-4 ">
-      <button
-        onClick={submitHandler}
-        className="flex items-center px-6 py-4 justify-center shadow rounded-xl dark-card link-scale"
-      >
-        {children}
-        <span className="ml-3">{text}</span>
-      </button>
+      {loading ? (
+        <PendingButton />
+      ) : (
+        <button
+          onClick={submitHandler}
+          className="flex items-center px-6 py-4 justify-center shadow rounded-xl dark-card link-scale"
+        >
+          {children}
+          <span className="ml-3">{text}</span>
+        </button>
+      )}
     </div>
   );
 }

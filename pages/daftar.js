@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 import PendingButton from "../components/button/Pending";
 import SubmitFull from "../components/button/Submit";
-import { login as loginSlice } from "../store/authSlice";
 import { showNotif } from "../store/notifSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
   const email = useRef();
+  const name = useRef();
   const password = useRef();
   const passwordConf = useRef();
   const kode = useRef();
@@ -31,15 +31,16 @@ export default function Login() {
       return;
     }
     try {
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/daftar`, {
         method: "POST",
         headers: {
           // "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          full_name: name.current.value,
+          nama: name.current.value,
           email: email.current.value,
           password: password.current.value,
+          kode: kode.current.value,
         }),
       });
 
@@ -48,7 +49,6 @@ export default function Login() {
         throw new Error(result.error.message || "Tidak bisa buat akun");
       }
       router.push("/masuk");
-      dispatch(loginSlice(result.user));
     } catch (error) {
       dispatch(
         showNotif({
@@ -74,6 +74,17 @@ export default function Login() {
             <input
               ref={email}
               type="email"
+              required
+              className="mt-2 input-field"
+            />
+          </div>
+          <div className="mt-4">
+            <label htmlFor="name" className="block text-sm">
+              Nama
+            </label>
+            <input
+              ref={name}
+              type="name"
               required
               className="mt-2 input-field"
             />
