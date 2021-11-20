@@ -15,7 +15,7 @@ export default function handler(req, res) {
       console.log(body);
 
       if (!nama || !email.includes("@") || password.trim().length < 5 || !kode) {
-        return res.status(422).send({ error: ["isisan tidak lengkap atau paswword terlalau pendek"] });
+        return res.status(422).send({ error: ["isian tidak lengkap atau password terlalu pendek"] });
       }
 
       if (kode !== "Rahassia@112") {
