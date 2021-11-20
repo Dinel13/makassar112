@@ -179,10 +179,7 @@ export default function Home() {
           <h2 className="text-title">Pilih Kategori</h2>
           <div className="my-3">
             <div className="flex flex-wrap -mx-4">
-              <ButtonKategori
-                text="Kesehatan"
-                onClick={() => window.alert("dasd")}
-              >
+              <ButtonKategori text="Kesehatan" setStatus={setStatus} resultRef={resultRef}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -198,10 +195,7 @@ export default function Home() {
                   />
                 </svg>
               </ButtonKategori>
-              <ButtonKategori
-                text="Kesehatan"
-                onClick={() => window.alert("dasd")}
-              >
+              <ButtonKategori text="Lingkungan" setStatus={setStatus} resultRef={resultRef}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -217,10 +211,7 @@ export default function Home() {
                   />
                 </svg>
               </ButtonKategori>
-              <ButtonKategori
-                text="Kesehatan"
-                onClick={() => window.alert("dasd")}
-              >
+              <ButtonKategori text="Keamanan" setStatus={setStatus} resultRef={resultRef}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
