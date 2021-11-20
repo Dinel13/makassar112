@@ -1,5 +1,6 @@
 import { db } from "../../../lib/db";
 import { getSession } from "next-auth/client";
+import { kategori } from "../../../data";
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
@@ -18,17 +19,17 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { query } = body;
-      console.log(query);
+      const { kategori, startDate, endDate} = body;
+      console.log(kategori, startDate, endDate);
 
-      if (!query) {
+      if (!kategori || !startDate || !endDate) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
       const resultSearch = await db.query(
-         `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${query}%') LIMIT 30`
+         `SELECT * FROM laporans WHERE LOWER(nama) LIKE LOWER('%${query}%') LIMIT 30`
       );
 
       res.status(200).json(resultSearch);
