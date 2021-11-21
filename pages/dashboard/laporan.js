@@ -3,11 +3,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
-// const FilteredLaporan = dynamic(
-//   () => import("../../components/laporan/FilteredLaporan"),
-//   { loading: () => <p>Loading...</p> }
-// );
-import FilteredLaporan from "../../components/laporan/FilteredLaporan";
+const FilteredLaporan = dynamic(
+  () => import("../../components/laporan/FilteredLaporan"),
+  { loading: () => <p>Loading...</p> }
+);
 import Search from "../../components/laporan/search";
 import Loading from "../../components/loading/Loading";
 

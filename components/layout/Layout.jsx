@@ -10,13 +10,24 @@ import Header from "./Header";
 function Layout(props) {
   const router = useRouter();
   const baseUrl = router.pathname.split("/")[1];
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-
-  const toggleMode = useCallback(() => {
-    if (localStorage.theme === undefined) {
+  // when first render
+  // cek if theme is dark or undefined then set theme dark
+  // instead set theme light
+  useEffect(() => {
+    if (localStorage.theme === undefined || localStorage.theme === "dark") {
       localStorage.theme = "dark";
+      document.documentElement.classList.add("dark");
+      dispatch(toggleTheme({ isDark: true }));
+    } else {
+      localStorage.theme === "light";
+      document.documentElement.classList.remove("dark");
+      dispatch(toggleTheme({ isDark: false }));
     }
+  }, [dispatch]);
+
+  const toggleMode = () => {
     localStorage.theme === "light"
       ? (localStorage.theme = "dark")
       : (localStorage.theme = "light");
@@ -26,16 +37,12 @@ function Layout(props) {
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
-      dispatch(toggleTheme({ isDark : true }))
+      dispatch(toggleTheme({ isDark: true }));
     } else {
       document.documentElement.classList.remove("dark");
-      dispatch(toggleTheme({ isDark : false }))
+      dispatch(toggleTheme({ isDark: false }));
     }
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   toggleMode();
-  // }, [toggleMode]);
+  };
 
   return baseUrl === "dashboard" ? (
     <Dashbord toggleMode={toggleMode}>
