@@ -12,7 +12,6 @@ function Layout(props) {
   const baseUrl = router.pathname.split("/")[1];
   const dispatch = useDispatch()
 
-  // const [isDark, seTIsDark] = useState(true);
 
   const toggleMode = useCallback(() => {
     if (localStorage.theme === undefined) {
@@ -34,9 +33,9 @@ function Layout(props) {
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    toggleMode();
-  }, [toggleMode]);
+  // useEffect(() => {
+  //   toggleMode();
+  // }, [toggleMode]);
 
   return baseUrl === "dashboard" ? (
     <Dashbord toggleMode={toggleMode}>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import DarkModeButton from "./DarkModeButton";
 import UserButton from "./UserButton";
 import SideNav from "./SideNav";
+import Footer from "./Footer";
 
 export default function Dashbord({ children, toggleMode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -128,7 +129,10 @@ export default function Dashbord({ children, toggleMode }) {
             <DarkModeButton toggleMode={toggleMode} />
           </div>
         </header>
-        <div className="dark-main overflow-y-auto overflow-x-hidden ">{children}</div>
+        <div className="dark-main overflow-y-auto overflow-x-hidden">
+          {children}
+          <Footer />
+        </div>
       </div>
     </div>
   );
