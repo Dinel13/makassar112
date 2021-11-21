@@ -11,7 +11,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
             rel="stylesheet"
           ></link>
-          <link rel="icon" href="/fav.png" />
+          <link rel="icon" type="image/x-icon" href="/favicon.png" />
         </Head>
         <body className="font-roboto bg-gray-100 dark:bg-main text-gray-800 dark:text-white">
           <Main />
