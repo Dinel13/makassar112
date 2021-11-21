@@ -23,7 +23,7 @@ export default function Dashbord() {
       <div className="my-8 flex justify-center py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div className="md:w-3/4 lg:w-2/3 xl:w-1/2 inline-block rounded-lg border-2 shadow-xl bg-white dark:bg-dark1 border-gray-600 dark:border-white">
           <h3 className="text-subtitle text-center font-medium my-4">
-            Hightlight laporan
+            Highlight Reports
           </h3>
           <div className="flex justify-center text-center overflow-y-auto px-2 pb-6">
             <HglLaporan />
