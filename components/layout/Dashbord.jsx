@@ -122,7 +122,7 @@ export default function Dashbord({ children, toggleMode }) {
         </header>
         <div className="dark-main overflow-y-auto overflow-x-hidden">
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useSession } from "next-auth/client"
 import { useRouter } from "next/router";
 
 import CardMain from "../../components/dashboard/CardMain";
+import LaporanTerbaru from "../../components/dashboard/LaporanTerbaru";
 import Loading from "../../components/loading/Loading";
 
 export default function Dashbord() {
@@ -17,7 +18,7 @@ export default function Dashbord() {
   return (
     <div className="container mx-auto px-6 py-8 min-h-screen">
       <h3 className="text-title font-medium">Dashboard</h3>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <div className="flex flex-wrap -mx-4">
           <CardMain number="521" text="Phonebook">
             <svg
@@ -90,7 +91,9 @@ export default function Dashbord() {
             </svg>
           </CardMain>
         </div>
-      </div>
+      </div> */}
+
+
 
       <div className="flex flex-col mt-12">
         <h3 className="text-subtitle font-medium mb-4">Hightlight laporan</h3>
@@ -100,6 +103,8 @@ export default function Dashbord() {
           </div>
         </div>
       </div>
+
+      <LaporanTerbaru />
     </div>
   );
 }

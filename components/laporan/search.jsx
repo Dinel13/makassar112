@@ -80,7 +80,7 @@ export default function Search({ setStatus }) {
           className="dark-main focus:outline-none rounded-xl text-sm py-4 px-2 ml-2 w-44"
           placeholder="Kategori"
         >
-          <option value=""></option>
+          <option value="semua">Semua</option>
           {kategoriSelect.map((item) => (
             <option key={item.id} value={item.name}>
               {item.nama}

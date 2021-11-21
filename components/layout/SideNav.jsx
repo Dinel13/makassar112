@@ -26,7 +26,7 @@ export default function SideNav() {
             ></path>
           </svg>
 
-          <span className="mx-3">Dashboard</span>
+          <span className="mx-3">Laporan</span>
         </a>
       </Link>
 
@@ -47,7 +47,7 @@ export default function SideNav() {
             ></path>
           </svg>
 
-          <span className="mx-3">Laporan</span>
+          <span className="mx-3">History Laporan</span>
         </a>
       </Link>
       <Link href="/dashboard/phonebook">
