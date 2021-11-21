@@ -1,4 +1,4 @@
-import  createTheme from "react-data-table-component";
+import {createTheme} from "react-data-table-component";
 
 // createTheme(
 //   "solarized",
@@ -26,31 +26,31 @@ import  createTheme from "react-data-table-component";
 //   "dark"
 // );
 
-// createTheme(
-//   "solarized",
-//   {
-//     text: {
-//       primary: "#F9FAFB",
-//       secondary: "#F3F4F6",
-//     },
-//     background: {
-//       default: "#3E2C41",
-//     },
-//     context: {
-//       background: "#cb4b16",
-//       text: "#fff",
-//     },
-//     divider: {
-//       default: "#6B7280",
-//     },
-//     action: {
-//       button: "rgba(0,0,0,.54)",
-//       hover: "rgba(29, 28, 28, 0.51)",
-//       disabled: "rgba(0,0,0,.12)",
-//     },
-//   },
-//   "dark"
-// );
+createTheme(
+  "solarized",
+  {
+    text: {
+      primary: "#F9FAFB",
+      secondary: "#F3F4F6",
+    },
+    background: {
+      default: "#3E2C41",
+    },
+    context: {
+      background: "#cb4b16",
+      text: "#fff",
+    },
+    divider: {
+      default: "#6B7280",
+    },
+    action: {
+      button: "rgba(0,0,0,.54)",
+      hover: "rgba(29, 28, 28, 0.51)",
+      disabled: "rgba(0,0,0,.12)",
+    },
+  },
+  "dark"
+);
 
 export const SortIcon = () => {
   return (
