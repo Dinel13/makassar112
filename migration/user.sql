@@ -1,16 +1,12 @@
 create table "users"
 (
-    id          serial
-        constraint user_pk
-            primary key,
-    nama        varchar not null,
-    email       varchar not null,
-    password       varchar not null,
-    reset_token text
+    "id"          bigserial not null,
+    "nama"        varchar not null,
+    "email"       varchar not null unique,
+    "password"       varchar not null,
+    "reset_token" text default null
 );
 
-create unique index user_id_uindex
-    on "user" (id);
+create index on "users" ("id");
 
-create unique 
-    on "user" (email);
+create index on "users" ("email");

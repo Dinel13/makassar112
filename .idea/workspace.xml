@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="796ef7e3-3c39-48d2-a10f-4c7aee32b39f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/daftar.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/daftar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/daftar.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/daftar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migration/user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migration/user.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

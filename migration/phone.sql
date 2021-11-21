@@ -8,7 +8,7 @@ CREATE TABLE "phones" (
    "status" VARCHAR NOT NULL,
    "created_at" timestamptz NOT NULL DEFAULT (now()),
    "updated_at" timestamptz NOT NULL DEFAULT (now())
-)
+);
 
 CREATE INDEX ON "phones" ("id");
 CREATE INDEX ON "phones" ("nama");
