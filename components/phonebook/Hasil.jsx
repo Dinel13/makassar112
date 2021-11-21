@@ -3,7 +3,7 @@ import Item from "./Item";
 export default function Hasil({ data }) {
   return (
     <div className="flex flex-col my-12">
-      <h2 className="text-title mb-3 text-center">Hasil pencarian phone book</h2>
+      <h2 className="text-title mb-3 text-center">Hasil Pencarian Phone Book</h2>
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className=" shadow overflow-hidden border-b border-gray-600 sm:rounded-lg dark-card">
@@ -44,7 +44,7 @@ export default function Hasil({ data }) {
                     scope="col"
                     className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
                   >
-                    Diupdet
+                    Update Terakhir
                   </th>
                 </tr>
               </thead>
@@ -58,7 +58,7 @@ export default function Hasil({ data }) {
                   ))}
               </tbody>
             </table>
-           
+
           </div>
         </div>
       </div>

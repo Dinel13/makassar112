@@ -11,7 +11,7 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
     dispatch(
       showNotif({
         status: "Confirm",
-        message: "Kamu yakin akan menghapus data ini",
+        message: "Yakin ",
         action: ["hapusPhone", id, () => removeItem(id)],
       })
     );
@@ -22,7 +22,7 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
     <tr >
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
-        {/* <p className="overflow-hidden truncate overflow-ellipsis w-52"></p> </td> */}
+      {/* <p className="overflow-hidden truncate overflow-ellipsis w-52"></p> </td> */}
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">

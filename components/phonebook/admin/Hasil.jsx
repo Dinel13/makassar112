@@ -52,55 +52,55 @@ export default function Hasil({ data, onUpdate, cancel }) {
                 <tr>
                   <th
                     scope="col"
-                    className=" px-6  py-4 text-left text-xs font-medium uppercase tracking-wider "
+                    className=" px-6  py-4 text-center text-xs font-medium uppercase tracking-wider "
                   >
                     Nama Kontak
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
+                    className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider  "
                   >
                     Nomor Kontak
                   </th>
                   <th
                     scope="col"
-                    className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
+                    className="  px-6  py-3  text-center text-xs  font-medium    uppercase  tracking-wider "
                   >
                     Kategori
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Wilayah
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Lokasi
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Sifat
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
-                    Diupdet
+                    Update Terakhir
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Aksi
                   </th>
                 </tr>
               </thead>
-              <tbody className=" divide-y divide-gray-200">
+              <tbody className=" divide-y divide-gray-200 text-center">
                 {data &&
                   data.map((item) => (
                     <Item
@@ -112,15 +112,15 @@ export default function Hasil({ data, onUpdate, cancel }) {
                   ))}
               </tbody>
             </table>
-           
+
           </div>
 
           <button
-                className="underline font-semibold my-4"
-                  onClick={cancel}
-                >
-                  lihat semua data
-                </button>
+            className="underline font-semibold my-4"
+            onClick={cancel}
+          >
+            Lihat semua data
+          </button>
         </div>
       </div>
     </div>
