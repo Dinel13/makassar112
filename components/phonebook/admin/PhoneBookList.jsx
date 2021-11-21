@@ -14,28 +14,28 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
   };
 
   const getData = useCallback(async (page) => {
-      try {
-        const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin/${page}`,
-          {
-            method: "GET",
-          }
-        );
-        const resJson = await result.json();
-        if (!result.ok) {
-          throw new Error(resJson.error || "Tidak bisa mendapat data");
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin/${page}`,
+        {
+          method: "GET",
         }
-        setData(resJson);
-      } catch (error) {
-        dispatch(
-          showNotif({
-            status: "Error",
-            message: error.message,
-            action: null,
-          })
-        );
+      );
+      const resJson = await result.json();
+      if (!result.ok) {
+        throw new Error(resJson.error || "Tidak bisa mendapat data");
       }
-    }, [dispatch])
+      setData(resJson);
+    } catch (error) {
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  }, [dispatch])
 
   useEffect(() => {
     getData(page);
@@ -87,55 +87,55 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                 <tr>
                   <th
                     scope="col"
-                    className=" px-6  py-4 text-left text-xs font-medium uppercase tracking-wider "
+                    className=" px-6  py-4 text-center text-xs font-medium uppercase tracking-wider "
                   >
                     Nama Kontak
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider  "
+                    className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider  "
                   >
                     Nomor Kontak
                   </th>
                   <th
                     scope="col"
-                    className="  px-6  py-3  text-left text-xs  font-medium    uppercase  tracking-wider "
+                    className="  px-6  py-3  text-center text-xs  font-medium    uppercase  tracking-wider "
                   >
                     Kategori
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Wilayah
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Lokasi
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Sifat
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
-                    Diupdet
+                    Update Terakhir
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
                   >
                     Aksi
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 text-center">
                 {data && data.length > 0 &&
                   data.map((item) => (
                     <Item

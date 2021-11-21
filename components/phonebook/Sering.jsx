@@ -5,7 +5,7 @@ import { phone } from "../../data";
 export default function Sering() {
   return (
     <div className="flex flex-col my-12">
-      <h2 className="text-title mb-4 text-center">Layanan sering dihubungi</h2>
+      <h2 className="text-title mb-4 text-center">Layanan Pengaduan Publik</h2>
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow  overflow-hidden sm:rounded-lg  dark-card">
@@ -59,7 +59,7 @@ export default function Sering() {
                     scope="col"
                     className="px-6 py-4 text-left text-xs font-medium  uppercase tracking-wider"
                   >
-                    Update terakhir
+                    Update Terakhir
                   </th>
                 </tr>
               </thead>

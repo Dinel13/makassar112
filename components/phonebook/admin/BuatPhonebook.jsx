@@ -70,7 +70,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
           <div className="md:flex">
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
-                <span className="px-3 text-lg font-bold">Buat Nomor Baru</span>
+                <span className="px-3 text-lg font-bold">Tambah Nomor Baru</span>
               </div>
               <form
                 onSubmit={handleSubmit}
@@ -103,7 +103,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                     className="input-field-sm w-full mt-2"
                     required
                   >
-                     <option value=""></option>
+                    <option value=""></option>
                     {kategoriList.map((item) => (
                       <option key={item.id} value={item.nama}>
                         {item.nama}
@@ -122,7 +122,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                   />
                 </label>
                 <label className="flex flex-wrap w-full items-center py-2 px-3">
-                  <span className="">Lokasi di peta</span>
+                  <span className="">Lokasi di Peta</span>
                   <input
                     ref={lokasiRef}
                     className="input-field-sm w-full mt-2"
@@ -153,7 +153,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                       name="status"
                       value="private"
                     />
-                    <span className="text-sm ml-2">private</span>
+                    <span className="text-sm ml-2">Private</span>
                   </label>
                 </div>
                 <div className="flex mt-6 justify-end w-full gap-2 pb-3">
@@ -165,7 +165,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                         onClick={cancel}
                         className="btn-pri py-2 px-6 text-lg"
                       >
-                        batal
+                        Batal
                       </button>
                       <button
                         className="btn-ter py-2 px-6 text-lg"

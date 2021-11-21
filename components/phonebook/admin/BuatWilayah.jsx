@@ -58,13 +58,13 @@ export default function BuatWilayah({ cancel }) {
             <div className="w-full">
               <div className="p-4 border-b-2  border-gray-400">
                 <span className="px-3 text-lg font-bold">
-                  Buat Wilayah Baru
+                  Tambah Wilayah Baru
                 </span>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
                 <label className="flex flex-wrap items-center btn-las w-full py-2 px-3">
                   <span className="text-sm mr-2">Nama wilayah</span>
-                  
+
                   <input ref={namaRef} className="input-field-sm" type="text" maxLength="50" required />
                 </label>
 
@@ -83,7 +83,7 @@ export default function BuatWilayah({ cancel }) {
                         onClick={cancel}
                         className="w-full btn-sec py-2 text-lg ml-4"
                       >
-                        batal
+                        Batal
                       </button>
                     </>
                   )}
