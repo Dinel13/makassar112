@@ -1,24 +1,18 @@
-import { getSession } from "next-auth/client";
+import { useSession } from "next-auth/client"
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+
 import CardMain from "../../components/dashboard/CardMain";
+import Loading from "../../components/loading/Loading";
 
 export default function Dashbord() {
-  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        router.push("/masuk");
-      }
-      setIsLoading(false);
-    });
-  }, [router]);
-
-  if (isLoading) {
-    return <div className="text-center">Loading...</div>;
+  const [session, loading] = useSession()
+  
+  if (!loading && !session) {
+    router.push("/masuk");
   }
+
+  if (loading) return <Loading />
 
   return (
     <div className="container mx-auto px-6 py-8 min-h-screen">

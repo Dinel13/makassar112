@@ -1,14 +1,17 @@
 import { useState } from "react";
-import Image from "next/image";
 import { signOut } from "next-auth/client";
-import Link from "next/link";
+import router from "next/router";
 
-export default function UserButton() {
+export default function UserButton({nama}) {
   const [isDrdwnUser, setIsDrdwnUser] = useState(false);
 
   const togledrdwnUser = () => {
-    console.log(isDrdwnUser);
     setIsDrdwnUser(!isDrdwnUser);
+  };
+
+  const signOutUser = () => {
+    router.replace("/masuk");
+    signOut();
   };
 
   return (
@@ -17,7 +20,7 @@ export default function UserButton() {
         onClick={() => togledrdwnUser()}
         className="flex items-center focus:outline-none"
       >
-        <span className="pr-1">Profile</span>
+        <span className="pr-1">{nama.substring(0, 8)}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8"
@@ -47,7 +50,7 @@ export default function UserButton() {
               </a>
             </Link> */}
             <button
-              onClick={() => signOut()}
+              onClick={signOutUser}
               className="block px-4 py-2 text-sm hover:text-gray-600 dark:hover:text-gray-300"
             >
               Logout

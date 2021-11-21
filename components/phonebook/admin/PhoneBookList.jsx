@@ -136,7 +136,7 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {data &&
+                {data && data.length > 0 &&
                   data.map((item) => (
                     <Item
                       key={item.id}

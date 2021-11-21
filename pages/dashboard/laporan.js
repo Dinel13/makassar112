@@ -1,37 +1,31 @@
-import { getSession } from "next-auth/client";
+import { useSession } from "next-auth/client"
 import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 
-const FilteredLaporan = dynamic(
-  () => import("../../components/laporan/FilteredLaporan"),
-  { loading: () => <p>Loading...</p> }
-);
+// const FilteredLaporan = dynamic(
+//   () => import("../../components/laporan/FilteredLaporan"),
+//   { loading: () => <p>Loading...</p> }
+// );
+import FilteredLaporan from "../../components/laporan/FilteredLaporan";
 import Search from "../../components/laporan/search";
+import Loading from "../../components/loading/Loading";
 
 export default function Laporan() {
-  const [isLoading, setIsLoading] = useState(true); // for session
   const router = useRouter();
   const [statusData, setStatus] = useState({});
-
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        router.push("/masuk");
-      }
-      setIsLoading(false);
-    });
-  }, [router]);
-
-
-  if (isLoading) {
-    return <div className="text-center">Loading...</div>;
+  const [session, loading] = useSession()
+  
+  if (!loading && !session) {
+    router.push("/masuk");
   }
+
+  if (loading) return <Loading />
 
   return (
     <div className="container mx-auto px-6 py-8 min-h-screen">
       <h3 className="text-title font-medium">Filter Laporan</h3>
-      <Search setStatus={setStatus} />
+      <Search setStatus={setStatus} /> 
       {statusData.hasil && <FilteredLaporan data={statusData.hasil} />}
     </div>
   );

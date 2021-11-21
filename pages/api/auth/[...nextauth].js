@@ -9,7 +9,7 @@ export default NextAuth({
   secret: "sdsadd532dsf54654fgd",
   session: {
     jwt: true,
-    maxAge: 5 * 24 * 60 * 60, // the session will last 5 days
+    maxAge: 6 * 24 * 60 * 60, // the session will last 6 days
   },
   providers: [
     Providers.Credentials({
@@ -30,7 +30,7 @@ export default NextAuth({
         if (!isValid) {
           throw new Error("Password tidak valid");
         }
-        return { email: userExits.email };
+        return {name: userExits.nama, email: userExits.email };
       },
     }),
   ],

@@ -1,0 +1,52 @@
+// import  createTheme from "react-data-table-component";
+
+// createTheme(
+//   "solarized",
+//   {
+//     text: {
+//       primary: "#F9FAFB",
+//       secondary: "#F3F4F6",
+//     },
+//     background: {
+//       default: "#3E2C41",
+//     },
+//     context: {
+//       background: "#cb4b16",
+//       text: "#fff",
+//     },
+//     divider: {
+//       default: "#6B7280",
+//     },
+//     action: {
+//       button: "rgba(0,0,0,.54)",
+//       hover: "rgba(29, 28, 28, 0.51)",
+//       disabled: "rgba(0,0,0,.12)",
+//     },
+//   },
+//   "dark"
+// );
+
+export const SortIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+};
+
+export const NoData = () => {
+  return (
+    <div className="text-center p-5">
+      <h3 className="text-xl">Tidak ada data</h3>
+    </div>
+  );
+}

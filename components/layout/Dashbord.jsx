@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Image from "next/image";
-import { getSession, signOut } from "next-auth/client";
+import { useSession } from "next-auth/client"
 import Link from "next/link";
 
 import DarkModeButton from "./DarkModeButton";
@@ -10,16 +10,9 @@ import Footer from "./Footer";
 
 export default function Dashbord({ children, toggleMode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    getSession().then((session) => {
-      setSession(session);
-    });
-  }, []);
+  const [session, status] = useSession()
 
   const toglesidebar = () => {
-    console.log(isSidebarOpen);
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
@@ -123,9 +116,7 @@ export default function Dashbord({ children, toggleMode }) {
           </div>
 
           <div className="flex items-center">
-            {session && <UserButton />}
-            {!session && <button onClick={() => signOut()}>logout</button>}
-
+            {session && <UserButton nama={session.user.name} />}
             <DarkModeButton toggleMode={toggleMode} />
           </div>
         </header>

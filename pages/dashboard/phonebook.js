@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import { useSession } from "next-auth/client"
 
 import Hasil from "../../components/phonebook/admin/Hasil";
 import Loading from "../../components/loading/Loading";
@@ -36,8 +36,14 @@ export default function Phonebook() {
   const [statusData, setStatus] = useState({});
   const searchRef = useRef(null);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true); // for session
+  const [session, loading] = useSession()
   const router = useRouter();
+
+  if (!loading && !session) {
+    router.push("/masuk");
+  }
+
+  if (loading) return <Loading />
 
   const getKategori = async () => {
     try {
@@ -55,21 +61,7 @@ export default function Phonebook() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        router.push("/masuk");
-      }
-      getKategori();
-      setIsLoading(false);
-    });
-  }, [router]);
-
-  if (isLoading) {
-    return <div className="text-center">Loading...</div>;
-  }
+  };  
 
   const submitSearch = async (e) => {
     e.preventDefault();
