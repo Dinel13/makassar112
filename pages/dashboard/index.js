@@ -18,7 +18,7 @@ export default function Dashbord() {
     <div className="container mx-auto px-6 py-8 min-h-screen">
       <h3 className="text-title font-medium">Dashboard</h3>
       <div className="mt-4">
-        <div className="flex flex-wrap -mx-6">
+        <div className="flex flex-wrap -mx-4">
           <CardMain number="521" text="Phonebook">
             <svg
               className="h-9 w-9"
