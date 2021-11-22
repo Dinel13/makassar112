@@ -26,7 +26,7 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">
-        <a target="_blank" rel="noreferrer" href={data.lokasi}>
+        <a className="flex justify-center" target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
