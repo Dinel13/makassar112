@@ -19,7 +19,7 @@ export default function Dashbord() {
   if (loading) return <Loading />;
 
   return (
-    <div className="container mx-auto px-6 py-8 min-h-screen">
+    <div className="container mx-auto px-2 py-8 min-h-screen">
       <h3 className="text-title font-medium">Dashboard</h3>
       <div className="my-8 flex flex-col justify-center py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <h3 className="text-subtitle text-center font-medium my-4">

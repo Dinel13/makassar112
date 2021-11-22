@@ -77,7 +77,7 @@ const HiglightButton = (dataId) => {
     return (
       <button
         onClick={() => highlight(dataId)}
-        className="py-1 px-2 rounded btn-pri"
+        className="break py-1 px-2 rounded btn-pri min"
       >
         Higlight
       </button>
@@ -85,19 +85,15 @@ const HiglightButton = (dataId) => {
   }
 };
 const Wrap = (data) => {
-  return (
-    <p className="break-all h-auto break-words">
-      {data}
-    </p>
-  );
-}
-
+  return <p className="break-all h-auto break-words">{data}</p>;
+};
 
 const columns = [
   {
     name: "ID Laporan",
     selector: (row) => row.alamat,
     sortable: true,
+    width: 1,
   },
   {
     name: "Kategori",
@@ -108,62 +104,91 @@ const columns = [
     name: "Deskripsi",
     selector: (row) => row.alamat,
     sortable: true,
+    // grow: 2,
   },
   {
     name: "Lokasi Kejadian",
     selector: (row) => row.alamat,
     sortable: true,
+    wrap: true,
   },
   {
-    name: "Catatan Lokasi",
+    name: "Catatan",
     selector: (row) => row.alamat,
     sortable: true,
+    wrap: true,
   },
   {
     name: "Waktu Lapor",
     selector: (row) => row.deskripsi,
     sortable: true,
+    wrap: true,
   },
   {
     name: "Status",
     selector: (row) => row.kategorid,
     sortable: true,
+    wrap: true,
   },
   {
     name: "Nama Pelapor",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
+    wrap: true,
   },
   {
     name: "No. Telp",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
+    wrap: true,
   },
   {
-    name: "Tipe Panggilan",
+    name: "Tipe",
     selector: (row) => Wrap(parseDateSQLtoString(row.updated_at)),
     sortable: true,
     maxWidth: 5,
-    wrap : true,
+    wrap: true,
   },
   {
     name: "Agen L1",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
+    wrap: true,
   },
   {
     name: "Dinas Terkait",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
+    wrap: true,
   },
   {
     name: "Aksi",
     selector: (row) => HiglightButton(row.id),
     sortable: true,
+    wrap: true,
   },
 ];
 
-const avoidError = true;
+const customStyles = {
+  rows: {
+    style: {
+      minHeight: "72px", // override the row height
+    },
+  },
+  headCells: {
+    style: {
+      paddingLeft: "4px", // override the cell padding for head cells
+      paddingRight: "4px",
+      whiteSpace: "normal",
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: "4px", // override the cell padding for data cells
+      paddingRight: "4px",
+    },
+  },
+};
 
 export default function LaporanTerbaru() {
   const [total, setTotal] = useState({ loading: true, data: null });
@@ -292,6 +317,7 @@ export default function LaporanTerbaru() {
               // striped
               noDataComponent={<NoData />}
               highlightOnHover
+              customStyles={customStyles}
             ></DataTable>
           </div>
           {!total.loading && (
