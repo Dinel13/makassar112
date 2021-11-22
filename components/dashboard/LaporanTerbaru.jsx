@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import DataTable, {createTheme} from "react-data-table-component";
+import DataTable, { createTheme } from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
 
 import { parseDateSQLtoString } from "../../lib/time";
@@ -11,7 +11,6 @@ import Pagination from "../button/Pagination";
 import Loading from "../loading/Loading";
 import { SortIcon, NoData } from "../table/helper";
 import PendingButton from "../button/Pending";
-
 
 createTheme(
   "solarized",
@@ -114,49 +113,42 @@ const columns = [
   },
 ];
 
+const avoidError = true;
+
 export default function LaporanTerbaru() {
-  const [statusData, setStatus] = useState({ loading: true, data: [] });
-  const [total, setTotal] = useState({ loading: true, data: 0 });
+  const [total, setTotal] = useState({ loading: true, data: null });
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const isDark = useSelector(selectIsDark);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
-  const getData = useCallback(
-    async (page) => {
-      setStatus((s) => ({ ...s, loading: true }));
-      try {
-        const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
-          {
-            method: "GET",
-          }
-        );
-        const data = await result.json();
-        if (!result.ok) {
-          throw new Error(data.error || "Tidak bisa mendapat data");
+  const getData = async (page) => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
+        {
+          method: "GET",
         }
-        setStatus({
-          loading: false,
-          hasil: data,
-        });
-      } catch (error) {
-        setStatus({
-          loading: false,
-          hasil: null,
-        });
-        dispatch(
-          showNotif({
-            status: "Error",
-            message: error.message,
-            action: null,
-          })
-        );
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mendapat data");
       }
-    },
-    [dispatch]
-  );
 
-  const getTotal = useCallback(async () => {
+      setData(data);
+    } catch (error) {
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    } 
+  };
+
+  const getTotal = async () => {
     setTotal((s) => ({ ...s, loading: true }));
     try {
       const result = await fetch(
@@ -186,15 +178,12 @@ export default function LaporanTerbaru() {
         })
       );
     }
-  }, [dispatch]);
+  };
 
   useEffect(() => {
     getTotal();
-  }, [getTotal]);
-
-  useEffect(() => {
-    getData(page);
-  }, [page, getData]);
+    getData(1);
+  }, []);
 
   const prevHandler = () => {
     if (page > 1) {
@@ -235,15 +224,11 @@ export default function LaporanTerbaru() {
           Laporoan terbaru
         </h2>
         <div className="flex justify-end items-center gap-2">
-          {statusData.hasil && <ExportPDF data={statusData.hasil} />}
-          {statusData.hasil && <ExportExcel data={statusData.hasil} />}
+          {data && !loading && <ExportPDF data={data} />}
+          {data && !loading && <ExportExcel data={data} />}
         </div>
       </div>
-      {statusData.loading ? (
-        <div className="dark-card rounded-xl py-2">
-          <Loading />
-        </div>
-      ) : (
+      {!loading && data ? (
         <>
           <div className="dark-card rounded-xl py-2">
             <DataTable
@@ -251,21 +236,27 @@ export default function LaporanTerbaru() {
               className="dark-card"
               defaultSortFieldId={1}
               columns={columns}
-              data={statusData.hasil}
+              data={data}
               theme={isDark ? "solarized" : "light"}
-              sortIcon={<SortIcon />}
+              // sortIcon={<SortIcon />}
               // striped
               noDataComponent={<NoData />}
               highlightOnHover
             ></DataTable>
           </div>
-          {!total.loading && <Pagination
-            page={page}
-            total={total.data}
-            lanjut={nextHandler}
-            belum={prevHandler}
-          />}
+          {!total.loading && (
+            <Pagination
+              page={page}
+              total={total.data}
+              lanjut={nextHandler}
+              belum={prevHandler}
+            />
+          )}
         </>
+      ) : (
+        <div className="dark-card rounded-xl py-2">
+          <Loading />
+        </div>
       )}
     </div>
   );
