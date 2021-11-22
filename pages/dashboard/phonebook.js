@@ -139,7 +139,7 @@ export default function Phonebook() {
               ></input>
             </label>
             <button
-              className="btn-sec ml-2.5 py-2.5 px-3 rounded-full"
+              className="btn-sec ml-2.5 py-2 px-3 rounded-full"
               type="submit"
             >
               <svg
@@ -159,13 +159,13 @@ export default function Phonebook() {
         </div>
         <div className="mt-4">
           <div className="flex flex-wrap -mx-4">
-            <div className="p-4 ">
+            <div className="p-3">
               <button
                 onClick={() => setBuatPB(!buatPB)}
-                className="flex items-center px-4 py-3 justify-center shadow-sm rounded-xl dark-card"
+                className="flex items-center px-4 text-sm py-3 justify-center shadow-sm rounded-xl dark-card"
               >
                 <svg
-                  className="h-8 w-8"
+                  className="h-6 w-6"
                   viewBox="0 0 28 30"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -199,13 +199,13 @@ export default function Phonebook() {
                 <span className="ml-3">Buat Nomor baru</span>
               </button>
             </div>
-            <div className="p-4 ">
+            <div className="p-3">
               <button
                 onClick={() => setBuatKategori(!buatKategori)}
-                className="flex items-center px-4 py-3 justify-center shadow-sm rounded-xl dark-card"
+                className="flex items-center text-sm px-4 py-3 justify-center shadow-sm rounded-xl dark-card"
               >
                 <svg
-                  className="h-8 w-8"
+                  className="h-6 w-6"
                   viewBox="0 0 28 30"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

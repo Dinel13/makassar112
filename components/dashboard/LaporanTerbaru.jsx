@@ -102,6 +102,11 @@ const columns = [
     sortable: true,
   },
   {
+    name: "Kategori",
+    selector: (row) => row.kategorid,
+    sortable: true,
+  },
+  {
     name: "Diupdate",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
