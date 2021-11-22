@@ -89,6 +89,7 @@ const columns = [
 
 export default function LaporanTerbaru() {
   const [statusData, setStatus] = useState({ loading: true, data: [] });
+  const [total, setTotal] = useState({ loading: true, data: 0 });
   const isDark = useSelector(selectIsDark);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
@@ -128,11 +129,47 @@ export default function LaporanTerbaru() {
     [dispatch]
   );
 
+  const getTotal = useCallback(async () => {
+    setTotal((s) => ({ ...s, loading: true }));
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/total`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mendapat data");
+      }
+      setTotal({
+        loading: false,
+        data: data.count,
+      });
+    } catch (error) {
+      setTotal({
+        loading: false,
+        data: null,
+      });
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    getTotal();
+  }, [getTotal]);
+
   useEffect(() => {
     getData(page);
   }, [page, getData]);
 
-  const prevHandler = async (e) => {
+  const prevHandler = () => {
     if (page > 1) {
       setPage((prev) => prev - 1);
       getData(page);
@@ -148,12 +185,12 @@ export default function LaporanTerbaru() {
     }
   };
 
-  const nextHandler = async (e) => {
-    if (data.length === 0) {
+  const nextHandler = () => {
+    if (total.data < page * 20) {
       dispatch(
         showNotif({
           status: "Error",
-          message: "Sudah tidak ada halaman selanjutnya",
+          message: "Semua data sudah ditampilkan",
           action: null,
         })
       );
@@ -195,7 +232,12 @@ export default function LaporanTerbaru() {
               highlightOnHover
             ></DataTable>
           </div>
-          <Pagination page={page} lanjut={nextHandler} belum={prevHandler} />
+          <Pagination
+            page={page}
+            total={total.data}
+            lanjut={nextHandler}
+            belum={prevHandler}
+          />
         </>
       )}
     </div>
