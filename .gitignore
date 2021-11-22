@@ -35,3 +35,5 @@ yarn-error.log*
 
 
 /lib/db.js
+
+.idea/
