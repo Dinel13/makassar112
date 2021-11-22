@@ -3,16 +3,16 @@ import Marquee from "react-easy-marquee";
 export default function HgLaporan() {
   return (
     <Marquee
-      duration={25000}
+      duration={5000}
       // background="#00DEFB"
       height="160px"
       width="100%"
-      axis="X"
+      axis="Y"
       align="center"
       pauseOnHover={true}
       reverse={true}
     >
-      <div className="text-center h-24  flex-col flex items-center border p-4 dark-sidebar m-4 rounded-xl">
+      <div className="text-center h-24  flex-col flex items-center p-4  m-4 rounded-xl">
         <p>
           Terjadi Peperangan di daerah Gowa. Laporan telah diteruskan ke pihak
           kepolisisan setempat
