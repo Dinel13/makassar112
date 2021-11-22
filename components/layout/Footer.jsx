@@ -10,7 +10,9 @@ function Footer() {
               href=""
               className="flex title-font font-medium items-center md:justify-start justify-center"
             >
-              <span className="text-xl tracking-widest font-semibold">Makassar 112</span>
+              <span className="text-xl tracking-widest font-semibold">
+                Makassar 112
+              </span>
             </a>
           </Link>
           <p className="mt-2 text-sm ">
@@ -34,14 +36,14 @@ function Footer() {
               <li>
                 <Link href="https://opendata.makassar.go.id/">
                   <a href="" className="">
-                  Opendata.makassar.go.id
+                    Opendata.makassar.go.id
                   </a>
                 </Link>
               </li>
               <li>
                 <Link href="http://portalkerjasama.makassarkota.go.id/">
                   <a href="" className="">
-                    Portal kerjasama 
+                    Portal kerjasama
                   </a>
                 </Link>
               </li>
@@ -49,11 +51,11 @@ function Footer() {
           </div>
           <div className="mx-auto px-4">
             <h2 className="font-semibold tracking-widest text-xl mb-1.5">
-              Hubungi Kami
+              Kontak
             </h2>
             <nav className="list-none mb-10 ">
-              <li>Telp./WA: +62 811 xxx xxx</li>
-              <li>E-mail: cccc@cccc.go.id</li>
+              <li>Telepon : (0411) 4671729</li>
+              <li>E-mail: diskominfo@makassarkota.go.id</li>
               <span className="inline-flex sm:ml-auto mt-3 justify-center sm:justify-start">
                 <a
                   href="https://www.instagram.com/"
@@ -62,23 +64,18 @@ function Footer() {
                   className=""
                 >
                   <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
+                    xmlns="http://www.w3.org/2000/svg"
                     className="w-5 h-5"
+                    aria-hidden="true"
+                    role="img"
+                    width="1em"
+                    height="1em"
+                    preserveAspectRatio="xMidYMid meet"
                     viewBox="0 0 24 24"
                   >
-                    <rect
-                      width="20"
-                      height="20"
-                      x="2"
-                      y="2"
-                      rx="5"
-                      ry="5"
-                    ></rect>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                    <g fill="currentColor">
+                      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53a4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                    </g>
                   </svg>
                 </a>
                 <a
