@@ -84,6 +84,14 @@ const HiglightButton = (dataId) => {
     );
   }
 };
+const Wrap = (data) => {
+  return (
+    <p className="break-all h-auto break-words">
+      {data}
+    </p>
+  );
+}
+
 
 const columns = [
   {
@@ -133,8 +141,10 @@ const columns = [
   },
   {
     name: "Tipe Panggilan",
-    selector: (row) => parseDateSQLtoString(row.updated_at),
+    selector: (row) => Wrap(parseDateSQLtoString(row.updated_at)),
     sortable: true,
+    maxWidth: 5,
+    wrap : true,
   },
   {
     name: "Agen L1",
@@ -273,7 +283,7 @@ export default function LaporanTerbaru() {
           <div className="dark-card rounded-xl py-2">
             <DataTable
               sort
-              className="dark-card"
+              className="dark-card break-all "
               defaultSortFieldId={1}
               columns={columns}
               data={data}

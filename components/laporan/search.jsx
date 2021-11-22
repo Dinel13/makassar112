@@ -70,17 +70,17 @@ export default function Search({ setStatus }) {
   return (
     <form
       onSubmit={submitHandler}
-      className="dark-card inline-flex flex-wrap items-center justify-start py-0.5 px-3 gap-x-2 mt-3 borderr border-gray-600 rounded-xl lg:divide-x divide-gray-400"
+      className="dark-card inline-flex relative flex-wrap items-center justify-start py-1.5 px-3 gap-x-2 gap-y-5 mt-3 borderr border-gray-600 rounded-xl"
     >
-      <label className="flex items-center">
-        <span>Kategori</span>
+      <label className="inline-flex items-center">
+        {/* <span>Kategori</span> */}
         <select
           ref={kategoriRef}
           required
           className="dark-card shadow-none focus:outline-none rounded-xl text-sm py-2 px-2 ml-2 w-44"
           placeholder="Kategori"
         >
-          <option value="semua">Semua</option>
+          <option value="semua">Kategori</option>
           {kategoriSelect.map((item) => (
             <option key={item.id} value={item.name}>
               {item.nama}
@@ -88,13 +88,14 @@ export default function Search({ setStatus }) {
           ))}
         </select>
       </label>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      {/* <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-l pl-3 border-gray-400"> */}
+      <div className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 ">
         {" "}
         <label className="flex items-center">
-          <span>Waktu</span>
+          {/* <span>Waktu</span> */}
           {/* // for range date */}
-          <div className="flex dark-card shadow-none gap-x-2 items-center rounded-xl ml-2">
-            <div className="bg-transparent focus:outline-none rounded-xl py-1 px-3 w-32 relative">
+          <div className="flex dark-card shadow-none gap-x-2 items-center rounded-xl ml-2 h-2">
+            <div className="bg-transparent focus:outline-none rounded-xl py px-3 w-32 relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
                   className="w-5 h-5"
@@ -113,7 +114,7 @@ export default function Search({ setStatus }) {
                 dateFormat="dd/MM/yyyy"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                className="pl-7 bg-transparent text-sm focus:outline-none py-1 px-3"
+                className="pl-7 bg-transparent text-sm focus:outline-none py px-3"
                 selectsStart
                 startDate={startDate}
                 endDate={endDate}
@@ -153,24 +154,26 @@ export default function Search({ setStatus }) {
           </div>
         </label>
       </div>
-      {loading ? (
-        <PendingInline />
-      ) : (
-        <button className="btn-pri py-2 px-3 z-10" type="submit">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      )}
+      <div className="inline-flex w-full xs:w-auto justify-center relative">
+        {loading ? (
+          <PendingInline />
+        ) : (
+          <button className="btn-pri py-2 px-3 z-0" type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        )}
+      </div>
     </form>
   );
 }
