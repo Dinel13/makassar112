@@ -20,7 +20,7 @@ export default function Dashbord({ children, toggleMode }) {
       <div
         className={
           isSidebarOpen
-            ? "block fixed z-10  inset-0 bg-gray-900 opacity-50 transition-opacity lg:hidden"
+            ? "block fixed z-10  inset-0 bg-gray-900 opacity-50 transition-opacity lgg:hidden"
             : "hidden fixed z-10  inset-0 bg-gray-900 opacity-50 transition-opacity "
         }
         onClick={() => toglesidebar()}
@@ -30,8 +30,8 @@ export default function Dashbord({ children, toggleMode }) {
       <div
         className={
           isSidebarOpen
-            ? "translate-x-0 ease-out z-20 dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
-            : "-translate-x-full ease-in dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
+            ? "translate-x-0 ease-out z-20 dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lgg:translate-x-0 lgg:static lgg:inset-0"
+            : "-translate-x-full ease-in dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lgg:translate-x-0 lgg:static lgg:inset-0"
         }
       >
         <div className="flex items-center justify-center mt-8">
@@ -58,7 +58,7 @@ export default function Dashbord({ children, toggleMode }) {
             {/* BUTTON TO SHOW THE SIDEBAR */}
             <button
               onClick={() => toglesidebar()}
-              className="focus:outline-none lg:hidden"
+              className="focus:outline-none lgg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ export default function Dashbord({ children, toggleMode }) {
             </button>
 
             {/* LOGO */}
-            <div className="relative mx-4 lg:mx-0">
+            <div className="relative mx-4 lgg:mx-0">
               {/* <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                 <svg
                   className="h-5 w-5 text-gray-500"
@@ -99,7 +99,7 @@ export default function Dashbord({ children, toggleMode }) {
                 type="text"
                 placeholder="Search"
               /> */}
-              <div className="lg:hidden">
+              <div className="lgg:hidden">
                 <Link href="/dashboard">
                   <a className="flex items-center text-lg sm:text-xl font-medium">
                     <Image

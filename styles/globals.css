@@ -19,7 +19,7 @@
 
 @layer base {
   .btn-pri {
-    @apply text-gray-800 dark:text-gray-50 bg-blue-300 dark:bg-d3 hover:bg-blue-400 dark:hover:bg-d1 focus:outline-none hover:shadow-lg rounded-xl transition-colors duration-150;
+    @apply text-gray-800 dark:text-gray-50 bg-blue-300 dark:bg-d3 hover:bg-blue-400 dark:hover:bg-d1 focus:outline-none hover:shadow-lg rounded-lg transition-colors duration-150;
   }
 
   .btn-sec {

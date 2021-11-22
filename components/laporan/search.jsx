@@ -70,7 +70,7 @@ export default function Search({ setStatus }) {
   return (
     <form
       onSubmit={submitHandler}
-      className="dark-card inline-flex flex-wrap items-center justify-start py-0.5 px-3 gap-x-2 mt-3 borderr border-gray-600 rounded-xl divide-x divide-gray-500"
+      className="dark-card inline-flex flex-wrap items-center justify-start py-0.5 px-3 gap-x-2 mt-3 borderr border-gray-600 rounded-xl lg:divide-x divide-gray-400"
     >
       <label className="flex items-center">
         <span>Kategori</span>
@@ -88,10 +88,9 @@ export default function Search({ setStatus }) {
           ))}
         </select>
       </label>
-
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 ml-2 ">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         {" "}
-        <label className="flex items-center ml-3">
+        <label className="flex items-center">
           <span>Waktu</span>
           {/* // for range date */}
           <div className="flex dark-card shadow-none gap-x-2 items-center rounded-xl ml-2">
@@ -153,25 +152,25 @@ export default function Search({ setStatus }) {
             </div>
           </div>
         </label>
-        {loading ? (
-          <PendingInline />
-        ) : (
-          <button className="btn-pri py-1 px-3 rounded-full z-10" type="submit">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        )}
       </div>
+      {loading ? (
+        <PendingInline />
+      ) : (
+        <button className="btn-pri py-2 px-3 z-10" type="submit">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+      )}
     </form>
   );
 }
