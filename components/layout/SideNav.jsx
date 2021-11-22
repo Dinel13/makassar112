@@ -6,24 +6,18 @@ export default function SideNav() {
       <Link href="/dashboard">
         <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
           <svg
-            className="h-6 w-6"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            className="h-6 w-6"
+            aria-hidden="true"
+            role="img"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
-            stroke="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-            ></path>
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-            ></path>
+            <g fill="currentColor">
+              <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z" />
+            </g>
           </svg>
 
           <span className="mx-3">Laporan</span>
@@ -33,68 +27,58 @@ export default function SideNav() {
       <Link href="/dashboard/laporan">
         <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
           <svg
-            className="h-6 w-6"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            className="h-6 w-6"
+            aria-hidden="true"
+            role="img"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
-            stroke="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
-            ></path>
+            <g fill="currentColor">
+              <path d="M6 22a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h8.172a3 3 0 0 1 2.12.879l3.83 3.828A3 3 0 0 1 21 8.828V19a3 3 0 0 1-3 3H6zm-1-3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9h-3a3 3 0 0 1-3-3V4H6a1 1 0 0 0-1 1v14zM16 8h2.586L15 4.414V7a1 1 0 0 0 1 1zm0 5a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4zm-3 2a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2zm-4 1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9z" />
+            </g>
           </svg>
-
           <span className="mx-3">History Laporan</span>
         </a>
       </Link>
+
       <Link href="/dashboard/phonebook">
         <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
           <svg
-            className="h-6 w-6"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 28 28"
-            stroke="currentColor"
+            className="h-6 w-6"
+            aria-hidden="true"
+            role="img"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24"
           >
-            <path d="M26 14V4C26 3.46957 25.7893 2.96086 25.4142 2.58579C25.0391 2.21071 24.5304 2 24 2H4C3.46957 2 2.96086 2.21071 2.58579 2.58579C2.21071 2.96086 2 3.46957 2 4V24C2 24.5304 2.21071 25.0391 2.58579 25.4142C2.96086 25.7893 3.46957 26 4 26H14" />
-            <path
-              d="M26 14V4C26 3.46957 25.7893 2.96086 25.4142 2.58579C25.0391 2.21071 24.5304 2 24 2H4C3.46957 2 2.96086 2.21071 2.58579 2.58579C2.21071 2.96086 2 3.46957 2 4V24C2 24.5304 2.21071 25.0391 2.58579 25.4142C2.96086 25.7893 3.46957 26 4 26H14"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M19.3334 23.3333C21.5425 23.3333 23.3334 21.5425 23.3334 19.3333C23.3334 17.1242 21.5425 15.3333 19.3334 15.3333C17.1242 15.3333 15.3334 17.1242 15.3334 19.3333C15.3334 21.5425 17.1242 23.3333 19.3334 23.3333Z"
-              strokeWidth="3"
-            />
-            <path
-              d="M22.6667 22L26 24.6667M7.33337 8.66667H20.6667M7.33337 14H12.6667"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <g fill="currentColor">
+              <path d="M15 12h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3zm4 0h2a9 9 0 0 0-9-9v2c3.87 0 7 3.13 7 7zm1 3.5c-1.25 0-2.45-.2-3.57-.57c-.1-.03-.21-.05-.31-.05c-.26 0-.51.1-.71.29l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1c0 9.39 7.61 17 17 17c.55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM5.03 5h1.5c.07.88.22 1.75.45 2.58l-1.2 1.21c-.4-1.21-.66-2.47-.75-3.79zM19 18.97c-1.32-.09-2.6-.35-3.8-.76l1.2-1.2c.85.24 1.72.39 2.6.45v1.51z" />
+            </g>
           </svg>
-
           <span className="mx-3">Phonebook</span>
         </a>
       </Link>
+
       <Link href="/">
         <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900  hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
           <svg
-            className="h-6 w-6"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            className="h-6 w-6"
+            aria-hidden="true"
+            role="img"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
-            stroke="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-            ></path>
+            <g fill="currentColor">
+              <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v2h12v-2l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z" />
+            </g>
           </svg>
 
           <span className="mx-3">Front Page</span>
