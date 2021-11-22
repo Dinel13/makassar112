@@ -4,7 +4,7 @@ import NewsTicker from "./Ticker";
 export default function HglLaporan() {
   return (
     <NewsTicker>
-      <div className="text-center h-24  flex-col flex items-center">
+      <div className="text-center h-24  flex-col flex items-center border p-4 dark-sidebar mx-3">
         <p>
           Terjadi Peperangan di daerah Gowa. Laporan telah diteruskan ke pihak
           kepolisisan setempat

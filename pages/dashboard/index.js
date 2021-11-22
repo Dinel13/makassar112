@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import CardMain from "../../components/dashboard/CardMain";
 import HglLaporan from "../../components/dashboard/HglLaporan";
+import HgLaporan from "../../components/dashboard/HgLaporan";
 import LaporanTerbaru from "../../components/dashboard/LaporanTerbaru";
 import Loading from "../../components/loading/Loading";
 
@@ -28,6 +29,14 @@ export default function Dashbord() {
           <div className="flex justify-center text-center overflow-y-auto px-2 pb-6">
             <HglLaporan />
           </div>
+        </div>
+      </div>
+      <div className="my-8 flex justify-center py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div className="w-full rounded-lg border-2 shadow-xl bg-white dark:bg-dark1 border-gray-600 dark:border-white">
+          <h3 className="text-subtitle text-center font-medium mt-5">
+            Hightlight laporan
+          </h3>
+          <HgLaporan />
         </div>
       </div>
       <LaporanTerbaru />
