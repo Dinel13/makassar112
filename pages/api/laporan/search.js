@@ -27,9 +27,20 @@ export default async function handler(req, res) {
         });
       }
 
+      if (kategori === "semua") {
+        const total = await db.query(
+          "SELECT * FROM laporans WHERE updated_at BETWEEN $1 AND $2",
+          [startDate, endDate]
+        );
+        res.status(200).json(total);
+
+        return;
+      }
+
       const resultSearch = await db.query(
         `SELECT * FROM laporans WHERE LOWER(kategori) = LOWER($1) 
-         AND updated_at BETWEEN $2 AND $3 `, [kategori, startDate, endDate]
+         AND updated_at BETWEEN $2 AND $3 `,
+        [kategori, startDate, endDate]
       );
 
       res.status(200).json(resultSearch);

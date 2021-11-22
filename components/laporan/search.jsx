@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { kategori } from "../../data";
 import { showNotif } from "../../store/notifSlice";
 import PendingButton from "../button/Pending";
+import PendingInline from "../button/PendingInline";
 
 export default function Search({ setStatus }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -152,7 +153,7 @@ export default function Search({ setStatus }) {
         </div>
       </label>
       {loading ? (
-        <PendingButton />
+        <PendingInline />
       ) : (
         <button className="btn-pri py-3 px-4 rounded-full z-10" type="submit">
           <svg

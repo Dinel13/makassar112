@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
+import DataTable, {createTheme} from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
 
 import { parseDateSQLtoString } from "../../lib/time";
@@ -11,6 +11,33 @@ import Pagination from "../button/Pagination";
 import Loading from "../loading/Loading";
 import { SortIcon, NoData } from "../table/helper";
 import PendingButton from "../button/Pending";
+
+
+createTheme(
+  "solarized",
+  {
+    text: {
+      primary: "#F9FAFB",
+      secondary: "#F3F4F6",
+    },
+    background: {
+      default: "#3E2C41",
+    },
+    context: {
+      background: "#cb4b16",
+      text: "#fff",
+    },
+    divider: {
+      default: "#6B7280",
+    },
+    action: {
+      button: "rgba(0,0,0,.54)",
+      hover: "rgba(29, 28, 28, 0.51)",
+      disabled: "rgba(0,0,0,.12)",
+    },
+  },
+  "dark"
+);
 
 const HiglightButton = (dataId) => {
   const [loading, setLoading] = useState(false);
@@ -71,7 +98,7 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Nomor Kontak",
+    name: "Kategori",
     selector: (row) => row.kategori,
     sortable: true,
   },
@@ -232,12 +259,12 @@ export default function LaporanTerbaru() {
               highlightOnHover
             ></DataTable>
           </div>
-          <Pagination
+          {!total.loading && <Pagination
             page={page}
             total={total.data}
             lanjut={nextHandler}
             belum={prevHandler}
-          />
+          />}
         </>
       )}
     </div>
