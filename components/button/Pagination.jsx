@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function Pagination({ lanjut, belum, page }) {
+export default function Pagination({ lanjut, belum, page}) {
   return (
     <div className="flex item-center justify-center my-12">
       <button
         onClick={belum}
-        className="flex items-center text-lg tracking-tighter hover:text-blue-700 focus:outline-none"
+        className="flex items-center text-lg tracking-tighter hover:text-blue-700 focus:outline-none  border border-gray-600 rounded-full link-scale"
       >
         <div className="h-10 w-10 mr-1 flex justify-center items-center rounded-full">
           <svg
@@ -23,16 +23,23 @@ export default function Pagination({ lanjut, belum, page }) {
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </div>
-        sebelumnya
       </button>
-      <div className="flex mt-1 mx-2 items-center justify-center h-10 w-10 font-bold rounded-full">
+      { page > 1 && <div className="flex mx-2 items-center justify-center h-10 w-10 font-bold">
+        <span>{page - 1}</span>
+      </div> }
+      <div className="flex mx-2 items-center justify-center h-10 w-10 font-bold rounded-full dark-card">
         <span>{page}</span>
       </div>
+      <div className="flex mx-2 items-center justify-center h-10 w-10 font-bold rounded-full ">
+        <span>{page + 1}</span>
+      </div>
+      { page == 1 && <div className="flex mx-2 items-center justify-center h-10 w-10 font-bold ">
+        <span>{page + 2}</span>
+      </div> }
       <button
         onClick={lanjut}
-        className="flex items-center text-lg tracking-tighter hover:text-blue-700 focus:outline-none"
+        className="flex items-center text-lg tracking-tighter hover:text-blue-700 focus:outline-none border border-gray-600 rounded-full link-scale"
       >
-        selanjutnya
         <div className="h-10 w-10 ml-1 flex justify-center items-center rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"

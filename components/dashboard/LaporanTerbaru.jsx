@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
+import DataTable, { createTheme } from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
 
 import { parseDateSQLtoString } from "../../lib/time";
@@ -11,6 +11,32 @@ import Pagination from "../button/Pagination";
 import Loading from "../loading/Loading";
 import { SortIcon, NoData } from "../table/helper";
 import PendingButton from "../button/Pending";
+
+createTheme(
+  "solarized",
+  {
+    text: {
+      primary: "#F9FAFB",
+      secondary: "#F3F4F6",
+    },
+    background: {
+      default: "#3E2C41",
+    },
+    context: {
+      background: "#cb4b16",
+      text: "#fff",
+    },
+    divider: {
+      default: "#6B7280",
+    },
+    action: {
+      button: "rgba(0,0,0,.54)",
+      hover: "rgba(29, 28, 28, 0.51)",
+      disabled: "rgba(0,0,0,.12)",
+    },
+  },
+  "dark"
+);
 
 const HiglightButton = (dataId) => {
   const [loading, setLoading] = useState(false);
@@ -71,7 +97,7 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Nomor Kontak",
+    name: "Kategori",
     selector: (row) => row.kategori,
     sortable: true,
   },
@@ -87,52 +113,79 @@ const columns = [
   },
 ];
 
+const avoidError = true;
+
 export default function LaporanTerbaru() {
-  const [statusData, setStatus] = useState({ loading: true, data: [] });
+  const [total, setTotal] = useState({ loading: true, data: null });
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const isDark = useSelector(selectIsDark);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
-  const getData = useCallback(
-    async (page) => {
-      setStatus((s) => ({ ...s, loading: true }));
-      try {
-        const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
-          {
-            method: "GET",
-          }
-        );
-        const data = await result.json();
-        if (!result.ok) {
-          throw new Error(data.error || "Tidak bisa mendapat data");
+  const getData = async (page) => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
+        {
+          method: "GET",
         }
-        setStatus({
-          loading: false,
-          hasil: data,
-        });
-      } catch (error) {
-        setStatus({
-          loading: false,
-          hasil: null,
-        });
-        dispatch(
-          showNotif({
-            status: "Error",
-            message: error.message,
-            action: null,
-          })
-        );
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mendapat data");
       }
-    },
-    [dispatch]
-  );
+
+      setData(data);
+    } catch (error) {
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    } 
+  };
+
+  const getTotal = async () => {
+    setTotal((s) => ({ ...s, loading: true }));
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/total`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mendapat data");
+      }
+      setTotal({
+        loading: false,
+        data: data.count,
+      });
+    } catch (error) {
+      setTotal({
+        loading: false,
+        data: null,
+      });
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  };
 
   useEffect(() => {
-    getData(page);
-  }, [page, getData]);
+    getTotal();
+    getData(1);
+  }, []);
 
-  const prevHandler = async (e) => {
+  const prevHandler = () => {
     if (page > 1) {
       setPage((prev) => prev - 1);
       getData(page);
@@ -148,12 +201,12 @@ export default function LaporanTerbaru() {
     }
   };
 
-  const nextHandler = async (e) => {
-    if (data.length === 0) {
+  const nextHandler = () => {
+    if (total.data < page * 20) {
       dispatch(
         showNotif({
           status: "Error",
-          message: "Sudah tidak ada halaman selanjutnya",
+          message: "Semua data sudah ditampilkan",
           action: null,
         })
       );
@@ -171,15 +224,11 @@ export default function LaporanTerbaru() {
           Laporoan terbaru
         </h2>
         <div className="flex justify-end items-center gap-2">
-          {statusData.hasil && <ExportPDF data={statusData.hasil} />}
-          {statusData.hasil && <ExportExcel data={statusData.hasil} />}
+          {data && !loading && <ExportPDF data={data} />}
+          {data && !loading && <ExportExcel data={data} />}
         </div>
       </div>
-      {statusData.loading ? (
-        <div className="dark-card rounded-xl py-2">
-          <Loading />
-        </div>
-      ) : (
+      {!loading && data ? (
         <>
           <div className="dark-card rounded-xl py-2">
             <DataTable
@@ -187,16 +236,27 @@ export default function LaporanTerbaru() {
               className="dark-card"
               defaultSortFieldId={1}
               columns={columns}
-              data={statusData.hasil}
+              data={data}
               theme={isDark ? "solarized" : "light"}
-              sortIcon={<SortIcon />}
+              // sortIcon={<SortIcon />}
               // striped
               noDataComponent={<NoData />}
               highlightOnHover
             ></DataTable>
           </div>
-          <Pagination page={page} lanjut={nextHandler} belum={prevHandler} />
+          {!total.loading && (
+            <Pagination
+              page={page}
+              total={total.data}
+              lanjut={nextHandler}
+              belum={prevHandler}
+            />
+          )}
         </>
+      ) : (
+        <div className="dark-card rounded-xl py-2">
+          <Loading />
+        </div>
       )}
     </div>
   );

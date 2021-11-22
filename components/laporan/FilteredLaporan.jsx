@@ -19,7 +19,7 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Nomor Kontak",
+    name: "Katagori",
     selector: (row) => row.kategori,
     sortable: true,
   },
@@ -66,8 +66,13 @@ export default function FilteredLaporan({ data }) {
           Hasil pencarian
         </h2>
         <div className="flex justify-end items-center gap-2">
-          <ExportPDF data={data} />
-          <ExportExcel data={data} />
+          {/* show button if data.length > 0 */}
+          {data && data.length > 0 && (
+            <>
+              <ExportExcel data={data} />
+              <ExportPDF data={data} />
+            </>
+          )}
         </div>
       </div>
       <div className="dark-card rounded-xl py-2">

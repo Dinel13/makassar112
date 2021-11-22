@@ -1,4 +1,4 @@
-import { db } from "../../../../lib/db";
+import { db } from "../../../lib/db";
 import { getSession } from "next-auth/client";
 
 export default async function handler(req, res) {
@@ -23,10 +23,10 @@ export default async function handler(req, res) {
       page = 14 * (page - 1);
     }
     try {
-      const allPhone = await db.manyOrNone(
-        "SELECT * FROM laporans Order By updated_at DESC LIMIT 20 OFFSET $1", [page]
+      const total = await db.one(
+        "SELECT COUNT(*) FROM phones"
       );
-      res.status(200).json(allPhone);
+      res.status(200).json(total);
     } catch (error) {
       console.error(error);
       res

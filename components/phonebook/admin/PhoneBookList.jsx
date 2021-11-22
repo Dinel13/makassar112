@@ -6,6 +6,7 @@ import Item from "./ItemForAdmin";
 
 export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
   const [data, setData] = useState(null);
+  const [total, setTotal] = useState({ loading: true, data: 0 });
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
@@ -13,29 +14,32 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
     setData((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const getData = useCallback(async (page) => {
-    try {
-      const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin/${page}`,
-        {
-          method: "GET",
+  const getData = useCallback(
+    async (page) => {
+      try {
+        const result = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin/${page}`,
+          {
+            method: "GET",
+          }
+        );
+        const resJson = await result.json();
+        if (!result.ok) {
+          throw new Error(resJson.error || "Tidak bisa mendapat data");
         }
-      );
-      const resJson = await result.json();
-      if (!result.ok) {
-        throw new Error(resJson.error || "Tidak bisa mendapat data");
+        setData(resJson);
+      } catch (error) {
+        dispatch(
+          showNotif({
+            status: "Error",
+            message: error.message,
+            action: null,
+          })
+        );
       }
-      setData(resJson);
-    } catch (error) {
-      dispatch(
-        showNotif({
-          status: "Error",
-          message: error.message,
-          action: null,
-        })
-      );
-    }
-  }, [dispatch])
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     getData(page);
@@ -44,7 +48,43 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
   // needRefh jika item ditmabhag
   // needRefsh jika item diupdate
 
-  const prevHandler = async (e) => {
+  const getTotal = useCallback(async () => {
+    setTotal((s) => ({ ...s, loading: true }));
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/total`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa mendapat data");
+      }
+      setTotal({
+        loading: false,
+        data: data.count,
+      });
+    } catch (error) {
+      setTotal({
+        loading: false,
+        data: null,
+      });
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    getTotal();
+  }, [getTotal]);
+
+  const prevHandler = () => {
     if (page > 1) {
       setPage((prev) => prev - 1);
       getData(page);
@@ -56,20 +96,20 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
           action: null,
         })
       );
-      return
+      return;
     }
   };
 
-  const nextHandler = async (e) => {
-    if (data.length === 0) {
+  const nextHandler = () => {
+    if (total.data < page * 20) {
       dispatch(
         showNotif({
           status: "Error",
-          message: "Sudah tidak ada halaman selanjutnya",
+          message: "Semua data sudah ditampilkan",
           action: null,
         })
       );
-      return
+      return;
     } else {
       setPage((prev) => prev + 1);
       getData(page);
@@ -136,7 +176,8 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 text-center">
-                {data && data.length > 0 &&
+                {data &&
+                  data.length > 0 &&
                   data.map((item) => (
                     <Item
                       key={item.id}
@@ -150,7 +191,9 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
           </div>
         </div>
       </div>
-      <Pagination page={page} lanjut={nextHandler} belum={prevHandler} />
+      {data && !total.loading && (
+        <Pagination page={page} lanjut={nextHandler} belum={prevHandler} />
+      )}
     </div>
   );
 }
