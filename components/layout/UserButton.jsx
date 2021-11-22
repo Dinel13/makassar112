@@ -11,7 +11,7 @@ export default function UserButton({ nama }) {
 
   const signOutUser = () => {
     router.replace("/masuk");
-    signOut();
+    signOut({redirect: false});
   };
 
   return (

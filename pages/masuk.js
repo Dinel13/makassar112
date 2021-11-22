@@ -35,7 +35,7 @@ export default function Login() {
         );
       }
 
-      if (!res.error) {
+      if (res.ok) {
         router.replace("/dashboard");
         // dispatch(loginSlice(res.user));
       }
