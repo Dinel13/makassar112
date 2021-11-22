@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signOut } from "next-auth/client";
 import router from "next/router";
 
-export default function UserButton({nama}) {
+export default function UserButton({ nama }) {
   const [isDrdwnUser, setIsDrdwnUser] = useState(false);
 
   const togledrdwnUser = () => {
@@ -24,16 +24,17 @@ export default function UserButton({nama}) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+          aria-hidden="true"
+          role="img"
+          width="1em"
+          height="1em"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 32 32"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
+          <g fill="currentColor">
+            <path d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5z" />
+            <path d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2zm7.992 22.926A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0z" />
+          </g>
         </svg>
       </button>
 

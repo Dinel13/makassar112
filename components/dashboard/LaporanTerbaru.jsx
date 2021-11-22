@@ -115,7 +115,7 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Catatan Lokaso",
+    name: "Catatan Lokasi",
     selector: (row) => row.alamat,
     sortable: true,
   },

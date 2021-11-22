@@ -7,25 +7,23 @@ export default function HglLaporan() {
       <div className="text-center h-24  flex-col flex items-center border p-4 dark-sidebar mx-3">
         <p>
           Terjadi Peperangan di daerah Gowa. Laporan telah diteruskan ke pihak
-          kepolisisan setempat
+          kepolisian setempat
         </p>
         <p>11/21/2021</p>
         <p>3:26</p>
       </div>
       <div className="text-center h-24  flex-col flex items-center">
         <p>
-          fdsfds fsd fas asdasa sadsad sad sad. fasfafasf asdasd asdasd asdasd
-          asdasd asd
+          Terjadi kebakaran yang melahap 3 rumah di Sudiang. Lapora telah diteruskan kepada Damkar dan akan tiba dalam waktu 10 menit
         </p>
         <p>10/29/2021</p>
         <p>3:26</p>
       </div>
       <div className="text-center h-24 flex-col flex items-center ">
         <p>
-          Tdasdsadasdsa sadsadas sadasda. fasdsaddsad asdasd ada asdasd awdsadasdsafda fa.
-          sdfsfsfs sdfsdfsdfsdfsfds sdf dsfsdf fa
+          Terjadi tawuran di Gowa. laporan telah diteruskan ke pihak terkait.
         </p>
-        <p>1/2y1/2021</p>
+        <p>10/29/2021</p>
         <p>3:26</p>
       </div>
     </NewsTicker>

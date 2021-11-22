@@ -179,53 +179,70 @@ export default function Home() {
           <h2 className="text-title">Pilih Kategori</h2>
           <div className="my-3">
             <div className="flex flex-wrap -mx-4">
-              <ButtonKategori text="Kesehatan" setStatus={setStatus} resultRef={resultRef}>
+              <ButtonKategori
+                text="Kesehatan"
+                setStatus={setStatus}
+                resultRef={resultRef}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
-                  fill="none"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M13 10h-2v3H8v2h3v3h2v-3h3v-2h-3z"
+                    fill="currentColor"
                   />
                 </svg>
               </ButtonKategori>
-              <ButtonKategori text="Lingkungan" setStatus={setStatus} resultRef={resultRef}>
+              <ButtonKategori
+                text="Lingkungan"
+                setStatus={setStatus}
+                resultRef={resultRef}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
-                  fill="none"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93c0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41c0 2.08-.8 3.97-2.1 5.39z"
+                    fill="currentColor"
                   />
                 </svg>
               </ButtonKategori>
-              <ButtonKategori text="Keamanan" setStatus={setStatus} resultRef={resultRef}>
+              <ButtonKategori
+                text="Keamanan"
+                setStatus={setStatus}
+                resultRef={resultRef}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
-                  fill="none"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
                 >
-                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                    d="M14.5 12.59l.9 3.88l-3.4-2.05l-3.4 2.05l.9-3.87l-3-2.59l3.96-.34L12 6.02l1.54 3.64l3.96.34l-3 2.59zM12 3.19l7 3.11V11c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3l7-3.11M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4z"
+                    fill="currentColor"
                   />
                 </svg>
               </ButtonKategori>
