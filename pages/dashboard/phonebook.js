@@ -61,7 +61,7 @@ export default function Phonebook() {
     } catch (error) {
       console.log(error);
     }
-  };  
+  };
 
   const submitSearch = async (e) => {
     e.preventDefault();
@@ -304,7 +304,7 @@ export default function Phonebook() {
                   className="underline font-semibold"
                   onClick={lihatSemuaData}
                 >
-                  lihat semua data
+                  Lihat Semua Data
                 </button>
               </p>
             </div>
@@ -333,6 +333,6 @@ export default function Phonebook() {
       {updatePB && (
         <EditPhoneBook kategoriList={kategoriList} cancel={() => setUpdatePB(null)} data={updatePB} />
       )}
-      </>
+    </>
   );
 }
