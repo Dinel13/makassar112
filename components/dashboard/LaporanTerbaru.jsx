@@ -87,13 +87,8 @@ const HiglightButton = (dataId) => {
 
 const columns = [
   {
-    name: "Nama Kontak",
+    name: "ID Laporan",
     selector: (row) => row.alamat,
-    sortable: true,
-  },
-  {
-    name: "Nomor Kontak",
-    selector: (row) => row.deskripsi,
     sortable: true,
   },
   {
@@ -102,12 +97,52 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Kategori",
+    name: "Deskripsi",
+    selector: (row) => row.alamat,
+    sortable: true,
+  },
+  {
+    name: "Lokasi Kejadian",
+    selector: (row) => row.alamat,
+    sortable: true,
+  },
+  {
+    name: "Catatan Lokaso",
+    selector: (row) => row.alamat,
+    sortable: true,
+  },
+  {
+    name: "Waktu Lapor",
+    selector: (row) => row.deskripsi,
+    sortable: true,
+  },
+  {
+    name: "Status",
     selector: (row) => row.kategorid,
     sortable: true,
   },
   {
-    name: "Diupdate",
+    name: "Nama Pelapor",
+    selector: (row) => parseDateSQLtoString(row.updated_at),
+    sortable: true,
+  },
+  {
+    name: "No. Telp",
+    selector: (row) => parseDateSQLtoString(row.updated_at),
+    sortable: true,
+  },
+  {
+    name: "Tipe Panggilan",
+    selector: (row) => parseDateSQLtoString(row.updated_at),
+    sortable: true,
+  },
+  {
+    name: "Agen L1",
+    selector: (row) => parseDateSQLtoString(row.updated_at),
+    sortable: true,
+  },
+  {
+    name: "Dinas Terkait",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
   },
@@ -150,7 +185,7 @@ export default function LaporanTerbaru() {
           action: null,
         })
       );
-    } 
+    }
   };
 
   const getTotal = async () => {
