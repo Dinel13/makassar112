@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
       if (!kategori || !startDate || !endDate) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: "isian tidak lengkap",
         });
       }
 

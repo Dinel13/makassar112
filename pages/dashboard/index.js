@@ -1,10 +1,7 @@
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 
-import CardMain from "../../components/dashboard/CardMain";
 import HglLaporan from "../../components/dashboard/HglLaporan";
-import HgLaporan from "../../components/dashboard/HgLaporan";
-import HgLaporanY from "../../components/dashboard/HgLaporanY";
 import LaporanTerbaru from "../../components/dashboard/LaporanTerbaru";
 import Loading from "../../components/loading/Loading";
 

@@ -56,6 +56,7 @@ const Hcolumns = [
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
+    omit :true,
     maxWidth: "120px",
   },
   {

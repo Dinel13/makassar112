@@ -8,21 +8,17 @@ import ExportPDF from "../button/ExportPDF";
 import { NoData, SortIcon } from "../table/helper";
 
 const columns = [
-  {
-    name: "Nama Kontak",
-    selector: (row) => row.alamat,
-    sortable: true,
-  },
-  {
-    name: "Nomor Kontak",
-    selector: (row) => row.deskripsi,
-    sortable: true,
-  },
-  {
-    name: "Katagori",
-    selector: (row) => row.kategori,
-    sortable: true,
-  },
+  { name: "Id", selector: (row) => row.id, sortable: true, widht: "1px", maxWidth: "10px", grow: 0 },
+  { name: "Kategori", selector: (row) => row.kategori, sortable: true, grow: 1 },
+  { name: "Deskripsi", selector: (row) => row.deskripsi, sortable: true, wrap: true, grow: 2 },
+  { name: "Alamat", selector: (row) => row.alamat, sortable: true },
+  { name: "Pelapor", selector: (row) => row.pelapor, sortable: true },
+  { name: "No. Pelapor", selector: (row) => row.telp, sortable: true },
+  { name: "Catatan", selector: (row) => row.catatan, sortable: true },
+  { name: "Status", selector: (row) => row.status, sortable: true },
+  { name: "Tipe", selector: (row) => row.tipe, sortable: true },
+  { name: "Agen L1", selector: (row) => row.agen, sortable: true },
+  { name: "Dinas Terkait", selector: (row) => row.dinas, sortable: true },
   {
     name: "Diupdate",
     selector: (row) => parseDateSQLtoString(row.updated_at),
@@ -84,8 +80,6 @@ export default function FilteredLaporan({ data }) {
           columns={columns}
           data={data}
           theme={isDark ? "solarized" : "light"}
-          sortIcon={<SortIcon />}
-          // striped
           noDataComponent={<NoData />}
           highlightOnHover
         ></DataTable>

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/client";
+import { signIn, useSession } from "next-auth/client";
 
 import PendingButton from "../components/button/Pending";
 import SubmitFull from "../components/button/Submit";
@@ -13,6 +13,12 @@ export default function Login() {
   const password = useRef();
   const [pending, setPending] = useState(null);
   const router = useRouter();
+
+  const [session, loading] = useSession();
+
+  if (!loading && session) {
+    router.push("/dashboard");
+  }
 
   const loginHandler = async (e) => {
     e.preventDefault();

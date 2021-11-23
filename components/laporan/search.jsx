@@ -70,7 +70,7 @@ export default function Search({ setStatus }) {
   return (
     <form
       onSubmit={submitHandler}
-      className="dark-card inline-flex relative flex-wrap items-center justify-start py-1.5 px-3 gap-x-2 gap-y-5 mt-3 borderr border-gray-600 rounded-xl"
+      className="dark-card inline-flex relative flex-wrap items-center justify-start py-1.5 px-3 gap-x-2 gap-y-5 borderr border-gray-600 rounded-xl"
     >
       <label className="inline-flex items-center">
         {/* <span>Kategori</span> */}
@@ -81,6 +81,7 @@ export default function Search({ setStatus }) {
           placeholder="Kategori"
         >
           <option value="semua">Kategori</option>
+          <option value="semua">Semua</option>
           {kategoriSelect.map((item) => (
             <option key={item.id} value={item.name}>
               {item.nama}
@@ -158,7 +159,7 @@ export default function Search({ setStatus }) {
         {loading ? (
           <PendingInline />
         ) : (
-          <button className="btn-pri py-2 px-3 z-0" type="submit">
+          <button className="btn-sec py-2 px-3 z-0" type="submit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
