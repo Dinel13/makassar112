@@ -47,11 +47,11 @@
   }
 
   .input-field {
-    @apply w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none focus:ring;
+    @apply w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-xl focus:border-blue-500 focus:outline-none focus:ring;
   }
 
   .input-field-sm {
-    @apply px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-full focus:border-blue-500 focus:outline-none focus:ring;
+    @apply px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-xl focus:border-blue-500 focus:outline-none focus:ring;
   }
 
   .text-title {

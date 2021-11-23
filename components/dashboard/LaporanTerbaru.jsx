@@ -13,7 +13,7 @@ import { SortIcon, NoData } from "../table/helper";
 import PendingButton from "../button/Pending";
 
 createTheme(
-  "solarized",
+  "solarize",
   {
     text: {
       primary: "#F9FAFB",
@@ -312,9 +312,7 @@ export default function LaporanTerbaru() {
               defaultSortFieldId={1}
               columns={columns}
               data={data}
-              theme={isDark ? "solarized" : "light"}
-              // sortIcon={<SortIcon />}
-              // striped
+              theme={isDark ? "solarize" : "light"}
               noDataComponent={<NoData />}
               highlightOnHover
               customStyles={customStyles}

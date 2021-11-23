@@ -40,7 +40,7 @@ export default async function handler(req, res) {
           `SELECT * FROM phones WHERE LOWER(nama) LIKE LOWER('%${word}%') 
           OR LOWER(kategori) LIKE LOWER('%${word}%') 
           OR LOWER(wilayah) LIKE LOWER('%${word}%') 
-          LIMIT 30 `
+          LIMIT 200`
         );
 
         // push the data to the result if the data is not already in the result

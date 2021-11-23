@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { nama, phone, kategori, wilayah, lokasi, status } = body;
+      const { deskripsi } = body;
 
       if (!nama || !phone || !kategori || !wilayah || !lokasi || !status) {
         return res.status(422).send({

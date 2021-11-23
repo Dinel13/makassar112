@@ -27,14 +27,14 @@ export default function Dashbord({ children, toggleMode }) {
       ></div>
 
       {/* sidebar bg-gray-300 dark:bg-dark2 text-gray-800 dark:text-white */}
-      <div
+      <div onClick={toglesidebar}
         className={
           isSidebarOpen
             ? "translate-x-0 ease-out z-20 dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lgg:translate-x-0 lgg:static lgg:inset-0"
             : "-translate-x-full ease-in dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lgg:translate-x-0 lgg:static lgg:inset-0"
         }
       >
-        <div className="flex items-center justify-center mt-8">
+        <div className="flex items-center justify-center mt-8" >
           <div className="flex items-center">
             <Link href="/dashboard">
               <a className="flex items-center text-lg sm:text-xl lg:text-2xl font-medium">
