@@ -186,11 +186,11 @@ export default function Home() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   aria-hidden="true"
                   role="img"
-                  width="1em"
-                  height="1em"
+                  width="3em"
+                  height="3em"
                   preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
                 >
@@ -211,11 +211,11 @@ export default function Home() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   aria-hidden="true"
                   role="img"
-                  width="1em"
-                  height="1em"
+                  width="3em"
+                  height="3em"
                   preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
                 >
@@ -226,17 +226,18 @@ export default function Home() {
                 </svg>
               </ButtonKategori>
               <ButtonKategori
+                className="text-title"
                 text="Keamanan"
                 setStatus={setStatus}
                 resultRef={resultRef}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   aria-hidden="true"
                   role="img"
-                  width="1em"
-                  height="1em"
+                  width="3em"
+                  height="3em"
                   preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
                 >
