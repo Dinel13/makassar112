@@ -3,12 +3,22 @@ import { parseDateSQLtoStringDate } from "../../lib/time";
 export default function Item({ data }) {
   return (
     <tr>
-     <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.alamat}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        {data.nama}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        {data.phone}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        {data.kategori}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        {data.alamat}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        {data.wilayah}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
         <a target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +36,9 @@ export default function Item({ data }) {
           </svg>
         </a>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{parseDateSQLtoStringDate(data.updated_at)}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">
+        {parseDateSQLtoStringDate(data.updated_at)}
+      </td>
     </tr>
   );
 }

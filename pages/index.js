@@ -234,8 +234,9 @@ export default function Home() {
       </div>
       <div className="App">
         <FloatingWhatsApp
-          phoneNumber="112"
+          phoneNumber="+62 823-4646-2435"
           accountName="112"
+          darkMode="true"
           allowClickAway
           notification
           notificationDelay={60000} // 1 minute
