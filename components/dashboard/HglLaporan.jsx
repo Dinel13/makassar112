@@ -144,7 +144,7 @@ export default function HglLaporan() {
 
   return (
     <div className="lg:w-5/12 lg:-mt-206">
-      <h2 className="text-subtitle font-medium lg:text-right mb-5">
+      <h2 className="text-subtitle font-medium lg:text-left mb-5">
         Highlight Laporan
       </h2>
       <div className="dark-card rounded-xl pt-2">
