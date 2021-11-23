@@ -19,7 +19,6 @@ export default async function handler(req, res) {
     try {
       const body = JSON.parse(req.body);
       const { kategori, startDate, endDate } = body;
-      console.log(kategori, startDate, endDate);
 
       if (!kategori || !startDate || !endDate) {
         return res.status(422).send({

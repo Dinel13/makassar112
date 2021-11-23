@@ -1,10 +1,16 @@
 CREATE TABLE "laporans" (
-   "id" bigserial NOT NULL,
+  "id" bigserial NOT NULL,
    "kategori" VARCHAR NOT NULL,
    "deskripsi" TEXT NOT NULL,
-   "lokasi" TEXT NOT NULL,
    "alamat" VARCHAR NOT NULL,
-   "status" VARCHAR NOT NULL,
+   "pelapor" VARCHAR,
+   "lokasi" VARCHAR,
+   "catatan" VARCHAR,
+   "status" VARCHAR,
+   "telp" VARCHAR,
+   "tipe" VARCHAR,
+   "agen" VARCHAR,
+   "dinas" VARCHAR ,
    "created_at" timestamptz NOT NULL DEFAULT (now()),
    "updated_at" timestamptz NOT NULL DEFAULT (now())
 );

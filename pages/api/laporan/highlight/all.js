@@ -16,17 +16,11 @@ export default async function handler(req, res) {
   }
 
   async function run() {
-    let { page } = req.query;
-    if (page == 1) {
-      page = 0;
-    } else {
-      page = 14 * (page - 1);
-    }
     try {
-      const allPhone = await db.manyOrNone(
-        "SELECT * FROM laporans Order By updated_at DESC LIMIT 15 OFFSET $1", [page]
+      const all = await db.manyOrNone(
+        "SELECT * FROM higlights Order By updated_at DESC"
       );
-      res.status(200).json(allPhone);
+      res.status(200).json(all);
     } catch (error) {
       console.error(error);
       res

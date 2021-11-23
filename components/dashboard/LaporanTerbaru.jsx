@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,8 +9,10 @@ import ExportExcel from "../button/ExportExcel";
 import ExportPDF from "../button/ExportPDF";
 import Pagination from "../button/Pagination";
 import Loading from "../loading/Loading";
-import { SortIcon, NoData } from "../table/helper";
-import PendingButton from "../button/Pending";
+import { NoData } from "../table/helper";
+import ExpandebleTable from "./ExpandebleTable";
+import HglLaporan from "./HglLaporan";
+import HiglightButton, { UnHiglightButton } from "./HiglightButton";
 
 createTheme(
   "solarize",
@@ -38,95 +40,32 @@ createTheme(
   "dark"
 );
 
-const HiglightButton = (dataId) => {
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-  const highlight = async (id) => {
-    setLoading(true);
-    try {
-      const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/hightlight`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id }),
-        }
-      );
-      const data = await result.json();
-      if (!result.ok) {
-        throw new Error(data.error || "Tidak bisa menyimpan data");
-      }
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      dispatch(
-        showNotif({
-          status: "Error",
-          message: error.message,
-          action: null,
-        })
-      );
-    }
-  };
-
-  if (loading) {
-    return <PendingButton />;
-  } else {
-    return (
-      <button
-        onClick={() => highlight(dataId)}
-        className="break py-1 px-2 rounded btn-pri min"
-      >
-        Higlight
-      </button>
-    );
-  }
-};
-const Wrap = (data) => {
-  return <p className="break-all h-auto break-words">{data}</p>;
-};
-
 const columns = [
   {
-    name: "ID Laporan",
-    selector: (row) => row.alamat,
+    name: "ID",
+    selector: (row) => row.id,
     sortable: true,
-    width: 1,
+    omit : true,
   },
   {
     name: "Kategori",
     selector: (row) => row.kategori,
     sortable: true,
+    wrap: true,
+    style: {
+      maxWidth: "10px",
+    },
   },
   {
     name: "Deskripsi",
-    selector: (row) => row.alamat,
-    sortable: true,
-    // grow: 2,
-  },
-  {
-    name: "Lokasi Kejadian",
-    selector: (row) => row.alamat,
-    sortable: true,
-    wrap: true,
-  },
-  {
-    name: "Catatan",
-    selector: (row) => row.alamat,
-    sortable: true,
-    wrap: true,
-  },
-  {
-    name: "Waktu Lapor",
     selector: (row) => row.deskripsi,
     sortable: true,
     wrap: true,
+    // grow: 2,
   },
   {
-    name: "Status",
-    selector: (row) => row.kategorid,
+    name: "Alamat",
+    selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
   },
@@ -137,42 +76,20 @@ const columns = [
     wrap: true,
   },
   {
-    name: "No. Telp",
-    selector: (row) => parseDateSQLtoString(row.updated_at),
-    sortable: true,
-    wrap: true,
-  },
-  {
-    name: "Tipe",
-    selector: (row) => Wrap(parseDateSQLtoString(row.updated_at)),
-    sortable: true,
-    maxWidth: 5,
-    wrap: true,
-  },
-  {
-    name: "Agen L1",
-    selector: (row) => parseDateSQLtoString(row.updated_at),
-    sortable: true,
-    wrap: true,
-  },
-  {
-    name: "Dinas Terkait",
-    selector: (row) => parseDateSQLtoString(row.updated_at),
-    sortable: true,
-    wrap: true,
-  },
-  {
     name: "Aksi",
-    selector: (row) => HiglightButton(row.id),
+    selector: (row) => HiglightButton(row),
     sortable: true,
-    wrap: true,
+    style: {
+      width: "10px",
+      maxWidth: "10px",
+    },
   },
 ];
 
 const customStyles = {
   rows: {
     style: {
-      minHeight: "72px", // override the row height
+      // minHeight: "72px", // override the row height
     },
   },
   headCells: {
@@ -293,45 +210,50 @@ export default function LaporanTerbaru() {
   };
 
   return (
-    <div className="flex flex-col my-12">
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-        <h2 className="text-subtitle font-medium  text-center">
-          Laporoan terbaru
-        </h2>
-        <div className="flex justify-end items-center gap-2">
-          {data && !loading && <ExportPDF data={data} />}
-          {data && !loading && <ExportExcel data={data} />}
-        </div>
-      </div>
-      {!loading && data ? (
-        <>
-          <div className="dark-card rounded-xl py-2">
-            <DataTable
-              sort
-              className="dark-card break-all "
-              defaultSortFieldId={1}
-              columns={columns}
-              data={data}
-              theme={isDark ? "solarize" : "light"}
-              noDataComponent={<NoData />}
-              highlightOnHover
-              customStyles={customStyles}
-            ></DataTable>
+    <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-12">
+      <div className="w-full lg:w-7/12">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+          <h2 className="text-subtitle font-medium  text-center">
+            Laporoan terbaru
+          </h2>
+          <div className="flex justify-end items-center gap-2">
+            {data && !loading && <ExportPDF data={data} />}
+            {data && !loading && <ExportExcel data={data} />}
           </div>
-          {!total.loading && (
-            <Pagination
-              page={page}
-              total={total.data}
-              lanjut={nextHandler}
-              belum={prevHandler}
-            />
-          )}
-        </>
-      ) : (
-        <div className="dark-card rounded-xl py-2">
-          <Loading />
         </div>
-      )}
+        {!loading && data ? (
+          <>
+            <div className="dark-card rounded-xl pt-2">
+              <DataTable
+                sort
+                className="dark-card p-0"
+                defaultSortFieldId={1}
+                columns={columns}
+                data={data}
+                expandableRows
+                expandableRowsComponent={ExpandebleTable}
+                theme={isDark ? "solarize" : "light"}
+                noDataComponent={<NoData />}
+                highlightOnHover
+                customStyles={customStyles}
+              ></DataTable>
+            </div>
+            {!total.loading && (
+              <Pagination
+                page={page}
+                total={total.data}
+                lanjut={nextHandler}
+                belum={prevHandler}
+              />
+            )}
+          </>
+        ) : (
+          <div className="dark-card rounded-xl py-2">
+            <Loading />
+          </div>
+        )}
+      </div>
+      {!loading && data && <HglLaporan />}
     </div>
   );
 }

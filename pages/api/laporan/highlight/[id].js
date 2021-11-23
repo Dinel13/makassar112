@@ -10,23 +10,28 @@ export default async function handler(req, res) {
     });
   }
 
-  if (req.method !== "GET") {
-    res.status(400).send({ message: "Only GET requests allowed" });
+  if (req.method !== "DELETE") {
+    res.status(400).send({ message: "Only POST requests allowed" });
     return;
   }
 
   async function run() {
-    let { page } = req.query;
-    if (page == 1) {
-      page = 0;
-    } else {
-      page = 14 * (page - 1);
-    }
     try {
-      const allPhone = await db.manyOrNone(
-        "SELECT * FROM laporans Order By updated_at DESC LIMIT 15 OFFSET $1", [page]
+      const { id } = req.query;
+      const deletedh = await db.oneOrNone(
+        `DELETE FROM higlights WHERE id = $1 RETURNING *`,
+        [id]
       );
-      res.status(200).json(allPhone);
+
+      if (!deletedPh) {
+        return res.status(404).send({
+          error: ["data tidak ditemukan"],
+        });
+      }
+
+      res.status(200).send({
+        message: "data telah dihapus",
+      });
     } catch (error) {
       console.error(error);
       res
