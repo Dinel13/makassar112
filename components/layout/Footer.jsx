@@ -54,9 +54,10 @@ function Footer() {
               Kontak
             </h2>
             <nav className="list-none mb-10 ">
+              <li>Call Center : 112</li>
               <li>Telepon : (0411) 4671729</li>
               <li>E-mail: diskominfo@makassarkota.go.id</li>
-           </nav>
+            </nav>
           </div>
         </div>
       </div>
