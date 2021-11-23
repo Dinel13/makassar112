@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import ButtonKategori from "../components/button/ButtonKategori";
@@ -7,12 +7,24 @@ import Loading from "../components/loading/Loading";
 import Hasil from "../components/phonebook/Hasil";
 import { showNotif } from "../store/notifSlice";
 
-
 export default function Home() {
   const searchRef = useRef(null);
   const resultRef = useRef(null);
   const dispatch = useDispatch();
   const [statusData, setStatus] = useState({});
+
+  // set light mode as default if this page is render
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("mode") === null) {
+      localStorage.setItem("mode", "light");
+    }
+  }
+
+  useEffect(() => {
+    localStorage.theme = "light";
+    document.documentElement.classList.add("dark");
+    localStorage.theme = "light";
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
