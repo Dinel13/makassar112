@@ -10,6 +10,7 @@ import { showNotif } from "../store/notifSlice";
 
 import { kategori, wilayah } from "../data";
 import Phone from "../components/table/phone";
+import FloatingWhatsApp from "react-floating-whatsapp";
 
 export default function Home() {
   // const kategoriRef = useRef(null);
@@ -278,6 +279,18 @@ export default function Home() {
           )}
         </div>
         {/* <Sering /> */}
+      </div>
+      <div className="App">
+        <FloatingWhatsApp
+          phoneNumber="112"
+          accountName="112"
+          allowClickAway
+          notification
+          notificationDelay={60000} // 1 minute
+          notificationSound
+          placeholder="Laporkan kejadian anda"
+          chatMessage="112 Kota Makassar Ada yang bisa kami bantu?"
+        />
       </div>
     </>
   );
