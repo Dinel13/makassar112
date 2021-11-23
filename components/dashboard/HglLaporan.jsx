@@ -113,9 +113,6 @@ export default function HglLaporan() {
   const isDark = useSelector(selectIsDark);
   const needRefresh = useSelector(selectIsNeedRefresh);
 
-  console.log("needRefresh", needRefresh);
-  
-
   const getData = async (page) => {
     try {
       const result = await fetch(

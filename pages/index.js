@@ -7,6 +7,7 @@ import ButtonKategori from "../components/button/ButtonKategori";
 import Loading from "../components/loading/Loading";
 import Hasil from "../components/phonebook/Hasil";
 import { showNotif } from "../store/notifSlice";
+import MarqueLaporan from "../components/MarqueLaporan";
 
 export default function Home() {
   const searchRef = useRef(null);
@@ -128,6 +129,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <MarqueLaporan />
       <div className="container m-0 mx-auto px-1 sm:px-2 md:px-3 lg:px-5 xl:px-7 2xl:px-9 py-2 sm:py-4 md:py-7 lg:py-10 xl:py-12 2xl:py-14">
         <div className="my-6">
           <h2 className="text-title">Pilih Kategori</h2>
