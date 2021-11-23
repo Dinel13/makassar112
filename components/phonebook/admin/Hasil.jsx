@@ -50,7 +50,7 @@ export default function Hasil({ data, onUpdate, cancel, updateResultSearch}) {
                     scope="col"
                     className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
                   >
-                    Lokasi
+                    Alamat
                   </th>
                   <th
                     scope="col"

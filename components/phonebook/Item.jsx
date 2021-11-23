@@ -1,4 +1,4 @@
-import { parseDateSQLtoString } from "../../lib/time";
+import { parseDateSQLtoStringDate } from "../../lib/time";
 
 export default function Item({ data }) {
   return (
@@ -6,6 +6,7 @@ export default function Item({ data }) {
      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.alamat}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm ">
         <a target="_blank" rel="noreferrer" href={data.lokasi}>
@@ -25,7 +26,7 @@ export default function Item({ data }) {
           </svg>
         </a>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{parseDateSQLtoString(data.updated_at)}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm ">{parseDateSQLtoStringDate(data.updated_at)}</td>
     </tr>
   );
 }

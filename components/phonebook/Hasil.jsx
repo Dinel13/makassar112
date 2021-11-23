@@ -30,9 +30,15 @@ export default function Hasil({ data }) {
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
                   >
                     Wilayah
+                  </th>
+                   <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium  tracking-wider"
+                  >
+                    Alamat
                   </th>
                   <th
                     scope="col"
