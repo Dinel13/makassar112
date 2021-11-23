@@ -18,7 +18,7 @@ export default function Item({ data }) {
       <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
         {data.wilayah}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center flex justify-center">
         <a target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ export default function Item({ data }) {
           </svg>
         </a>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center ">
         {parseDateSQLtoStringDate(data.updated_at)}
       </td>
     </tr>

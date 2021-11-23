@@ -15,18 +15,22 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
         action: ["hapusPhone", id, () => removeItem(id)],
       })
     );
-    ;
   };
 
   return (
-    <tr >
+    <tr>
       <td className="p-3 whitespace-nowrap text-xs">{data.nama}</td>
       <td className="p-3 whitespace-nowrap text-xs">{data.phone}</td>
       <td className="p-3 whitespace-nowrap text-xs">{data.kategori}</td>
-      <td className="p-3 whitespace-normal text-xs">{data.wilayah} dsadsadsada sdsadasdsa</td>
-      <td className="p-3 whitespace-normal text-xs">{data.alamat}sfsdfdsfsdfsdfsd</td>
+      <td className="p-3 whitespace-normal text-xs">{data.wilayah}</td>
+      <td className="p-3 whitespace-normal text-xs">{data.alamat}</td>
       <td className="p-3 whitespace-nowrap text-xs ">
-        <a className="flex justify-center" target="_blank" rel="noreferrer" href={data.lokasi}>
+        <a
+          className="flex justify-center"
+          target="_blank"
+          rel="noreferrer"
+          href={data.lokasi}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -44,7 +48,9 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
         </a>
       </td>
       <td className="p-3 whitespace-nowrap text-xs ">{data.status}</td>
-      <td className="p-3 whitespace-nowrap text-xs ">{parseDateSQLtoString(data.updated_at)}</td>
+      <td className="p-3 whitespace-nowrap text-xs ">
+        {parseDateSQLtoString(data.updated_at)}
+      </td>
       <td className="p-3 whitespace-nowrap text-xs font-medium">
         <button onClick={() => onUpdate(data)} className="pr-2">
           Update
@@ -56,5 +62,3 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
     </tr>
   );
 }
-
-
