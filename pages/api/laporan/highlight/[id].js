@@ -23,9 +23,9 @@ export default async function handler(req, res) {
         [id]
       );
 
-      if (!deletedPh) {
+      if (!deletedh) {
         return res.status(404).send({
-          error: ["data tidak ditemukan"],
+          error: "data tidak ditemukan",
         });
       }
 

@@ -210,7 +210,7 @@ export default function LaporanTerbaru() {
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-12">
+    <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-6">
       <div className="w-full lg:w-7/12">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
           <h2 className="text-subtitle font-medium  text-center">

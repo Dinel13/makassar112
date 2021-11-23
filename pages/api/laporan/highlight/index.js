@@ -33,7 +33,6 @@ export default async function handler(req, res) {
         tipe,
       } = body;
 
-      console.log(body);
 
       if (!id || !alamat || !kategori || !lokasi || !status) {
         return res.status(422).send({

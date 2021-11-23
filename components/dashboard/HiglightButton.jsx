@@ -53,26 +53,22 @@ export default function HiglightButton(data) {
   }
 }
 
-export function UnHiglightButton({ dataId }) {
+export function UnHiglightButton(dataId) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const unhighlight = async (id) => {
+  const unhighlight = async () => {
     setLoading(true);
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/unhightlight`,
+        `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/${dataId}`,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id }),
+          method: "DELETE",
         }
       );
       const data = await result.json();
       if (!result.ok) {
-        throw new Error(data.error || "Tidak bisa menyimpan data");
+        throw new Error(data.error || "Tidak bisa menghapus data");
       }
       setLoading(false);
     } catch (error) {
@@ -92,7 +88,7 @@ export function UnHiglightButton({ dataId }) {
   } else {
     return (
       <button
-        onClick={() => unhighlight(dataId)}
+        onClick={() => unhighlight()}
         className="break py-1 px-2 rounded btn-pri min"
       >
         Hapus
