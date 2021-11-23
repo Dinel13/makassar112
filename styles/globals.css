@@ -23,15 +23,15 @@
   }
 
   .btn-sec {
-    @apply text-gray-800 dark:text-gray-50 bg-gray-300 dark:bg-d2 hover:bg-blue-200 dark:hover:bg-d3 focus:outline-none hover:shadow-lg rounded-xl transition-colors duration-150;
+    @apply text-gray-800 dark:text-gray-50 bg-gray-300 dark:bg-d2 hover:bg-blue-200 dark:hover:bg-d3 focus:outline-none hover:shadow-lg rounded-lg transition-colors duration-150;
   }
 
   .btn-ter {
-    @apply text-gray-700 bg-yellow-50  focus:outline-none hover:shadow-lg hover:bg-yellow-100 rounded-xl transition-colors duration-150;
+    @apply text-gray-700 dark:text-gray-50 bg-gray-100 dark:bg-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none hover:shadow-lg  rounded-lg transition-colors duration-150;
   }
 
   .btn-las {
-    @apply bg-transparent border hover:shadow-lg border-gray-400 focus:outline-none rounded-full transition-colors duration-150;
+    @apply bg-transparent border hover:shadow-lg border-gray-400 focus:outline-none rounded-lg transition-colors duration-150;
   }
 
   .form-card {
@@ -47,11 +47,11 @@
   }
 
   .input-field {
-    @apply w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-xl focus:border-blue-500 focus:outline-none focus:ring;
+    @apply w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-lg focus:border-blue-500 focus:outline-none focus:ring;
   }
 
   .input-field-sm {
-    @apply px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-xl focus:border-blue-500 focus:outline-none focus:ring;
+    @apply px-3 py-2 text-gray-700 bg-gray-100 border border-gray-400 rounded-lg focus:border-blue-500 focus:outline-none focus:ring;
   }
 
   .text-title {

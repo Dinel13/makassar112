@@ -100,7 +100,7 @@ export default function ErrorModal() {
               {status === "Confirm" ? (
                 <div className="flex items-center justify-end p-4 border-t border-solid border-blueGray-200 rounded-b">
                   <button
-                    className="btn-pri font-medium uppercase text-sm px-6 py-2 mr-2"
+                    className="btn-sec font-medium uppercase text-sm px-6 py-2 mr-2"
                     type="button"
                     onClick={hideModal}
                   >
@@ -108,7 +108,7 @@ export default function ErrorModal() {
                   </button>
                   <button
                     id="yakin"
-                    className="btn-sec font-medium uppercase text-sm px-6 py-2"
+                    className="btn-pri font-medium uppercase text-sm px-6 py-2"
                     type="button"
                     onClick={realAction}
                   >
@@ -118,7 +118,7 @@ export default function ErrorModal() {
               ) : (
                 <div className="flex items-center justify-end p-4 border-t border-gray-400 rounded-b">
                   <button
-                    className="btn-sec font-medium uppercase text-sm px-6 py-2"
+                    className="btn-pri font-medium uppercase text-sm px-6 py-2"
                     type="button"
                     onClick={hideModal}
                   >

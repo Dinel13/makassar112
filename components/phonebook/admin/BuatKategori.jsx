@@ -31,7 +31,7 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
       dispatch(
         showNotif({
           status: "Success",
-          message: "Data berhasil diupdate",
+          message: "Data berhasil disimpan",
           action: null,
         })
       );
@@ -64,25 +64,25 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
                 </span>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
-                <label className="flex flex-wrap items-center btn-las w-full py-2 px-3">
+                <label className="flex flex-wrap items-center  w-full py-2 px-3">
                   <span className="text-sm mr-2">Nama kategori</span>
                   
                   <input ref={namaRef} className="input-field-sm" type="text" maxLength="50" required />
                 </label>
 
-                <div className="flex mt-6 text-center pb-3">
+                <div className="flex text-center p-3 pt-4 gap-x-3">
                   {pending ? (
                     <PendingButton />
                   ) : (
                     <>
                       <button
                         onClick={cancel}
-                        className="w-full btn-sec py-2 text-lg mr-4"
+                        className="w-full btn-sec py-2"
                       >
                         batal
                       </button>
                       <button
-                        className="w-full btn-ter py-2 text-lg"
+                        className="w-full btn-pri py-2"
                         type="submit"
                       >
                         Upload

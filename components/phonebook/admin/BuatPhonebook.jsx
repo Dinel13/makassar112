@@ -9,6 +9,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
   const phoneRef = useRef(null);
   const kategoriRef = useRef(null);
   const wilayahRef = useRef(null);
+  const alamatRef = useRef(null);
   const lokasiRef = useRef(null);
   const [status, setStatus] = useState(null);
   const [pending, setPending] = useState(false);
@@ -31,6 +32,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
             phone: phoneRef.current.value,
             kategori: kategoriRef.current.value,
             wilayah: wilayahRef.current.value,
+            alamat: alamatRef.current.value,
             lokasi: lokasiRef.current.value,
             status
           }),
@@ -44,7 +46,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
       dispatch(
         showNotif({
           status: "Success",
-          message: "Data berhasil diupdate",
+          message: "Data berhasil disimpan",
           action: null,
         })
       );
@@ -66,7 +68,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
     <>
       <div className="opacity-20 fixed inset-0 z-40 bg-black"></div>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="max-w-lg mx-auto dark-modal rounded-lg overflow-hidden  ">
+        <div className="max-w-lg mx-auto dark-modal rounded-lg overflow-hidden my-auto mt-5">
           <div className="md:flex">
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
@@ -74,33 +76,33 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
               </div>
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-wrap items-center justify-between p-4 "
+                className="flex flex-wrap items-center justify-between p-3"
               >
-                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                <label className="flex flex-wrap w-full items-center pb-1.5 px-3">
                   <span className="">Nama</span>
                   <input
                     ref={namaRef}
-                    className="input-field-sm w-full mt-2"
+                    className="input-field-sm w-full mt-1"
                     type="text"
                     maxLength="45"
                     required
                   />
                 </label>
-                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                <label className="flex flex-wrap w-full items-center py-1.5 px-3">
                   <span className="">Nomor</span>
                   <input
                     ref={phoneRef}
-                    className="input-field-sm w-full mt-2"
+                    className="input-field-sm w-full mt-1"
                     type="text"
                     maxLength="45"
                     required
                   />
                 </label>
-                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                <label className="flex flex-wrap w-full items-center py-1.5 px-3">
                   <span className="">Kategori</span>
                   <select
                     ref={kategoriRef}
-                    className="input-field-sm w-full mt-2"
+                    className="input-field-sm w-full mt-1"
                     required
                   >
                     <option value=""></option>
@@ -111,28 +113,38 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                     ))}
                   </select>
                 </label>
-                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                <label className="flex flex-wrap w-full items-center py-1.5 px-3">
                   <span className="">Wilayah</span>
                   <input
                     ref={wilayahRef}
-                    className="input-field-sm w-full mt-2"
+                    className="input-field-sm w-full mt-1"
                     type="text"
                     maxLength="200"
                     required
                   />
                 </label>
-                <label className="flex flex-wrap w-full items-center py-2 px-3">
+                <label className="flex flex-wrap w-full items-center py-1.5 px-3">
+                  <span className="">Alamat</span>
+                  <input
+                    ref={alamatRef}
+                    className="input-field-sm w-full mt-1"
+                    type="text"
+                    maxLength="200"
+                    required
+                  />
+                </label>
+                <label className="flex flex-wrap w-full items-center py-1.5 px-3">
                   <span className="">Lokasi di Peta</span>
                   <input
                     ref={lokasiRef}
-                    className="input-field-sm w-full mt-2"
+                    className="input-field-sm w-full mt-1"
                     type="text"
-                    maxLength="200"
+                    maxLength="500"
                     required
                   />
                 </label>
                 <div
-                  className="flex flex-wrap items-center py-2 px-3"
+                  className="flex flex-wrap items-center py-1.5 px-3"
                   onChange={(e) => setStatus(e.target.value)}
                 >
                   <span className="mr-4">Status</span>
@@ -156,19 +168,19 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                     <span className="text-sm ml-2">Private</span>
                   </label>
                 </div>
-                <div className="flex mt-6 justify-end w-full gap-2 pb-3">
+                <div className="flex justify-end w-full gap-2 p-3">
                   {pending ? (
                     <PendingButton />
                   ) : (
                     <>
                       <button
                         onClick={cancel}
-                        className="btn-pri py-2 px-6 text-lg"
+                        className="btn-ter py-2 px-6"
                       >
                         Batal
                       </button>
                       <button
-                        className="btn-ter py-2 px-6 text-lg"
+                        className="btn-pri py-2 px-6"
                         type="submit"
                       >
                         Upload

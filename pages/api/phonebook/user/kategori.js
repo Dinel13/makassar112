@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       // get the data from the database
       const result = await db.query(
         `SELECT * FROM phones WHERE status = 'publik' AND LOWER(kategori) = LOWER('${kategori}')
-        LIMIT 120`
+        LIMIT 300`
       );
 
       res.status(200).json(result);
