@@ -72,7 +72,7 @@ export default function ButtonKategori({
           className="flex items-center px-6 py-4 justify-center shadow rounded-xl dark-card link-scale"
         >
           {children}
-          <span className="ml-3">{text}</span>
+          <span className="ml-3 text-md">{text}</span>
         </button>
       )}
     </div>
