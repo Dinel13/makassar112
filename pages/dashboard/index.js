@@ -21,24 +21,10 @@ export default function Dashbord() {
   return (
     <div className="container mx-auto px-2 py-8 min-h-screen">
       <h3 className="text-title font-medium">Dashboard</h3>
-      {/* <div className="my-8 flex flex-col justify-center py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <h3 className="text-subtitle text-center font-medium my-4">
-          Highlight Reports
-        </h3>{" "}
-        <div className="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto rounded-lg bg-white dark:bg-dark1 border-gray-600 dark:border-white whitespace-normal">
-          <HgLaporanY />
-        </div>
-      </div> */}
-      {/* <div className="my-8 justify-center py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 ">
-        <h3 className="text-subtitle text-center font-medium my-4">
-          Hightlight laporan
-        </h3>
-        <div className="dark-card rounded-xl">
-          <HgLaporan />
-        </div>
-      </div> */}
-      {/* <div className="w-full rounded-lg border-2 shadow-xl bg-white dark:bg-dark1 border-gray-600 dark:border-white"> */}
-      <LaporanTerbaru />
+      <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
+        <LaporanTerbaru />
+        <HglLaporan />
+      </div>
     </div>
   );
 }
