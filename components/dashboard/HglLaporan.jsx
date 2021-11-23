@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useSelector } from "react-redux";
 import { parseDateSQLtoString } from "../../lib/time";
+import { selectIsNeedRefresh } from "../../store/rfSlice";
 import { selectIsDark } from "../../store/themeSlice";
 
 import Loading from "../loading/Loading";
@@ -37,60 +38,71 @@ createTheme(
 
 const Hcolumns = [
   {
-    name: "ID",
-    selector: (row) => row.id,
-    sortable: true,
-    omit: true,
-  },
-  {
     name: "Kategori",
     selector: (row) => row.kategori,
     sortable: true,
+    wrap: true,
+    maxWidth: "80px",
   },
   {
     name: "Deskripsi",
     selector: (row) => row.deskripsi,
     sortable: true,
-    // grow: 2,
+    wrap: true,
+    maxWidth: "250px",
   },
   {
     name: "Alamat",
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
+    maxWidth: "120px",
   },
   {
     name: "Nama Pelapor",
     selector: (row) => row.pelapor,
     sortable: true,
     wrap: true,
+    maxWidth: "100px",
   },
   {
     name: "Aksi",
     selector: (row) => UnHiglightButton(row.id),
-    sortable: true,
-    wrap: true,
+    sortable: false,
+    maxWidth: "50px",
+    compact: true,
+    // cell: (row) => {
+    //   return (
+    //     <div>
+    //       <button
+    //         className="btn btn-primary btn-sm"
+    //         onClick={() => {
+    //           window.open(`/laporan/${row.id}`, "_blank");
+    //         }}
+    //       >
+    //         Lihat
+    //       </button>
+    //     </div>
+    //   );
+    // },
   },
 ];
-
 
 const customStyles = {
   rows: {
     style: {
-      minHeight: "72px", // override the row height
+      // minHeight: "72px", // override the row height
     },
   },
   headCells: {
     style: {
       paddingLeft: "4px", // override the cell padding for head cells
       paddingRight: "4px",
-      whiteSpace: "normal",
     },
   },
   cells: {
     style: {
-      paddingLeft: "4px", // override the cell padding for data cells
-      paddingRight: "4px",
+      padding: "4px", // override the cell padding for data cells
     },
   },
 };
@@ -98,6 +110,10 @@ const customStyles = {
 export default function HglLaporan() {
   const [data, setData] = useState([]);
   const isDark = useSelector(selectIsDark);
+  const needRefresh = useSelector(selectIsNeedRefresh);
+
+  console.log("needRefresh", needRefresh);
+  
 
   const getData = async (page) => {
     try {
@@ -124,31 +140,30 @@ export default function HglLaporan() {
     }
   };
 
-
   useEffect(() => {
     getData();
-  }, [])
+  }, [needRefresh]);
 
   return (
-      <div className="lg:w-5/12">
-        <h2 className="text-subtitle font-medium  text-center mb-5">
-          Highlight laporoan
-        </h2>
-        <div className="dark-card rounded-xl pt-2">
-          <DataTable
-            sort
-            className="dark-card"
-            defaultSortFieldId={1}
-            columns={Hcolumns}
-            data={data}
-            expandableRows
-            expandableRowsComponent={ExpandebleTable}
-            theme={isDark ? "solarize" : "light"}
-            noDataComponent={<NoData />}
-            highlightOnHover
-            customStyles={customStyles}
-          ></DataTable>
-        </div>
+    <div className="lg:w-5/12 lg:-mt-206">
+      <h2 className="text-subtitle font-medium lg:text-right mb-5">
+        Highlight laporoan
+      </h2>
+      <div className="dark-card rounded-xl pt-2">
+        <DataTable
+          sort
+          className="dark-card"
+          defaultSortFieldId={1}
+          columns={Hcolumns}
+          data={data}
+          expandableRows
+          expandableRowsComponent={ExpandebleTable}
+          theme={isDark ? "solarize" : "light"}
+          noDataComponent={<NoData />}
+          highlightOnHover
+          customStyles={customStyles}
+        ></DataTable>
       </div>
-    );
+    </div>
+  );
 }

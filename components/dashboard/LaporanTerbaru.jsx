@@ -11,8 +11,7 @@ import Pagination from "../button/Pagination";
 import Loading from "../loading/Loading";
 import { NoData } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
-import HglLaporan from "./HglLaporan";
-import HiglightButton, { UnHiglightButton } from "./HiglightButton";
+import HiglightButton from "./HiglightButton";
 
 createTheme(
   "solarize",
@@ -42,47 +41,39 @@ createTheme(
 
 const columns = [
   {
-    name: "ID",
-    selector: (row) => row.id,
-    sortable: true,
-    omit : true,
-  },
-  {
     name: "Kategori",
     selector: (row) => row.kategori,
     sortable: true,
     wrap: true,
-    style: {
-      maxWidth: "10px",
-    },
+    maxWidth: "100px",
   },
   {
     name: "Deskripsi",
     selector: (row) => row.deskripsi,
     sortable: true,
     wrap: true,
-    // grow: 2,
+    maxWidth: "250px",
   },
   {
     name: "Alamat",
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
+    maxWidth: "120px",
   },
   {
     name: "Nama Pelapor",
-    selector: (row) => parseDateSQLtoString(row.updated_at),
+    selector: (row) => row.pelapor,
     sortable: true,
     wrap: true,
+    maxWidth: "100px",
   },
   {
     name: "Aksi",
     selector: (row) => HiglightButton(row),
     sortable: true,
-    style: {
-      width: "10px",
-      maxWidth: "10px",
-    },
+    maxWidth: "50px",
+
   },
 ];
 
@@ -210,50 +201,47 @@ export default function LaporanTerbaru() {
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-6">
-      <div className="w-full lg:w-7/12">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-          <h2 className="text-subtitle font-medium  text-center">
-            Laporoan terbaru
-          </h2>
-          <div className="flex justify-end items-center gap-2">
-            {data && !loading && <ExportPDF data={data} />}
-            {data && !loading && <ExportExcel data={data} />}
-          </div>
+    <div className="w-full lg:w-7/12">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+        <h2 className="text-subtitle font-medium  text-center">
+          Laporoan terbaru
+        </h2>
+        <div className="flex justify-end items-center gap-2">
+          {data && !loading && <ExportPDF data={data} />}
+          {data && !loading && <ExportExcel data={data} />}
         </div>
-        {!loading && data ? (
-          <>
-            <div className="dark-card rounded-xl pt-2">
-              <DataTable
-                sort
-                className="dark-card p-0"
-                defaultSortFieldId={1}
-                columns={columns}
-                data={data}
-                expandableRows
-                expandableRowsComponent={ExpandebleTable}
-                theme={isDark ? "solarize" : "light"}
-                noDataComponent={<NoData />}
-                highlightOnHover
-                customStyles={customStyles}
-              ></DataTable>
-            </div>
-            {!total.loading && (
-              <Pagination
-                page={page}
-                total={total.data}
-                lanjut={nextHandler}
-                belum={prevHandler}
-              />
-            )}
-          </>
-        ) : (
-          <div className="dark-card rounded-xl py-2">
-            <Loading />
-          </div>
-        )}
       </div>
-      {!loading && data && <HglLaporan />}
+      {!loading && data ? (
+        <>
+          <div className="dark-card rounded-xl pt-2">
+            <DataTable
+              sort
+              className="dark-card p-0"
+              defaultSortFieldId={1}
+              columns={columns}
+              data={data}
+              expandableRows
+              expandableRowsComponent={ExpandebleTable}
+              theme={isDark ? "solarize" : "light"}
+              noDataComponent={<NoData />}
+              highlightOnHover
+              customStyles={customStyles}
+            ></DataTable>
+          </div>
+          {!total.loading && (
+            <Pagination
+              page={page}
+              total={total.data}
+              lanjut={nextHandler}
+              belum={prevHandler}
+            />
+          )}
+        </>
+      ) : (
+        <div className="dark-card rounded-xl py-2">
+          <Loading />
+        </div>
+      )}
     </div>
   );
 }

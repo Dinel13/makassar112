@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
+import { makeRefresh } from "../../store/rfSlice";
 
 import PendingButton from "../button/Pending";
 
@@ -27,6 +28,14 @@ export default function HiglightButton(data) {
         throw new Error(dataJson.error || "Tidak bisa menyimpan data");
       }
       setLoading(false);
+      dispatch(makeRefresh());
+      dispatch(
+        showNotif({
+          status: "Berhasil",
+          message: "Data berhasil ditambahkan",
+          action: null,
+        })
+      );
     } catch (error) {
       setLoading(false);
       dispatch(
@@ -71,6 +80,7 @@ export function UnHiglightButton(dataId) {
         throw new Error(data.error || "Tidak bisa menghapus data");
       }
       setLoading(false);
+      dispatch(makeRefresh({needRefresh: true}));
     } catch (error) {
       setLoading(false);
       dispatch(
