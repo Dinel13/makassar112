@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import FloatingWhatsApp from "react-floating-whatsapp";
 
 import ButtonKategori from "../components/button/ButtonKategori";
 import Loading from "../components/loading/Loading";
@@ -139,11 +140,11 @@ export default function Home() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   aria-hidden="true"
                   role="img"
-                  width="1em"
-                  height="1em"
+                  width="3em"
+                  height="3em"
                   preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
                 >
@@ -164,11 +165,11 @@ export default function Home() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   aria-hidden="true"
                   role="img"
-                  width="1em"
-                  height="1em"
+                  width="3em"
+                  height="3em"
                   preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
                 >
@@ -179,17 +180,18 @@ export default function Home() {
                 </svg>
               </ButtonKategori>
               <ButtonKategori
+                className="text-title"
                 text="Keamanan"
                 setStatus={setStatus}
                 resultRef={resultRef}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   aria-hidden="true"
                   role="img"
-                  width="1em"
-                  height="1em"
+                  width="3em"
+                  height="3em"
                   preserveAspectRatio="xMidYMid meet"
                   viewBox="0 0 24 24"
                 >
@@ -229,6 +231,18 @@ export default function Home() {
             </div>
           )}
         </div>
+      </div>
+      <div className="App">
+        <FloatingWhatsApp
+          phoneNumber="112"
+          accountName="112"
+          allowClickAway
+          notification
+          notificationDelay={60000} // 1 minute
+          notificationSound
+          placeholder="Laporkan kejadian anda"
+          chatMessage="112 Kota Makassar Ada yang bisa kami bantu?"
+        />
       </div>
     </>
   );
