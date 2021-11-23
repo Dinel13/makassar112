@@ -25,7 +25,6 @@ export default async function handler(req, res) {
           error: ["isian tidak lengkap"],
         });
       }
-      console.log(body);
 
       const updatedPhonebook = await db.one(
          `UPDATE phones SET nama = $1, phone = $2, kategori = $3, wilayah = $4, alamat = $5, lokasi = $6, status = $7, updated_at = NOW() WHERE id = $8 RETURNING *`,

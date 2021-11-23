@@ -1,45 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { showNotif } from "../../../store/notifSlice";
 import Item from "./ItemForAdmin";
 
-export default function Hasil({ data, onUpdate, cancel }) {
+export default function Hasil({ data, onUpdate, cancel, updateResultSearch}) {
+  const [allData, setAllData] = useState(data)
+  
   const removeItem = (id) => {
-    data = data.filter((item) => item.id !== id);
+    const newData = data.filter((item) => item.id !== id);
+    setAllData(newData);
   };
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     try {
-  //       const result = await fetch(
-  //         `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-  //       );
-  //       const resJson = await result.json();
-  //       if (!result.ok) {
-  //         throw new Error(resJson.error || "Tidak bisa mendapat data");
-  //       }
-  //       setData(resJson);
-  //     } catch (error) {
-  //       dispatch(
-  //         showNotif({
-  //           status: "Error",
-  //           message: error.message,
-  //           action: null,
-  //         })
-  //       );
-  //     }
-  //   }
-  //   getData();
-  // }, [dispatch, needRefh, needRefsh, refresh]);
-  // refresh jika item dihapus
-  // needRefh jika item ditmabhag
-  // needRefsh jika item diupdate
+  useEffect(() => {
+    setAllData(data);
+  }, [data]);
 
   return (
     <div className="flex flex-col my-12">
@@ -52,57 +24,63 @@ export default function Hasil({ data, onUpdate, cancel }) {
                 <tr>
                   <th
                     scope="col"
-                    className=" px-6  py-4 text-center text-xs font-medium uppercase tracking-wider "
+                    className=" px-6  py-4 text-center text-xs font-medium tracking-wider "
                   >
                     Nama Kontak
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider  "
+                    className="px-6 py-3 text-center text-xs font-medium tracking-wider  "
                   >
                     Nomor Kontak
                   </th>
                   <th
                     scope="col"
-                    className="  px-6  py-3  text-center text-xs  font-medium    uppercase  tracking-wider "
+                    className="  px-6  py-3  text-center text-xs  font-medium     tracking-wider "
                   >
                     Kategori
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
                   >
                     Wilayah
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
                   >
                     Lokasi
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
+                  >
+                    Lokasi
+                  </th>
+                  <th
+                    scope="col"
+                    className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
                   >
                     Sifat
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
                   >
                     Update Terakhir
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className=" px-6 py-3 text-center text-xs font-medium  tracking-wider"
                   >
                     Aksi
                   </th>
                 </tr>
               </thead>
               <tbody className=" divide-y divide-gray-200 text-center">
-                {data &&
-                  data.map((item) => (
+                {allData &&
+                  allData.map((item) => (
                     <Item
                       key={item.id}
                       data={item}

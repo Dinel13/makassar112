@@ -20,12 +20,12 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
 
   return (
     <tr >
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.nama}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.phone}</td>
-      {/* <p className="overflow-hidden truncate overflow-ellipsis w-52"></p> </td> */}
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.kategori}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.wilayah}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">
+      <td className="p-3 whitespace-nowrap text-xs">{data.nama}</td>
+      <td className="p-3 whitespace-nowrap text-xs">{data.phone}</td>
+      <td className="p-3 whitespace-nowrap text-xs">{data.kategori}</td>
+      <td className="p-3 whitespace-normal text-xs">{data.wilayah} dsadsadsada sdsadasdsa</td>
+      <td className="p-3 whitespace-normal text-xs">{data.alamat}sfsdfdsfsdfsdfsd</td>
+      <td className="p-3 whitespace-nowrap text-xs ">
         <a className="flex justify-center" target="_blank" rel="noreferrer" href={data.lokasi}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,9 +43,9 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
           </svg>
         </a>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{data.status}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm ">{parseDateSQLtoString(data.updated_at)}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+      <td className="p-3 whitespace-nowrap text-xs ">{data.status}</td>
+      <td className="p-3 whitespace-nowrap text-xs ">{parseDateSQLtoString(data.updated_at)}</td>
+      <td className="p-3 whitespace-nowrap text-xs font-medium">
         <button onClick={() => onUpdate(data)} className="pr-2">
           Update
         </button>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/client";
 
 import Hasil from "../../components/phonebook/admin/Hasil";
 import Loading from "../../components/loading/Loading";
@@ -31,7 +31,7 @@ export default function Phonebook() {
   const [statusData, setStatus] = useState({});
   const searchRef = useRef(null);
   const dispatch = useDispatch();
-  const [session, loading] = useSession()
+  const [session, loading] = useSession();
   const router = useRouter();
 
   if (!loading && !session) {
@@ -58,7 +58,7 @@ export default function Phonebook() {
 
   useEffect(() => getKategori(), []);
 
-  if (loading) return <Loading />
+  if (loading) return <Loading />;
 
   const submitSearch = async (e) => {
     e.preventDefault();
@@ -114,6 +114,26 @@ export default function Phonebook() {
     const newKategori = [...kategoriList, data];
     setKategoriList(newKategori);
   };
+
+  const updateResultSearch = (data) => {
+    if (statusData.hasil && statusData.hasil.length > 0) {
+      const newHasil = [];
+      // update intem inside state if data.id match
+      statusData.hasil.forEach((item, index) => {
+        if (item.id === data.id) {
+          newHasil.push(data);
+        } else {
+          newHasil.push(item);
+        }
+      });
+      setStatus({
+        ...statusData,
+        hasil: newHasil,
+      });
+    }
+  };
+
+  console.log(statusData.hasil);
 
   return (
     <>
@@ -244,6 +264,7 @@ export default function Phonebook() {
               data={statusData.hasil}
               onUpdate={setUpdatePB}
               cancel={lihatSemuaData}
+              needRefsh={updatePB}
             />
           )}
 
@@ -280,11 +301,24 @@ export default function Phonebook() {
         )}
       </div>
       {buatKategori && (
-        <BuatKategori cancel={() => setBuatKategori(!buatKategori)} updateKategorilist={updateKategorilist} />
+        <BuatKategori
+          cancel={() => setBuatKategori(!buatKategori)}
+          updateKategorilist={updateKategorilist}
+        />
       )}
-      {buatPB && <BuatPhoneBook kategoriList={kategoriList} cancel={() => setBuatPB(!buatPB)} />}
+      {buatPB && (
+        <BuatPhoneBook
+          kategoriList={kategoriList}
+          cancel={() => setBuatPB(!buatPB)}
+        />
+      )}
       {updatePB && (
-        <EditPhoneBook kategoriList={kategoriList} cancel={() => setUpdatePB(null)} data={updatePB} />
+        <EditPhoneBook
+          kategoriList={kategoriList}
+          cancel={() => setUpdatePB(null)}
+          data={updatePB}
+          updateResultSearch={updateResultSearch}
+        />
       )}
     </>
   );

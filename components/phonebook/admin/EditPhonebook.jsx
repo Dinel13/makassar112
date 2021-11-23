@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatPhoneBook({ cancel, data, kategoriList }) {
+export default function BuatPhoneBook({ cancel, data, kategoriList,  updateResultSearch  }) {
   const namaRef = useRef(data.nama);
   const phoneRef = useRef(data.phone);
   const wilayahRef = useRef(data.wilayah);
@@ -53,6 +53,7 @@ export default function BuatPhoneBook({ cancel, data, kategoriList }) {
         })
       );
       cancel();
+      updateResultSearch(data);
     } catch (error) {
       dispatch(
         showNotif({

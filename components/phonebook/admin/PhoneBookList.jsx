@@ -127,49 +127,55 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
                 <tr>
                   <th
                     scope="col"
-                    className=" px-6  py-4 text-center text-xs font-medium uppercase tracking-wider "
+                    className="p-3 text-center text-xs font-medium tracking-wider "
                   >
                     Nama Kontak
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider  "
+                    className="p3 text-center text-xs font-medium tracking-wider  "
                   >
                     Nomor Kontak
                   </th>
                   <th
                     scope="col"
-                    className="  px-6  py-3  text-center text-xs  font-medium    uppercase  tracking-wider "
+                    className="p-3 text-center text-xs  font-medium tracking-wider"
                   >
                     Kategori
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className="p3 text-center text-xs font-medium  tracking-wider"
                   >
                     Wilayah
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className="p3 text-center text-xs font-medium  tracking-wider"
+                  >
+                    Alamat
+                  </th>
+                  <th
+                    scope="col"
+                    className="p3 text-center text-xs font-medium  tracking-wider"
                   >
                     Lokasi
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className="p3 text-center text-xs font-medium  tracking-wider"
                   >
                     Sifat
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className="p3 text-center text-xs font-medium  tracking-wider"
                   >
                     Update Terakhir
                   </th>
                   <th
                     scope="col"
-                    className=" px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider"
+                    className="p3 text-center text-xs font-medium  tracking-wider"
                   >
                     Aksi
                   </th>
