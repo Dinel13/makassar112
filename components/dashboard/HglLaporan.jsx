@@ -171,9 +171,7 @@ export default function HglLaporan() {
   }, [needRefresh]);
 
   useEffect(() => {
-    console.log("ffd");
     timerr = setInterval(() => {
-      console.log("ggg");
       getDataAgain();
     }, 60 * 1000);
     return () => {
