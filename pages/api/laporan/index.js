@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (token !== "dasdh@32f30@$ad7980GG@#tt!09fda&d^d%adada#das970") {
+  if (token !== process.env.NEXTAUTH_TOKEN) {
     res.status(401).send({ message: "Token tidak valid" });
     return;
   }

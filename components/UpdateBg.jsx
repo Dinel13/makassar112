@@ -18,7 +18,7 @@ export default function UpdateBg({ cancel }) {
       formData.append("file", fileRef.current.files[0]);
 
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/frontpage`,
+        `${process.env.NEXT_PUBLIC_URL}/bg`,
         {
           method: "POST",
           body: formData,
