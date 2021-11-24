@@ -156,7 +156,7 @@ export default function HglLaporan() {
           data={data}
           expandableRows
           expandableRowsComponent={ExpandebleTable}
-          theme={isDark ? "solarize" : "light"}
+          theme={isDark ? "solariz" : "light"}
           noDataComponent={<NoData />}
           highlightOnHover
           customStyles={customStyles}

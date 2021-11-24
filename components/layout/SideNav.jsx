@@ -64,7 +64,7 @@ export default function SideNav() {
         </a>
       </Link>
 
-      <Link href="/">
+      <Link href="/dashboard/frontpage">
         <a className="flex items-center mt-4 py-2 px-6 dark:hover:bg-blue-900  hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"

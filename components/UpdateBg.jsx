@@ -1,32 +1,34 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { showNotif } from "../store/notifSlice";
+import PendingButton from "./button/Pending";
 
-import PendingButton from "../../button/Pending";
-import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatKategori({ cancel, updateKategorilist}) {
-  const namaRef = useRef(null);
+export default function UpdateBg({ cancel }) {
+  const fileRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPending(true);
+    // setPending(true);
 
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/post`, {
-        method: "POST",
-        headers: {
-          // "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nama: namaRef.current.value,
-        }),
-      });
+      const formData = new FormData();
+      formData.append("file", fileRef.current.files[0]);
+
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/frontpage`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
       const data = await result.json();
       if (!result.ok) {
         console.log(data);
-        throw new Error(data.error || "Tidak bisa buat kategori");
+        throw new Error(data.error || "Tidak bisa upload file");
       }
       dispatch(
         showNotif({
@@ -35,7 +37,6 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
           action: null,
         })
       );
-      updateKategorilist(data);
       cancel();
     } catch (error) {
       dispatch(
@@ -59,14 +60,21 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
                 <span className="px-3 text-lg font-bold">
-                  Buat Kategori Baru
+                  Upload Backgroud Front Page
                 </span>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
                 <label className="flex flex-wrap items-center  w-full py-2 px-3">
-                  <span className="text-sm mr-2">Nama kategori</span>
-                  
-                  <input ref={namaRef} className="input-field-sm" type="text" maxLength="50" required />
+                  <span className="text-sm mr-2">Foto</span>
+
+                  <input
+                    ref={fileRef}
+                    className="input-field-sm"
+                    type="file"
+                    name="file"
+                    accept="image/*"
+                    required
+                  />
                 </label>
 
                 <div className="flex text-center p-3 pt-4 gap-x-3">
@@ -74,16 +82,10 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
                     <PendingButton />
                   ) : (
                     <>
-                      <button
-                        onClick={cancel}
-                        className="w-full btn-sec py-2"
-                      >
+                      <button onClick={cancel} className="w-full btn-sec py-2">
                         batal
                       </button>
-                      <button
-                        className="w-full btn-pri py-2"
-                        type="submit"
-                      >
+                      <button className="w-full btn-pri py-2" type="submit">
                         Upload
                       </button>
                     </>
