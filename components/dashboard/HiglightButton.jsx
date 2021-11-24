@@ -80,7 +80,7 @@ export function UnHiglightButton(dataId) {
         throw new Error(data.error || "Tidak bisa menghapus data");
       }
       setLoading(false);
-      dispatch(makeRefresh({needRefresh: true}));
+      dispatch(makeRefresh({ needRefresh: true }));
     } catch (error) {
       setLoading(false);
       dispatch(

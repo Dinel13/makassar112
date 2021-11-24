@@ -4,7 +4,12 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatPhoneBook({ cancel, data, kategoriList,  updateResultSearch  }) {
+export default function BuatPhoneBook({
+  cancel,
+  data,
+  kategoriList,
+  updateResultSearch,
+}) {
   const namaRef = useRef(data.nama);
   const phoneRef = useRef(data.phone);
   const wilayahRef = useRef(data.wilayah);
@@ -204,16 +209,10 @@ export default function BuatPhoneBook({ cancel, data, kategoriList,  updateResul
                     <PendingButton />
                   ) : (
                     <>
-                      <button
-                        onClick={cancel}
-                        className="btn-ter py-2 px-6"
-                      >
-                        batal
+                      <button onClick={cancel} className="btn-ter py-2 px-6">
+                        Batal
                       </button>
-                      <button
-                        className="btn-pri py-2 px-6"
-                        type="submit"
-                      >
+                      <button className="btn-pri py-2 px-6" type="submit">
                         Upload
                       </button>
                     </>
