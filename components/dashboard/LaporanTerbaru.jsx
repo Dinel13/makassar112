@@ -236,7 +236,7 @@ export default function LaporanTerbaru() {
     timer = setInterval(() => {
       getTotalAgain();
       getDataAgain();
-    }, 1 * 1000);
+    }, 5 * 60 * 1000);
     return () => {
       clearInterval(timer);
     };

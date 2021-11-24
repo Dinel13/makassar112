@@ -14,9 +14,11 @@ export default function HiglightButton(data) {
     try {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/laporan/highlight`,
+        // `${process.env.NEXT_PUBLIC_URL}/laporan`,
         {
           method: "POST",
           headers: {
+            // "Authorization" : "Bearer dasdh@32f30@$ad7980GG@#tt!09fda&d^d%adada#das970"
             // "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
