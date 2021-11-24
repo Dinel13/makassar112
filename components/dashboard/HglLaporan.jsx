@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { parseDateSQLtoString } from "../../lib/time";
+import { showNotif } from "../../store/notifSlice";
 import { selectIsNeedRefresh } from "../../store/rfSlice";
 import { selectIsDark } from "../../store/themeSlice";
 
@@ -42,36 +43,34 @@ const Hcolumns = [
     selector: (row) => row.kategori,
     sortable: true,
     wrap: true,
-    maxWidth: "80px",
+    grow: 1,
   },
   {
     name: "Deskripsi",
     selector: (row) => row.deskripsi,
     sortable: true,
     wrap: true,
-    maxWidth: "250px",
+    grow: 2,
   },
   {
     name: "Alamat",
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
-    omit: true,
-    maxWidth: "120px",
+    grow: 1,
   },
   {
     name: "Nama Pelapor",
     selector: (row) => row.pelapor,
     sortable: true,
     wrap: true,
-    maxWidth: "100px",
+    grow: 1,
   },
   {
     name: "Aksi",
     selector: (row) => UnHiglightButton(row.id),
     sortable: false,
-    maxWidth: "50px",
-    compact: true,
+    grow: 0,
     // cell: (row) => {
     //   return (
     //     <div>
@@ -108,12 +107,16 @@ const customStyles = {
   },
 };
 
+
+let timerr
+
 export default function HglLaporan() {
   const [data, setData] = useState([]);
   const isDark = useSelector(selectIsDark);
   const needRefresh = useSelector(selectIsNeedRefresh);
+  const dispatch = useDispatch();
 
-  const getData = async (page) => {
+  const getData = async () => {
     try {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/all`,
@@ -138,9 +141,43 @@ export default function HglLaporan() {
     }
   };
 
+  const getDataAgain = async () => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/all`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error("Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik");
+      }
+      setData(data);
+    } catch (error) {
+      clearInterval(timerr);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  };
+
   useEffect(() => {
     getData();
   }, [needRefresh]);
+
+  useEffect(() => {
+    timerr = setInterval(() => {
+      getDataAgain();
+    }, 60 * 1000);
+    return () => {
+      clearInterval(timerr);
+    };
+  }, []);
 
   return (
     <div className="lg:w-5/12 lg:-mt-206">
@@ -156,7 +193,7 @@ export default function HglLaporan() {
           data={data}
           expandableRows
           expandableRowsComponent={ExpandebleTable}
-          theme={isDark ? "solarize" : "light"}
+          theme={isDark ? "solariz" : "light"}
           noDataComponent={<NoData />}
           highlightOnHover
           customStyles={customStyles}

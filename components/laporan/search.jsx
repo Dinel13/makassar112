@@ -3,16 +3,124 @@ import DatePicker from "react-datepicker";
 import { useDispatch } from "react-redux";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { kategori } from "../../data";
 import { showNotif } from "../../store/notifSlice";
-import PendingButton from "../button/Pending";
 import PendingInline from "../button/PendingInline";
+
+const kategori = [
+  {
+    "name": "HOME CARE",
+    "id": 1
+  },
+  {
+    "name": "LAMPU JALAN",
+    "id": 2
+  },
+  {
+    "name": "PENGADUAN PLN",
+    "id": 3
+  },
+  {
+    "name": "AMBULANS JENAZAH",
+    "id": 4
+  },
+  {
+    "name": "ANJAL, TERLANTAR, PENGEMIS DAN GEPENG",
+    "id": 5
+  },
+  {
+    "name": "BANJIR",
+    "id": 6
+  },
+  {
+    "name": "BENCANA ALAM",
+    "id": 7
+  },
+  {
+    "name": "COVID - 19",
+    "id": 8
+  },
+  {
+    "name": "DRAINASE",
+    "id": 9
+  },
+  {
+    "name": "EVAKUASI HEWAN LIAR",
+    "id": 10
+  },
+  {
+    "name": "FOGGING DBD",
+    "id": 11
+  },
+  {
+    "name": "KEAMANAAN DAN KETERTIBAN UMUM / MASYARAKAT",
+    "id": 12
+  },
+  {
+    "name": "KEBAKARAN",
+    "id": 13
+  },
+  {
+    "name": "KECELAKAAN",
+    "id": 14
+  },
+  {
+    "name": "KEKERASAN PEREMPUAN/ANAK/KDRT",
+    "id": 15
+  },
+  {
+    "name": "KELURAHAN",
+    "id": 16
+  },
+  {
+    "name": "KERUMUNAN",
+    "id": 17
+  },
+  {
+    "name": "KERUSUHAN/TAWURAN",
+    "id": 18
+  },
+  {
+    "name": "KRIMINALITAS",
+    "id": 19
+  },
+  {
+    "name": "ORANG DENGAN GANGGUAN JIWA (ODGJ)",
+    "id": 20
+  },
+  {
+    "name": "PARKIR LIAR",
+    "id": 21
+  },
+  {
+    "name": "PENGADUAN PDAM",
+    "id": 22
+  },
+  {
+    "name": "PERMASALAHAN JALAN RAYA",
+    "id": 23
+  },
+  {
+    "name": "PERMASALAHAN SAMPAH",
+    "id": 24
+  },
+  {
+    "name": "POHON TUMBANG",
+    "id": 25
+  },
+  {
+    "name": "PROTOKOL KESEHATAN",
+    "id": 26
+  },
+  {
+    "name": "SEDOT TINJA",
+    "id": 27
+  }
+]
 
 export default function Search({ setStatus }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const kategoriRef = useRef(null);
-  const [kategoriSelect, setKategoriSelect] = useState(kategori);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -82,9 +190,9 @@ export default function Search({ setStatus }) {
         >
           <option value="semua">Kategori</option>
           <option value="semua">Semua</option>
-          {kategoriSelect.map((item) => (
+          {kategori.map((item) => (
             <option key={item.id} value={item.name}>
-              {item.nama}
+              {item.name}
             </option>
           ))}
         </select>

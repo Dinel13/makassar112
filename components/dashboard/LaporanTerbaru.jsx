@@ -45,34 +45,39 @@ const columns = [
     selector: (row) => row.kategori,
     sortable: true,
     wrap: true,
-    maxWidth: "100px",
+    grow: 1,
+    // maxWidth: "10%",
   },
   {
     name: "Deskripsi",
     selector: (row) => row.deskripsi,
     sortable: true,
     wrap: true,
-    maxWidth: "250px",
+    grow: 3,
+    // maxWidth: "250px",
   },
   {
     name: "Alamat",
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
-    maxWidth: "120px",
+    grow: 2,
+    // maxWidth: "120px",
   },
   {
     name: "Nama Pelapor",
     selector: (row) => row.pelapor,
     sortable: true,
     wrap: true,
-    maxWidth: "100px",
+    grow: 1,
+    // maxWidth: "100px",
   },
   {
     name: "Aksi",
     selector: (row) => HiglightButton(row),
     sortable: true,
-    maxWidth: "50px",
+    grow: 0,
+    // maxWidth: "50px",
   },
 ];
 
@@ -97,6 +102,8 @@ const customStyles = {
   },
 };
 
+let timer;
+
 export default function LaporanTerbaru() {
   const [total, setTotal] = useState({ loading: true, data: null });
   const [data, setData] = useState(null);
@@ -106,6 +113,9 @@ export default function LaporanTerbaru() {
   const dispatch = useDispatch();
 
   const getData = async (page) => {
+    if (page === undefined) {
+      page = 1;
+    }
     try {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
@@ -162,9 +172,74 @@ export default function LaporanTerbaru() {
     }
   };
 
+  const getDataAgain = async (page) => {
+    if (page === undefined) {
+      page = 1;
+    }
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error("Tidak bisa");
+      }
+      setData(data);
+    } catch (error) {
+      clearInterval(timer);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message:
+            "Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik",
+          action: null,
+        })
+      );
+    }
+  };
+
+  const getTotalAgain = async () => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/total`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error("Tidak bisa");
+      }
+      setTotal({
+        loading: false,
+        data: data.count,
+      });
+    } catch (error) {
+      clearInterval(timer);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message:
+            "Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik",
+          action: null,
+        })
+      );
+    }
+  };
+
   useEffect(() => {
     getTotal();
     getData(1);
+    timer = setInterval(() => {
+      getTotalAgain();
+      getDataAgain();
+    }, 5 * 60 * 1000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const prevHandler = () => {

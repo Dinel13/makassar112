@@ -74,7 +74,8 @@ export default function ErrorModal() {
 
   React.useEffect(() => {
     let timer;
-    if (showModal && message && status !== "Konfirmasi") {
+    {/* auto hide jika bukan modal confirm */}
+    if (showModal && message && status !== "Confirm") {
       timer = setTimeout(() => hideModal(), 4000);
     }
     return () => clearTimeout(timer);

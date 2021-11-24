@@ -80,7 +80,7 @@ export default function Home() {
       <div
         className="w-full bg-center bg-cover  h-128"
         style={{
-          backgroundImage: "url(/bgg.jpg)",
+          backgroundImage: "url(/files/bg.jpeg)",
         }}
       >
         <div className="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">

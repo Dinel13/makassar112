@@ -8,21 +8,47 @@ import ExportPDF from "../button/ExportPDF";
 import { NoData, SortIcon } from "../table/helper";
 
 const columns = [
-  { name: "Id", selector: (row) => row.id, sortable: true, widht: "1px", maxWidth: "10px", grow: 0 },
-  { name: "Kategori", selector: (row) => row.kategori, sortable: true, grow: 1 },
-  { name: "Deskripsi", selector: (row) => row.deskripsi, sortable: true, wrap: true, grow: 2 },
-  { name: "Alamat", selector: (row) => row.alamat, sortable: true },
-  { name: "Pelapor", selector: (row) => row.pelapor, sortable: true },
-  { name: "No. Pelapor", selector: (row) => row.telp, sortable: true },
-  { name: "Catatan", selector: (row) => row.catatan, sortable: true },
-  { name: "Status", selector: (row) => row.status, sortable: true },
-  { name: "Tipe", selector: (row) => row.tipe, sortable: true },
-  { name: "Agen L1", selector: (row) => row.agen, sortable: true },
-  { name: "Dinas Terkait", selector: (row) => row.dinas, sortable: true },
+  {
+    name: "Id",
+    selector: (row) => row.id,
+    sortable: true,
+    grow: 0,
+    omit: true,
+ 
+  },
+  {
+    name: "Kategori",
+    selector: (row) => row.kategori,
+    sortable: true,
+    grow: 1,
+  },
+  {
+    name: "Deskripsi",
+    selector: (row) => row.deskripsi,
+    sortable: true,
+    wrap: true,
+    grow: 2,
+  },
+  { name: "Alamat", selector: (row) => row.alamat, sortable: true, grow: 1 },
+  { name: "Pelapor", selector: (row) => row.pelapor, sortable: true, grow: 1 },
+  { name: "No. Pelapor", selector: (row) => row.telp, sortable: true, grow: 1 },
+  { name: "Catatan", selector: (row) => row.catatan, sortable: true, grow: 1 },
+  { name: "Status", selector: (row) => row.status, sortable: true, grow: 1 },
+  { name: "Tipe", selector: (row) => row.tipe, sortable: true, grow: 1 },
+  { name: "Agen L1", selector: (row) => row.agen, sortable: true, grow: 1 },
+  {
+    name: "Dinas Terkait",
+    selector: (row) => row.dinas,
+    sortable: true,
+    grow: 1,
+    allowOverflow: true,
+  },
   {
     name: "Diupdate",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
+    wrap: true,
+    grow: 1,
   },
 ];
 
@@ -51,6 +77,25 @@ createTheme(
   },
   "dark"
 );
+
+const customStyles = {
+  table: {
+		style: {
+      paddingLeft: "6px", // override the cell padding for head cells
+		},
+	},
+  headCells: {
+    style: {
+      paddingLeft: "4px", // override the cell padding for head cells
+      paddingRight: "4px",
+    },
+  },
+  cells: {
+    style: {
+      padding: "4px", // override the cell padding for data cells
+    },
+  },
+};
 
 export default function FilteredLaporan({ data }) {
   const isDark = useSelector(selectIsDark);
@@ -82,7 +127,8 @@ export default function FilteredLaporan({ data }) {
           theme={isDark ? "solarized" : "light"}
           noDataComponent={<NoData />}
           highlightOnHover
-        ></DataTable>
+          customStyles={customStyles}
+          ></DataTable>
       </div>
     </div>
   );

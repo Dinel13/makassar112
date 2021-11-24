@@ -8,16 +8,17 @@ import PendingButton from "../button/Pending";
 export default function HiglightButton(data) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  console.log(data);
 
   const highlight = async () => {
     setLoading(true);
     try {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/laporan/highlight`,
+        // `${process.env.NEXT_PUBLIC_URL}/laporan`,
         {
           method: "POST",
           headers: {
+            // "Authorization" : "Bearer dasdh@32f30@$ad7980GG@#tt!09fda&d^d%adada#das970"
             // "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
