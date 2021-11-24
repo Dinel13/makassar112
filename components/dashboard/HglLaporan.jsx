@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { parseDateSQLtoString } from "../../lib/time";
+import { showNotif } from "../../store/notifSlice";
 import { selectIsNeedRefresh } from "../../store/rfSlice";
 import { selectIsDark } from "../../store/themeSlice";
 
@@ -106,12 +107,16 @@ const customStyles = {
   },
 };
 
+
+let timerr
+
 export default function HglLaporan() {
   const [data, setData] = useState([]);
   const isDark = useSelector(selectIsDark);
   const needRefresh = useSelector(selectIsNeedRefresh);
+  const dispatch = useDispatch();
 
-  const getData = async (page) => {
+  const getData = async () => {
     try {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/all`,
@@ -136,17 +141,45 @@ export default function HglLaporan() {
     }
   };
 
+  const getDataAgain = async () => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/all`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error("Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik");
+      }
+      setData(data);
+    } catch (error) {
+      clearInterval(timerr);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  };
+
   useEffect(() => {
     getData();
-
-    const timer = setInterval(() => {
-        getData();
-    }, 60 * 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
   }, [needRefresh]);
+
+  useEffect(() => {
+    console.log("ffd");
+    timerr = setInterval(() => {
+      console.log("ggg");
+      getDataAgain();
+    }, 60 * 1000);
+    return () => {
+      clearInterval(timerr);
+    };
+  }, []);
 
   return (
     <div className="lg:w-5/12 lg:-mt-206">

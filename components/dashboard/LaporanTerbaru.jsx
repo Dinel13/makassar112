@@ -102,6 +102,8 @@ const customStyles = {
   },
 };
 
+let timer;
+
 export default function LaporanTerbaru() {
   const [total, setTotal] = useState({ loading: true, data: null });
   const [data, setData] = useState(null);
@@ -170,13 +172,71 @@ export default function LaporanTerbaru() {
     }
   };
 
+  const getDataAgain = async (page) => {
+    if (page === undefined) {
+      page = 1;
+    }
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error("Tidak bisa");
+      }
+      setData(data);
+    } catch (error) {
+      clearInterval(timer);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message:
+            "Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik",
+          action: null,
+        })
+      );
+    }
+  };
+
+  const getTotalAgain = async () => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/laporan/total`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error("Tidak bisa");
+      }
+      setTotal({
+        loading: false,
+        data: data.count,
+      });
+    } catch (error) {
+      clearInterval(timer);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message:
+            "Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik",
+          action: null,
+        })
+      );
+    }
+  };
+
   useEffect(() => {
     getTotal();
     getData(1);
-    const timer = setInterval(() => {
-      getTotal();
-      getData();
-    }, 5 * 60 * 1000);
+    timer = setInterval(() => {
+      getTotalAgain();
+      getDataAgain();
+    }, 1 * 1000);
     return () => {
       clearInterval(timer);
     };

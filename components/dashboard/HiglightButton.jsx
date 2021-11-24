@@ -8,7 +8,6 @@ import PendingButton from "../button/Pending";
 export default function HiglightButton(data) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  console.log(data);
 
   const highlight = async () => {
     setLoading(true);
