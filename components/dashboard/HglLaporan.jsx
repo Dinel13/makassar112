@@ -138,6 +138,14 @@ export default function HglLaporan() {
 
   useEffect(() => {
     getData();
+
+    const timer = setInterval(() => {
+        getData();
+    }, 10 * 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, [needRefresh]);
 
   return (

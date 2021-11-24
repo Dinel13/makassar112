@@ -111,6 +111,9 @@ export default function LaporanTerbaru() {
   const dispatch = useDispatch();
 
   const getData = async (page) => {
+    if (page === undefined) {
+      page = 1;
+    }
     try {
       const result = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
@@ -170,6 +173,13 @@ export default function LaporanTerbaru() {
   useEffect(() => {
     getTotal();
     getData(1);
+    const timer = setInterval(() => {
+      getTotal();
+      getData();
+    }, 60 * 1000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const prevHandler = () => {
