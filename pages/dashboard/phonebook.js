@@ -181,38 +181,21 @@ export default function Phonebook() {
                 className="flex items-center px-4 text-sm py-3 justify-center shadow-sm rounded-xl dark-card"
               >
                 <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 28 30"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
                 >
-                  <path
-                    d="M18.2 9.08889C18.2 11.5373 16.3196 13.5222 14 13.5222C11.6804 13.5222 9.79999 11.5373 9.79999 9.08889C9.79999 6.64043 11.6804 4.65556 14 4.65556C16.3196 4.65556 18.2 6.64043 18.2 9.08889Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M25.2 12.0444C25.2 13.6768 23.9464 15 22.4 15C20.8536 15 19.6 13.6768 19.6 12.0444C19.6 10.4121 20.8536 9.08889 22.4 9.08889C23.9464 9.08889 25.2 10.4121 25.2 12.0444Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M19.6 22.3889C19.6 19.1243 17.0927 16.4778 14 16.4778C10.9072 16.4778 8.39999 19.1243 8.39999 22.3889V26.8222H19.6V22.3889Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M8.39999 12.0444C8.39999 13.6768 7.14639 15 5.59999 15C4.05359 15 2.79999 13.6768 2.79999 12.0444C2.79999 10.4121 4.05359 9.08889 5.59999 9.08889C7.14639 9.08889 8.39999 10.4121 8.39999 12.0444Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M22.4 26.8222V22.3889C22.4 20.8312 22.0195 19.3671 21.351 18.0949C21.6863 18.0039 22.0378 17.9556 22.4 17.9556C24.7197 17.9556 26.6 19.9404 26.6 22.3889V26.8222H22.4Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M6.64896 18.0949C5.98058 19.3671 5.59999 20.8312 5.59999 22.3889V26.8222H1.39999V22.3889C1.39999 19.9404 3.2804 17.9556 5.59999 17.9556C5.96219 17.9556 6.31367 18.0039 6.64896 18.0949Z"
-                    fill="currentColor"
-                  ></path>
+                  <g fill="currentColor">
+                    <path d="M22 9V7h-2v2h-2v2h2v2h2v-2h2V9zM8 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H2v-.99C2.2 16.29 5.3 15 8 15s5.8 1.29 6 2v1zM12.51 4.05C13.43 5.11 14 6.49 14 8s-.57 2.89-1.49 3.95C14.47 11.7 16 10.04 16 8s-1.53-3.7-3.49-3.95zm4.02 9.78C17.42 14.66 18 15.7 18 17v3h2v-3c0-1.45-1.59-2.51-3.47-3.17z" />
+                  </g>
                 </svg>
 
-                <span className="ml-3">Buat Nomor baru</span>
+                <span className="ml-3">Tambah Nomor baru</span>
               </button>
             </div>
             <div className="p-3">
@@ -221,38 +204,22 @@ export default function Phonebook() {
                 className="flex items-center text-sm px-4 py-3 justify-center shadow-sm rounded-xl dark-card"
               >
                 <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 28 30"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
                 >
-                  <path
-                    d="M18.2 9.08889C18.2 11.5373 16.3196 13.5222 14 13.5222C11.6804 13.5222 9.79999 11.5373 9.79999 9.08889C9.79999 6.64043 11.6804 4.65556 14 4.65556C16.3196 4.65556 18.2 6.64043 18.2 9.08889Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M25.2 12.0444C25.2 13.6768 23.9464 15 22.4 15C20.8536 15 19.6 13.6768 19.6 12.0444C19.6 10.4121 20.8536 9.08889 22.4 9.08889C23.9464 9.08889 25.2 10.4121 25.2 12.0444Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M19.6 22.3889C19.6 19.1243 17.0927 16.4778 14 16.4778C10.9072 16.4778 8.39999 19.1243 8.39999 22.3889V26.8222H19.6V22.3889Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M8.39999 12.0444C8.39999 13.6768 7.14639 15 5.59999 15C4.05359 15 2.79999 13.6768 2.79999 12.0444C2.79999 10.4121 4.05359 9.08889 5.59999 9.08889C7.14639 9.08889 8.39999 10.4121 8.39999 12.0444Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M22.4 26.8222V22.3889C22.4 20.8312 22.0195 19.3671 21.351 18.0949C21.6863 18.0039 22.0378 17.9556 22.4 17.9556C24.7197 17.9556 26.6 19.9404 26.6 22.3889V26.8222H22.4Z"
-                    fill="currentColor"
-                  ></path>
-                  <path
-                    d="M6.64896 18.0949C5.98058 19.3671 5.59999 20.8312 5.59999 22.3889V26.8222H1.39999V22.3889C1.39999 19.9404 3.2804 17.9556 5.59999 17.9556C5.96219 17.9556 6.31367 18.0039 6.64896 18.0949Z"
-                    fill="currentColor"
-                  ></path>
+                  <g fill="currentColor">
+                    <path d="M17 19.22H5V7h7V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h-2v7.22z" />
+                    <path d="M19 2h-2v3h-3c.01.01 0 2 0 2h3v2.99c.01.01 2 0 2 0V7h3V5h-3V2zM7 9h8v2H7zm0 3v2h8v-2h-3zm0 3h8v2H7z" />
+                  </g>
                 </svg>
 
-                <span className="ml-3">Buat kategori baru</span>
+                <span className="ml-3">Tambah kategori baru</span>
               </button>
             </div>{" "}
           </div>

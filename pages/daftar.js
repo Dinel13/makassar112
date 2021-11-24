@@ -47,7 +47,7 @@ export default function Login() {
 
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error|| "Tidak bisa buat akun");
+        throw new Error(result.error || "Tidak bisa buat akun");
       }
 
       const res = await signIn("credentials", {
@@ -68,7 +68,7 @@ export default function Login() {
 
       if (!res.error) {
         router.replace("/dashboard");
-      } 
+      }
     } catch (error) {
       dispatch(
         showNotif({
@@ -125,7 +125,7 @@ export default function Login() {
           <div className="mt-4">
             <div className="flex items-center justify-between">
               <label htmlFor="passwordCof" className="block text-sm">
-                Konfirmasi password
+                Konfirmasi Password
               </label>
             </div>
             <input

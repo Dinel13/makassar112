@@ -56,7 +56,7 @@ const Hcolumns = [
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
-    omit :true,
+    omit: true,
     maxWidth: "120px",
   },
   {
@@ -144,8 +144,8 @@ export default function HglLaporan() {
 
   return (
     <div className="lg:w-5/12 lg:-mt-206">
-      <h2 className="text-subtitle font-medium lg:text-right mb-5">
-        Highlight laporoan
+      <h2 className="text-subtitle font-medium lg:text-left mb-5">
+        Highlight Laporan
       </h2>
       <div className="dark-card rounded-xl pt-2">
         <DataTable

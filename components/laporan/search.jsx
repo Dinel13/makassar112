@@ -99,16 +99,18 @@ export default function Search({ setStatus }) {
             <div className="bg-transparent focus:outline-none rounded-xl py px-3 w-32 relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                  <g fill="currentColor">
+                    <path d="M12 22H5a2 2 0 0 1-2-2l.01-14c0-1.1.88-2 1.99-2h1V3c0-.55.45-1 1-1s1 .45 1 1v1h8V3c0-.55.45-1 1-1s1 .45 1 1v1h1c1.1 0 2 .9 2 2v6h-2v-2H5v10h7v2zm10.13-5.01l.71-.71a.996.996 0 0 0 0-1.41l-.71-.71a.996.996 0 0 0-1.41 0l-.71.71l2.12 2.12zm-.71.71l-5.01 5.01c-.18.18-.44.29-.7.29H14.5c-.28 0-.5-.22-.5-.5v-1.21c0-.27.11-.52.29-.71l5.01-5.01l2.12 2.13z" />
+                  </g>
                 </svg>
               </div>
               <DatePicker
@@ -127,16 +129,18 @@ export default function Search({ setStatus }) {
             <div className=" bg-transparent focus:outline-none rounded-xl py-2 px-3 w-32 relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                  <g fill="currentColor">
+                    <path d="M12 22H5a2 2 0 0 1-2-2l.01-14c0-1.1.88-2 1.99-2h1V3c0-.55.45-1 1-1s1 .45 1 1v1h8V3c0-.55.45-1 1-1s1 .45 1 1v1h1c1.1 0 2 .9 2 2v6h-2v-2H5v10h7v2zm10.13-5.01l.71-.71a.996.996 0 0 0 0-1.41l-.71-.71a.996.996 0 0 0-1.41 0l-.71.71l2.12 2.12zm-.71.71l-5.01 5.01c-.18.18-.44.29-.7.29H14.5c-.28 0-.5-.22-.5-.5v-1.21c0-.27.11-.52.29-.71l5.01-5.01l2.12 2.13z" />
+                  </g>
                 </svg>
               </div>
               <DatePicker

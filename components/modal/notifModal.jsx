@@ -13,7 +13,7 @@ export default function ErrorModal() {
   const realAction = useCallback(() => {
     if (status === "Confirm") {
       const deleteData = async (id) => {
-         console.log(action);
+        console.log(action);
         try {
           const result = await fetch(
             `${process.env.NEXT_PUBLIC_URL}/phonebook/delete`,
@@ -61,7 +61,7 @@ export default function ErrorModal() {
 
   React.useEffect(() => {
     setShowModal(message);
-    setModal(document.getElementById("yakin"));
+    setModal(document.getElementById("Yakin"));
 
     // to alwys hidden modal if no click the yakin
     window.onclick = function (event) {
@@ -74,7 +74,7 @@ export default function ErrorModal() {
 
   React.useEffect(() => {
     let timer;
-    if (showModal && message && status !== "Confirm") {
+    if (showModal && message && status !== "Konfirmasi") {
       timer = setTimeout(() => hideModal(), 4000);
     }
     return () => clearTimeout(timer);

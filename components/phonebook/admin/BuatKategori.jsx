@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import PendingButton from "../../button/Pending";
 import { showNotif } from "../../../store/notifSlice";
 
-export default function BuatKategori({ cancel, updateKategorilist}) {
+export default function BuatKategori({ cancel, updateKategorilist }) {
   const namaRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
@@ -14,15 +14,18 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
     setPending(true);
 
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/post`, {
-        method: "POST",
-        headers: {
-          // "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nama: namaRef.current.value,
-        }),
-      });
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/post`,
+        {
+          method: "POST",
+          headers: {
+            // "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nama: namaRef.current.value,
+          }),
+        }
+      );
       const data = await result.json();
       if (!result.ok) {
         console.log(data);
@@ -65,8 +68,14 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
               <form onSubmit={handleSubmit} className="p-4 mt-2">
                 <label className="flex flex-wrap items-center  w-full py-2 px-3">
                   <span className="text-sm mr-2">Nama kategori</span>
-                  
-                  <input ref={namaRef} className="input-field-sm" type="text" maxLength="50" required />
+
+                  <input
+                    ref={namaRef}
+                    className="input-field-sm"
+                    type="text"
+                    maxLength="50"
+                    required
+                  />
                 </label>
 
                 <div className="flex text-center p-3 pt-4 gap-x-3">
@@ -76,12 +85,12 @@ export default function BuatKategori({ cancel, updateKategorilist}) {
                     <>
                       <button
                         onClick={cancel}
-                        className="w-full btn-sec py-2"
+                        className="w-full btn-ter py-2 px-6"
                       >
-                        batal
+                        Batal
                       </button>
                       <button
-                        className="w-full btn-pri py-2"
+                        className="w-full btn-pri py-2 px-6"
                         type="submit"
                       >
                         Upload

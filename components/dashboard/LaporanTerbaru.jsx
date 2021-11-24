@@ -73,7 +73,6 @@ const columns = [
     selector: (row) => HiglightButton(row),
     sortable: true,
     maxWidth: "50px",
-
   },
 ];
 
@@ -204,7 +203,7 @@ export default function LaporanTerbaru() {
     <div className="w-full lg:w-7/12">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">
-          Laporoan terbaru
+          Laporan Terbaru
         </h2>
         <div className="flex justify-end items-center gap-2">
           {data && !loading && <ExportPDF data={data} />}
