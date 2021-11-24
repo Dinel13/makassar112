@@ -42,36 +42,34 @@ const Hcolumns = [
     selector: (row) => row.kategori,
     sortable: true,
     wrap: true,
-    maxWidth: "80px",
+    grow: 1,
   },
   {
     name: "Deskripsi",
     selector: (row) => row.deskripsi,
     sortable: true,
     wrap: true,
-    maxWidth: "250px",
+    grow: 2,
   },
   {
     name: "Alamat",
     selector: (row) => row.alamat,
     sortable: true,
     wrap: true,
-    omit: true,
-    maxWidth: "120px",
+    grow: 1,
   },
   {
     name: "Nama Pelapor",
     selector: (row) => row.pelapor,
     sortable: true,
     wrap: true,
-    maxWidth: "100px",
+    grow: 1,
   },
   {
     name: "Aksi",
     selector: (row) => UnHiglightButton(row.id),
     sortable: false,
-    maxWidth: "50px",
-    compact: true,
+    grow: 0,
     // cell: (row) => {
     //   return (
     //     <div>

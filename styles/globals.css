@@ -97,4 +97,8 @@
   .dataTables_wrapper .rdt_TableCell {
     font-size: 25px;
   }
+
+  .rdt_TableHeader {
+    @apply bg-blue-500 text-white !important;
+  }
 }
