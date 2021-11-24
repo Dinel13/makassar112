@@ -75,7 +75,7 @@ export default async function handler(req, res) {
       if (newData) {
         setTimeout(() => {
           deleteData(newData.id);
-        }, 60 * 60 * 1000);
+        }, 24 * 60 * 60 * 1000); // 1 hari
       }
 
       return res.status(200).json(newData);
