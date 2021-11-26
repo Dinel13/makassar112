@@ -32,7 +32,7 @@ export default function UpdateExcel({ cancel }) {
       dispatch(
         showNotif({
           status: "Success",
-          message: "Data berhasil disimpan",
+          message: data.message || "Data berhasil diperbaharui",
           action: null,
         })
       );
@@ -57,21 +57,22 @@ export default function UpdateExcel({ cancel }) {
         <div className="max-w-md mx-auto dark-modal rounded-lg overflow-hidden md:max-w-lg ">
           <div className="md:flex">
             <div className="w-full">
-              <div className="p-4 border-b-2 border-gray-400">
-                <span className="px-3 text-lg font-bold">
-                  Upload File Excel
+              <div className="flex items-center justify-between py-4 px-6 border-b-2 border-gray-400">
+                <span className="text-lg font-bold">
+                  Perbaharui Data
                 </span>
+                <a href="https://makassar.sakti112.id/dashboard/112/call/report" target="_blank" rel="noreferrer" className="btn-pri py-2 px-3" >Download file terbaru</a>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
                 <label className="flex flex-wrap items-center  w-full py-2 px-3">
-                  <span className="text-sm mr-2">Foto</span>
+                  <span className="text-sm mr-2">File</span>
 
                   <input
                     ref={fileRef}
                     className="input-field-sm"
                     type="file"
                     name="file"
-                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                     required
                   />
                 </label>

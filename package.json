@@ -24,6 +24,7 @@
     "react-easy-marquee": "^1.1.4",
     "react-floating-whatsapp": "^4.0.5",
     "react-redux": "^7.2.6",
+    "read-excel-file": "^5.2.25",
     "sharp": "^0.29.3",
     "styled-components": "^5.3.3",
     "xlsx": "^0.17.4"
