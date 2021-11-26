@@ -18,8 +18,9 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const { id } = req.query;
+      console.log(id);
       const deletedh = await db.oneOrNone(
-        `DELETE FROM higlights WHERE id = $1 RETURNING *`,
+        `DELETE FROM higlights WHERE laporan_id = $1 RETURNING *`,
         [id]
       );
 
@@ -36,7 +37,7 @@ export default async function handler(req, res) {
       console.error(error);
       res
         .status(500)
-        .send({ message: ["Error creating on the server"], error: error });
+        .send({ message: "Error creating on the server", error: error });
     }
   }
   run();

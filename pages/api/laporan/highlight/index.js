@@ -2,11 +2,10 @@ import { db } from "../../../../lib/db";
 import { getSession } from "next-auth/client";
 
 async function deleteData(id) {
-  console.log("fasfsa");
   try {
     // delete data if older than 1 hours (3600 seconds) use sql
     const deleteData = await db.query(
-      `DELETE FROM higlights WHERE id = $1 RETURNING *`,
+      `DELETE FROM higlights WHERE laporan_id = $1 RETURNING *`,
       [id]
     );
   } catch (error) {
@@ -32,7 +31,6 @@ export default async function handler(req, res) {
     try {
       const body = JSON.parse(req.body);
       const { id_laporan } = body;
-      console.log(id_laporan);
 
       if (!id_laporan ) {
         return res.status(422).send({
@@ -42,27 +40,15 @@ export default async function handler(req, res) {
 
       const newData = await db.one(
         `INSERT INTO higlights(laporan_id) VALUES($1) 
-        RETURNING id`,
+        RETURNING laporan_id`,
         [id_laporan]
       );
 
-      // let responData
-
-      // if (newData) {
-      //   setTimeout(() => {
-      //     deleteData(newData.id);
-      //   }, 24 * 60 * 60 * 1000); // 1 hari
-      //   responData = await db.manyOrNone(
-      //     `SELECT lap.* FROM higlights
-      //     INNER JOIN laporans lap ON lap.id_laporan = higlights.laporan_id
-      //     Order By created_at DESC`
-      //   );
-      // }
-
       if (newData) {
         setTimeout(() => {
-          deleteData(newData.id);
-        }, 24 * 60 * 60 * 1000); // 1 hari
+          deleteData(newData.laporan_id);
+        }, 3 * 1000); // 1 hari
+      // }, 24 * 60 * 60 * 1000); // 1 hari
       }
 
       return res.status(200).json(newData);

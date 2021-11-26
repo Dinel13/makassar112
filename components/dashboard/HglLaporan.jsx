@@ -68,7 +68,7 @@ const Hcolumns = [
   },
   {
     name: "Aksi",
-    selector: (row) => UnHiglightButton(row.id),
+    selector: (row) => UnHiglightButton(row.id_laporan),
     sortable: false,
     grow: 0,
     // cell: (row) => {
