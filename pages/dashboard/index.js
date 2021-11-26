@@ -11,6 +11,9 @@ export default function Dashbord() {
   const router = useRouter();
   const [session, loading] = useSession();
   const [upload, setUpload] = useState(false);
+  const [data, setData] = useState(null);
+  const [dataHg, setDataHg] = useState([]);
+
 
   if (!loading && !session) {
     router.push("/masuk");
@@ -25,10 +28,10 @@ export default function Dashbord() {
         <button onClick={() => setUpload(true)} className="btn-pri py-1 px-3">Perbaharui</button>
       </div>
       <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
-        <LaporanTerbaru />
-        <HglLaporan />
+        <LaporanTerbaru data={data} setData={setData} dataHg={dataHg} />
+        <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
       </div>
-      {upload && <UpdateExcel cancel={() => setUpload(false)} />}
+      {upload && <UpdateExcel dataOld={data} setData={setData} cancel={() => setUpload(false)} />}
     </div>
   );
 }

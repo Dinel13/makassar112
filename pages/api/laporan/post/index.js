@@ -39,8 +39,8 @@ function ttt(dd) {
       try {
         const insertData = await db.query(
           `INSERT INTO laporans(id_laporan, kategori, deskripsi, lokasi, kecamatan, kelurahan,
-        catatan, created_at, status, updated_at, pelapor, telp, channel, tipe, agen1, agen2, agen3, dinas, lat, long,
-        sub1, sub2, sub3, catatanl2, catatanl3)
+        catatan, created_at, status, updated_at, pelapor, telp, channel, tipe, agen1, agen2, agen3,  lat, long,
+        sub1, sub2, sub3, dinas, catatanl2, catatanl3)
       VALUES($1, $2, $3, $4, $5, $6, $7, TO_TIMESTAMP($8, 'DD-MM-YYYY HH24:MI:SS'), $9, TO_TIMESTAMP($10, 'DD-MM-YYYY HH24:MI:SS'), $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25)
       RETURNING *`,
           [

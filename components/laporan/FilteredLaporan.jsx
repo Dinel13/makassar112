@@ -14,12 +14,12 @@ const columns = [
     sortable: true,
     grow: 0,
     omit: true,
- 
   },
   {
     name: "Kategori",
     selector: (row) => row.kategori,
     sortable: true,
+    wrap: true,
     grow: 1,
   },
   {
@@ -29,10 +29,29 @@ const columns = [
     wrap: true,
     grow: 2,
   },
-  { name: "Alamat", selector: (row) => row.alamat, sortable: true, grow: 1 },
+  {
+    name: "Alamat",
+    selector: (row) => "KEC. " + row.kecamatan + " KEL. " + row.kelurahan,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
+  {
+    name: "Lokasi",
+    selector: (row) => row.lokasi,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
   { name: "Pelapor", selector: (row) => row.pelapor, sortable: true, grow: 1 },
   { name: "No. Pelapor", selector: (row) => row.telp, sortable: true, grow: 1 },
-  { name: "Catatan", selector: (row) => row.catatan, sortable: true, grow: 1 },
+  {
+    name: "Catatan",
+    selector: (row) => row.catatan,
+    wrap: true,
+    sortable: true,
+    grow: 1,
+  },
   { name: "Status", selector: (row) => row.status, sortable: true, grow: 1 },
   { name: "Tipe", selector: (row) => row.tipe, sortable: true, grow: 1 },
   { name: "Agen L1", selector: (row) => row.agen, sortable: true, grow: 1 },
@@ -80,10 +99,10 @@ createTheme(
 
 const customStyles = {
   table: {
-		style: {
+    style: {
       paddingLeft: "6px", // override the cell padding for head cells
-		},
-	},
+    },
+  },
   headCells: {
     style: {
       paddingLeft: "4px", // override the cell padding for head cells
@@ -128,7 +147,7 @@ export default function FilteredLaporan({ data }) {
           noDataComponent={<NoData />}
           highlightOnHover
           customStyles={customStyles}
-          ></DataTable>
+        ></DataTable>
       </div>
     </div>
   );

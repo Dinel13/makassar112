@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
 import PendingButton from "../button/Pending";
 
-export default function UpdateExcel({ cancel }) {
+export default function UpdateExcel({ dataOld, setData, cancel }) {
   const fileRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
@@ -36,6 +36,21 @@ export default function UpdateExcel({ cancel }) {
           action: null,
         })
       );
+      if (data.data) {
+        //cek if new data is exits in ols data
+        //new data will hnya berisi data yang lama karena data baru nanti ditambah
+        data.data.map((item) => {
+          const newData =  dataOld.map((itemOld) => {
+            console.log(itemOld, "lama");
+            if(itemOld.id !== item.id){
+              return itemOld
+            } else {
+              return item
+            }
+          });
+          setData(newData)
+        });
+      }
       cancel();
     } catch (error) {
       dispatch(
@@ -58,10 +73,15 @@ export default function UpdateExcel({ cancel }) {
           <div className="md:flex">
             <div className="w-full">
               <div className="flex items-center justify-between py-4 px-6 border-b-2 border-gray-400">
-                <span className="text-lg font-bold">
-                  Perbaharui Data
-                </span>
-                <a href="https://makassar.sakti112.id/dashboard/112/call/report" target="_blank" rel="noreferrer" className="btn-pri py-2 px-3" >Download file terbaru</a>
+                <span className="text-lg font-bold">Perbaharui Data</span>
+                <a
+                  href="https://makassar.sakti112.id/dashboard/112/call/report"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-pri py-2 px-3"
+                >
+                  Download file terbaru
+                </a>
               </div>
               <form onSubmit={handleSubmit} className="p-4 mt-2">
                 <label className="flex flex-wrap items-center  w-full py-2 px-3">

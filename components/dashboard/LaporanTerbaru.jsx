@@ -42,7 +42,7 @@ createTheme(
 const columns = [
   {
     name: "Kategori",
-    selector: (row) => row.kategori,
+    selector: (row) => row.kategori && row.kategori.replace("/", " "),
     sortable: true,
     wrap: true,
     grow: 1,
@@ -58,7 +58,7 @@ const columns = [
   },
   {
     name: "Alamat",
-    selector: (row) => row.alamat,
+    selector: (row) => "KEC. " + row.kecamatan + " KEL. " + row.kelurahan,
     sortable: true,
     wrap: true,
     grow: 2,
@@ -92,21 +92,20 @@ const customStyles = {
       paddingLeft: "4px", // override the cell padding for head cells
       paddingRight: "4px",
       whiteSpace: "normal",
+      
     },
   },
   cells: {
     style: {
-      paddingLeft: "4px", // override the cell padding for data cells
-      paddingRight: "4px",
+      padding: "4px",
     },
   },
 };
 
 let timer;
 
-export default function LaporanTerbaru() {
+export default function LaporanTerbaru({data, setData, dataHg}) {
   const [total, setTotal] = useState({ loading: true, data: null });
-  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const isDark = useSelector(selectIsDark);
   const [page, setPage] = useState(1);
@@ -123,12 +122,12 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
-        throw new Error(data.error || "Tidak bisa mendapat data");
+        throw new Error(dataRes.error || "Tidak bisa mendapat data");
       }
 
-      setData(data);
+      setData(dataRes);
     } catch (error) {
       dispatch(
         showNotif({
@@ -149,13 +148,13 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
-        throw new Error(data.error || "Tidak bisa mendapat data");
+        throw new Error(dataRes.error || "Tidak bisa mendapat data");
       }
       setTotal({
         loading: false,
-        data: data.count,
+        data: dataRes.count,
       });
     } catch (error) {
       setTotal({
@@ -183,11 +182,11 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
         throw new Error("Tidak bisa");
       }
-      setData(data);
+      setData(dataRes);
     } catch (error) {
       clearInterval(timer);
       dispatch(
@@ -209,13 +208,13 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
         throw new Error("Tidak bisa");
       }
       setTotal({
         loading: false,
-        data: data.count,
+        data: dataRes.count,
       });
     } catch (error) {
       clearInterval(timer);
@@ -275,7 +274,7 @@ export default function LaporanTerbaru() {
   };
 
   return (
-    <div className="w-full lg:w-7/12">
+    <div className={dataHg && dataHg.length == 0 ? "w-full lg:w-8/12" : "w-full lg:w-6/12"}>
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">
           Laporan Terbaru

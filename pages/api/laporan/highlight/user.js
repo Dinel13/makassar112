@@ -9,7 +9,9 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const all = await db.manyOrNone(
-        "SELECT id, deskripsi, pelapor, updated_at FROM higlights Order By updated_at DESC"
+        `SELECT lap.* FROM higlights
+        INNER JOIN laporans lap ON lap.id_laporan = higlights.laporan_id
+        Order By created_at DESC`
       );
       res.status(200).json(all);
     } catch (error) {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Marquee from "react-easy-marquee";
 import { useDispatch } from "react-redux";
 
-import { parseDateSQLtoStringDate } from "../lib/time";
+import { parseDateSQLtoString, parseDateSQLtoStringDate } from "../lib/time";
 import { showNotif } from "../store/notifSlice";
 
 export default function MarqueLaporan() {
@@ -42,7 +42,7 @@ export default function MarqueLaporan() {
     return (
       <div className="m-0 dark-card w-full">
         <Marquee
-          duration={25000}
+          duration={43000}
           // background="#00DEFB"
           height="35px"
           width="100%"
@@ -52,13 +52,12 @@ export default function MarqueLaporan() {
           reverse={true}
         >
           {data.map((item) => (
-            <div key={item.id} className="whitespace-nowrap mx-3">
-              {item.deskripsi}.
-              <span className="mx-1">
-                {" "}
-                {parseDateSQLtoStringDate(item.updated_at)}
+            <div key={item.id} className="text-base whitespace-nowrap mx-6">
+              [{item.pelapor},
+              <span className="ml-1 mr-2">
+                {parseDateSQLtoString(item.updated_at)}]
               </span>
-              [{item.pelapor}]
+              {item.deskripsi} Lokasi {item.lokasi}
             </div>
           ))}
         </Marquee>
