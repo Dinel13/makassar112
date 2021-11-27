@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-export default function ExportPDF({ data }) {
+export default function ExportPDF({ data, name }) {
   return (
     <>
       <>
@@ -12,7 +12,7 @@ export default function ExportPDF({ data }) {
         onClick={() =>
           printJS({
             printable: data,
-            header: "Laporan makassar 112",
+            header: `Laporan ${name} makassar 112`,
             properties: [
               {field: "id", displayName : "Id"},
               {field: "id_laporan", displayName : "Id Laporan"},
@@ -32,27 +32,21 @@ export default function ExportPDF({ data }) {
               {field: "agenl1", displayName : "Agen L1"},
               {field: "agenl2", displayName : "Agen L2"},
               {field: "agenl3", displayName : "Agen L3"},
-              {field: "lat", displayName : "Lattitude"},
-              {field: "long", displayName : "Langitude"},
-              {field: "sub1", displayName : "Subcategori 1"},
-              {field: "sub2", displayName : "Subcategori 2"},
-              {field: "sub3", displayName : "Subcategori 3"},
+              {field: "lat", displayName : "Lat"},
+              {field: "long", displayName : "Long"},
+              {field: "sub1", displayName : "SubC 1"},
+              {field: "sub2", displayName : "SubC 2"},
+              {field: "sub3", displayName : "SubC 3"},
               {field: "dinas", displayName : "Dinas Terkait"},
-              {field: "catatanl2", displayName : "Catatan L2"},
-              {field: "catatanl3", displayName : "Catatan L3"},
+              {field: "catatanl2", displayName : "Cattn L2"},
+              {field: "catatanl3", displayName : "Cattn L3"},
             ],
             type: "json",
             gridHeaderStyle:
-              "background-color: gray;  border: 2px solid #3971A5;",
-            gridStyle: "border: 1px solid #3971A5;",
-            font_size: "10pt",
-            style : "table-layout: fixed;",
-            header: true,
-            footer: true,
-            width: "100%",
-            height: "100%",
-            css: "",
-            page_orientation: "landscape",
+              "background-color: #adb1b4; padding: 5px; border: 1px solid #3971A5;",
+            gridStyle: "border: 1px solid #3971A5; padding: 5px; word-wrap: break-word; max-width: 30px" ,
+            css: "font-size: 10ps; word-wrap: break-word;",
+            style : "font-size: 10px; table-layout: fixed; width: 100%",
           })
         }
         className="btn-pri py-1.5 text-sm px-5 tracking-wider"

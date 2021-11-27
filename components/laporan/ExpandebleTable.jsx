@@ -9,32 +9,17 @@ export default function ExpandebleTable({ data }) {
           <td className="w-36 pl-3 font-medium">Catatan</td>
           <td className="p-2">{data.catatan}</td>
         </tr>
+       
         <tr>
-          <td className="w-36 pl-3 font-medium">Waktu Lapor</td>
-          <td className="p-2">{parseDateSQLtoString(data.created_at)}</td>
-        </tr>
-        <tr>
-          <td className="w-36 pl-3 font-medium">Status</td>
-          <td className="p-2">{data.status}</td>
-        </tr>
-        <tr>
-          <td className="w-36 pl-3 font-medium">Status Time</td>
-          <td className="p-2">{parseDateSQLtoString(data.updated_at)}</td>
-        </tr>
-        <tr>
-          <td className="w-36 pl-3 font-medium">No. Telp</td>
-          <td className="p-2">{data.telp}</td>
-        </tr>
-        <tr>
-          <td className="w-36 pl-3 font-medium">Channel</td>
+          <td className="w-36 pl-3  font-medium">Channel</td>
           <td className="p-2">{data.channel}</td>
         </tr>
         <tr>
-          <td className="w-36 pl-3 font-medium">Tipe Panggilan</td>
+          <td className="w-36 pl-3  font-medium">Tipe Panggilan</td>
           <td className="p-2">{data.tipe}</td>
         </tr>
         <tr>
-          <td className="w-36 pl-3 font-medium">Agen L1</td>
+          <td className="w-36 pl-3  font-medium">Agen L1</td>
           <td className="p-2">{data.agen1}</td>
         </tr>
         {data.agen2 !== "-" && (
@@ -75,7 +60,7 @@ export default function ExpandebleTable({ data }) {
         )}
         {data.sub3 !== "-" && (
           <tr>
-            <td className="w-36 pl-3 font-medium">SubCategory 3</td>
+            <td className="w-36 pl-3  font-medium">SubCategory 3</td>
             <td className="p-2">{data.sub3}</td>
           </tr>
         )}

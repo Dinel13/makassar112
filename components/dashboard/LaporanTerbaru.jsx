@@ -280,8 +280,8 @@ export default function LaporanTerbaru({data, setData, dataHg}) {
           Laporan Terbaru
         </h2>
         <div className="flex justify-end items-center gap-2">
-          {data && !loading && <ExportPDF data={data} />}
-          {data && !loading && <ExportExcel data={data} />}
+          {data && !loading && <ExportPDF data={data} name="terbaru" />}
+          {data && !loading && <ExportExcel data={data} name="terbaru"/>}
         </div>
       </div>
       {!loading && data ? (

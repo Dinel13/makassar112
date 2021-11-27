@@ -6,6 +6,7 @@ import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
 import ExportPDF from "../button/ExportPDF";
 import { NoData, SortIcon } from "../table/helper";
+import ExpandebleTable from "./ExpandebleTable";
 
 const columns = [
   {
@@ -17,10 +18,10 @@ const columns = [
   },
   {
     name: "Kategori",
-    selector: (row) => row.kategori,
+    selector: (row) => row.kategori.replace("/", " "),
     sortable: true,
     wrap: true,
-    grow: 1,
+    grow: 0,
   },
   {
     name: "Deskripsi",
@@ -41,32 +42,48 @@ const columns = [
     selector: (row) => row.lokasi,
     sortable: true,
     wrap: true,
-    grow: 1,
+    grow: 2,
   },
-  { name: "Pelapor", selector: (row) => row.pelapor, sortable: true, grow: 1 },
-  { name: "No. Pelapor", selector: (row) => row.telp, sortable: true, grow: 1 },
   {
-    name: "Catatan",
-    selector: (row) => row.catatan,
+    name: "Pelapor",
+    selector: (row) => row.pelapor,
+    sortable: true,
     wrap: true,
-    sortable: true,
     grow: 1,
   },
-  { name: "Status", selector: (row) => row.status, sortable: true, grow: 1 },
-  { name: "Tipe", selector: (row) => row.tipe, sortable: true, grow: 1 },
-  { name: "Agen L1", selector: (row) => row.agen, sortable: true, grow: 1 },
   {
-    name: "Dinas Terkait",
-    selector: (row) => row.dinas,
+    name: "No. Pelapor",
+    selector: (row) => row.telp,
     sortable: true,
+    wrap: true,
     grow: 1,
-    allowOverflow: true,
   },
   {
-    name: "Diupdate",
+    name: "Waktu Lapor",
+    selector: (row) => parseDateSQLtoString(row.created_at),
+    sortable: true,
+    wrap: true,
+    grow: 0,
+  },
+  {
+    name: "Status",
+    selector: (row) => row.status,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
+  {
+    name: "Waktu status",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
     wrap: true,
+    grow: 0,
+  },
+  {
+    name: "Agen L1",
+    selector: (row) => row.agen1,
+    wrap: true,
+    sortable: true,
     grow: 1,
   },
 ];
@@ -130,7 +147,7 @@ export default function FilteredLaporan({ data }) {
           {data && data.length > 0 && (
             <>
               <ExportExcel data={data} />
-              <ExportPDF data={data} />
+              <ExportPDF data={data} name="hasil filter"/>
             </>
           )}
         </div>
@@ -145,6 +162,9 @@ export default function FilteredLaporan({ data }) {
           data={data}
           theme={isDark ? "solarized" : "light"}
           noDataComponent={<NoData />}
+          responsive={true}
+          expandableRows
+          expandableRowsComponent={ExpandebleTable}
           highlightOnHover
           customStyles={customStyles}
         ></DataTable>
