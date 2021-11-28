@@ -1,10 +1,11 @@
+import { useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useSelector } from "react-redux";
 
 import { parseDateSQLtoString } from "../../lib/time";
 import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
-import ExportPDF from "../button/ExportPDF";
+import PDFFile from "../button/PDFFIle";
 import { NoData, SortIcon } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
 
@@ -135,22 +136,33 @@ const customStyles = {
 
 export default function FilteredLaporan({ data }) {
   const isDark = useSelector(selectIsDark);
+  const [pdf, setPDF] = useState(null);
+
+  const toglePdf = () => {
+    setPDF(true);
+    const t = setTimeout(() => {
+      setPDF(false);
+    }, 1000);
+  };
 
   return (
     <div className="flex flex-col my-12">
+      {pdf && <PDFFile data={data} name="hasil filter" />}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">
           Hasil pencarian
         </h2>
-        <div className="flex justify-end items-center gap-2">
-          {/* show button if data.length > 0 */}
-          {data && data.length > 0 && (
-            <>
-              <ExportExcel data={data} />
-              <ExportPDF data={data} name="hasil filter"/>
-            </>
-          )}
-        </div>
+        {data && data.length > 0 && (
+          <div className="flex justify-end items-center gap-2">
+            <ExportExcel data={data} />
+            <button
+              className="btn-pri py-1.5 text-sm px-5 tracking-wider"
+              onClick={toglePdf}
+            >
+              PDF
+            </button>
+          </div>
+        )}
       </div>
       <div className="dark-card rounded-xl py-2">
         <DataTable

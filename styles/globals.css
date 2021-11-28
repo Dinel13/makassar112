@@ -90,3 +90,18 @@
     @apply text-gray-100 bg-transparent hover:bg-gray-700 focus:outline-none focus:ring;
   }
 }
+
+@page {
+  margin: 20px 30px;
+}
+
+@media print {
+  html,
+  body {
+    /* landscape; */
+    width: 297mm;
+    height: 210mm;
+    padding: 0 !important;
+    background-color: #fff;
+  }
+}

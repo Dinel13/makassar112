@@ -8,6 +8,7 @@ import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
 import ExportPDF from "../button/ExportPDF";
 import Pagination from "../button/Pagination";
+import PDFFile from "../button/PDFFIle";
 import Loading from "../loading/Loading";
 import { NoData } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
@@ -92,7 +93,6 @@ const customStyles = {
       paddingLeft: "4px", // override the cell padding for head cells
       paddingRight: "4px",
       whiteSpace: "normal",
-      
     },
   },
   cells: {
@@ -104,12 +104,20 @@ const customStyles = {
 
 let timer;
 
-export default function LaporanTerbaru({data, setData, dataHg}) {
+export default function LaporanTerbaru({ data, setData, dataHg }) {
   const [total, setTotal] = useState({ loading: true, data: null });
   const [loading, setLoading] = useState(false);
   const isDark = useSelector(selectIsDark);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
+  const [pdf, setPDF] = useState(null);
+
+  const toglePdf = () => {
+    setPDF(true);
+    const t = setTimeout(() => {
+      setPDF(false);
+    }, 1000);
+  };
 
   const getData = async (page) => {
     if (page === undefined) {
@@ -274,15 +282,28 @@ export default function LaporanTerbaru({data, setData, dataHg}) {
   };
 
   return (
-    <div className={dataHg && dataHg.length == 0 ? "w-full lg:w-8/12" : "w-full lg:w-6/12"}>
+    <div
+      className={
+        dataHg && dataHg.length == 0 ? "w-full lg:w-8/12" : "w-full lg:w-6/12"
+      }
+    >
+      {pdf && <PDFFile data={data} name={` tanggal ${parseDateSQLtoString(new Date())}`} />}
+
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">
           Laporan Terbaru
         </h2>
-        <div className="flex justify-end items-center gap-2">
-          {data && !loading && <ExportPDF data={data} name="terbaru" />}
-          {data && !loading && <ExportExcel data={data} name="terbaru"/>}
-        </div>
+        {data && !loading && (
+          <div className="flex justify-end items-center gap-2">
+            <ExportExcel data={data} name="terbaru" />
+            <button
+              className="btn-pri py-1.5 text-sm px-5 tracking-wider"
+              onClick={toglePdf}
+            >
+              PDF
+            </button>
+          </div>
+        )}
       </div>
       {!loading && data ? (
         <>
