@@ -93,18 +93,32 @@
 
 @page {
   margin: 20px;
+  size: A4 landscape;
+}
+@page :left {
+@top-left {
+  content: "laporan";
+}
+  margin-left: 3px;
+}
+
+@page :right {
+  margin-left: 3px;
+}
+
+@page :blank {
+  @top-center { content: "This page is intentionally left blank." }
 }
 
 @media print {
   html,
   body {
-    /* landscape; */
-    width: 297mm;
-    height: 210mm;
+    /* width: 210mm;
+    height: 297mm; */
     padding: 0 !important;
     margin: 0 !important;
   }
-  #page {
+  /* #page {
     padding: 0 !important;
     margin: 0 !important;
   }
@@ -113,15 +127,38 @@
     page-break-inside: auto;
   }
 
-  #page thead,
-  #page tfoot {
-    display: table-header-group;
-  }
-
   #page tr,
   #page td {
     page-break-inside: avoid;
     page-break-after: auto;
-    background-color: bisque;
+  } */
+
+  /* Alle Seitenumbrüche definieren */
+  a {
+    page-break-inside: avoid;
+  }
+  blockquote {
+    page-break-inside: avoid;
+  }
+
+  p,
+  td,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-inside: avoid;
+  }
+ 
+  table,
+  pre {
+    page-break-inside: alway;
+  }
+
+  #title-table {
+    page-break-before: always;
+    break-before: always;
   }
 }

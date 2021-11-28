@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { parseDateSQLtoString } from "../../lib/time";
 import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
+import ExportPDF from "../button/ExportPDF";
 import PDFFile from "../button/PDFFIle";
 import { NoData, SortIcon } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
@@ -162,11 +163,12 @@ export default function FilteredLaporan({ data, keyword }) {
         {data && data.length > 0 && (
           <div className="flex justify-end items-center gap-2">
             <ExportExcel data={data} />
+            <ExportPDF data={data} name="terbaru" />
             <button
               className="btn-pri py-1.5 text-sm px-5 tracking-wider"
               onClick={toglePdf}
             >
-              PDF
+              PDF no librari
             </button>
           </div>
         )}
