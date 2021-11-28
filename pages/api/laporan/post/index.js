@@ -110,7 +110,7 @@ apiRoute.post(async (req, res) => {
       message: "Data sudah yang terbaru",
     });
   } else {
-    res.status(201).json({ data: result });
+    res.status(201).json({ data: "ok" });
   }
 });
 

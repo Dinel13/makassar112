@@ -104,19 +104,20 @@ const customStyles = {
 
 let timer;
 
-export default function LaporanTerbaru({ data, setData, dataHg }) {
+export default function LaporanTerbaru({ dataHg, mustRfrs }) {
   const [total, setTotal] = useState({ loading: true, data: null });
   const [loading, setLoading] = useState(false);
   const isDark = useSelector(selectIsDark);
+  const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const [pdf, setPDF] = useState(null);
 
   const toglePdf = () => {
-    setPDF(true);
-    const t = setTimeout(() => {
+    setPDF(true)
+    setTimeout(() => {
       setPDF(false);
-    }, 1000);
+    }, 2000);
   };
 
   const getData = async (page) => {
@@ -247,7 +248,7 @@ export default function LaporanTerbaru({ data, setData, dataHg }) {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [mustRfrs]);
 
   const prevHandler = () => {
     if (page > 1) {
@@ -287,7 +288,12 @@ export default function LaporanTerbaru({ data, setData, dataHg }) {
         dataHg && dataHg.length == 0 ? "w-full lg:w-8/12" : "w-full lg:w-6/12"
       }
     >
-      {pdf && <PDFFile data={data} name={` tanggal ${parseDateSQLtoString(new Date())}`} />}
+      {pdf && (
+        <PDFFile
+          data={data}
+          name={` tanggal ${parseDateSQLtoString(new Date())}`}
+        />
+      )}
 
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">

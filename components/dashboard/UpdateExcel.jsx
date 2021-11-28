@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
 import PendingButton from "../button/Pending";
 
-export default function UpdateExcel({ dataOld, setData, cancel }) {
+export default function UpdateExcel({ setMustRfrs, cancel }) {
   const fileRef = useRef(null);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
@@ -39,17 +39,20 @@ export default function UpdateExcel({ dataOld, setData, cancel }) {
       if (data.data) {
         //cek if new data is exits in ols data
         //new data will hnya berisi data yang lama karena data baru nanti ditambah
-        data.data.map((item) => {
-          const newData =  dataOld.map((itemOld) => {
-            console.log(itemOld, "lama");
-            if(itemOld.id !== item.id){
-              return itemOld
-            } else {
-              return item
-            }
-          });
-          setData(newData)
-        });
+        // data.data.map((item) => {
+        //   const allData = []
+        //   const newData =  dataOld.map((itemOld) => {
+        //     console.log(itemOld, "lama");
+        //     if(itemOld.id !== item.id){
+        //       return itemOld
+        //     } else {
+        //       return item
+        //     }
+        //   });
+        //   setData(newData)
+        // });
+        console.log("gg");
+        setMustRfrs(prev => !prev);
       }
       cancel();
     } catch (error) {

@@ -37,3 +37,6 @@ yarn-error.log*
 /lib/db.js
 
 .idea/
+
+/upload
+/public/files

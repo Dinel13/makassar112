@@ -142,7 +142,7 @@ export default function FilteredLaporan({ data, keyword }) {
     setPDF(true);
     const t = setTimeout(() => {
       setPDF(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (

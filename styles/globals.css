@@ -92,7 +92,7 @@
 }
 
 @page {
-  margin: 20px 30px;
+  margin: 20px;
 }
 
 @media print {
@@ -102,6 +102,26 @@
     width: 297mm;
     height: 210mm;
     padding: 0 !important;
-    background-color: #fff;
+    margin: 0 !important;
+  }
+  #page {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #page table {
+    page-break-inside: auto;
+  }
+
+  #page thead,
+  #page tfoot {
+    display: table-header-group;
+  }
+
+  #page tr,
+  #page td {
+    page-break-inside: avoid;
+    page-break-after: auto;
+    background-color: bisque;
   }
 }
