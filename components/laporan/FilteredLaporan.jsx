@@ -134,7 +134,7 @@ const customStyles = {
   },
 };
 
-export default function FilteredLaporan({ data }) {
+export default function FilteredLaporan({ data, keyword }) {
   const isDark = useSelector(selectIsDark);
   const [pdf, setPDF] = useState(null);
 
@@ -147,11 +147,18 @@ export default function FilteredLaporan({ data }) {
 
   return (
     <div className="flex flex-col my-12">
-      {pdf && <PDFFile data={data} name="hasil filter" />}
+      {pdf && <PDFFile data={data} keyword={keyword} name="hasil filter" />}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-        <h2 className="text-subtitle font-medium  text-center">
+        <h2 className="text-subtitle font-medium">
           Hasil pencarian
+          {keyword &&
+            keyword.map((item) => (
+              <p className="text-sm font-extralight" key={item.key}>
+                {item.key} : {item.value}
+              </p>
+            ))}
         </h2>
+
         {data && data.length > 0 && (
           <div className="flex justify-end items-center gap-2">
             <ExportExcel data={data} />
