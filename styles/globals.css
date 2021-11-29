@@ -83,7 +83,7 @@
   }
 
   .dark-modal {
-    @apply dark:text-gray-100 dark:bg-d2 bg-gray-200 text-gray-800 shadow-md;
+    @apply dark:text-gray-100 dark:bg-d2 bg-gray-200 text-gray-800 shadow-md rounded-lg;
   }
 
   .dark-link {
