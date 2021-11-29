@@ -318,7 +318,7 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
             <DataTable
               sort
               className="dark-card p-0"
-              defaultSortFieldId={1}
+              defaultSortFieldId={0}
               columns={columns}
               data={data}
               expandableRows
