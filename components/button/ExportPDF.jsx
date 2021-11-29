@@ -13,9 +13,6 @@ export default function ExportPDF({ data, name }) {
     });
     return newItem;
   });
-
-  console.log(filteredData);
-
   const properties = []
  
   // push to properties as object with key field and displey name
@@ -25,8 +22,6 @@ export default function ExportPDF({ data, name }) {
       displayName: key
     });
   });
-
-  console.log(properties);
 
   return (
     <>
