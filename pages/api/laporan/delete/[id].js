@@ -11,20 +11,26 @@ export default async function handler(req, res) {
   }
 
   if (req.method !== "DELETE") {
-    res.status(400).send({ message: "Only POST requests allowed" });
+    res.status(400).send({ message: "Only DELETE requests allowed" });
     return;
   }
 
   async function run() {
     try {
       const { id } = req.query;
-      console.log(id);
-      const deletedh = await db.oneOrNone(
-        `DELETE FROM higlights WHERE laporan_id = $1 RETURNING *`,
+
+      if (!id) {
+        return res.status(422).send({
+          error: "id is required",
+        });
+      }
+
+      const deletedPhones = await db.oneOrNone(
+        `DELETE FROM laporans WHERE id = $1 RETURNING id`,
         [id]
       );
 
-      if (!deletedh) {
+      if (!deletedPhones) {
         return res.status(404).send({
           error: "data tidak ditemukan",
         });
@@ -33,11 +39,12 @@ export default async function handler(req, res) {
       res.status(200).send({
         message: "data telah dihapus",
       });
+
     } catch (error) {
       console.error(error);
       res
         .status(500)
-        .send({ message: "Error creating on the server", error: error });
+        .send({ message: ["Error creating on the server"], error: error });
     }
   }
   run();

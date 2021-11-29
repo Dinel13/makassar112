@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
 import PendingInline from "../button/PendingInline";
 
-export default function SearchName({ setStatus }) {
+export default function SearchName({ setStatus, setKeyword }) {
   const searchRef = useRef(null);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,12 @@ export default function SearchName({ setStatus }) {
         hasil: data,
         search: true,
       });
-      searchRef.current.value = "";
+      setKeyword([
+        { key : "Keyword", value : searchRef.current.value },
+      ]);
+      if (data) {
+        searchRef.current.value = "";
+      }
     } catch (error) {
       setStatus({
         loading: false,

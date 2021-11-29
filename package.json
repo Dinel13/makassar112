@@ -16,7 +16,8 @@
     "next-auth": "^3.29.0",
     "next-connect": "^0.11.0",
     "pg-promise": "^10.11.1",
-    "print-js": "^1.6.0",
+    "puppeteer": "^12.0.0",
+    "puppeteer-core": "^12.0.0",
     "react": "17.0.2",
     "react-data-table-component": "^7.4.5",
     "react-datepicker": "^4.3.0",
@@ -24,6 +25,7 @@
     "react-easy-marquee": "^1.1.4",
     "react-floating-whatsapp": "^4.0.5",
     "react-redux": "^7.2.6",
+    "read-excel-file": "^5.2.25",
     "sharp": "^0.29.3",
     "styled-components": "^5.3.3",
     "xlsx": "^0.17.4"

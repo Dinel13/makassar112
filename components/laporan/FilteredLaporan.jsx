@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useSelector } from "react-redux";
 
@@ -5,7 +6,9 @@ import { parseDateSQLtoString } from "../../lib/time";
 import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
 import ExportPDF from "../button/ExportPDF";
+import PDFFile from "../button/PDFFIle";
 import { NoData, SortIcon } from "../table/helper";
+import ExpandebleTable from "./ExpandebleTable";
 
 const columns = [
   {
@@ -14,13 +17,13 @@ const columns = [
     sortable: true,
     grow: 0,
     omit: true,
- 
   },
   {
     name: "Kategori",
-    selector: (row) => row.kategori,
+    selector: (row) => row.kategori.replace("/", " "),
     sortable: true,
-    grow: 1,
+    wrap: true,
+    grow: 0,
   },
   {
     name: "Deskripsi",
@@ -29,25 +32,60 @@ const columns = [
     wrap: true,
     grow: 2,
   },
-  { name: "Alamat", selector: (row) => row.alamat, sortable: true, grow: 1 },
-  { name: "Pelapor", selector: (row) => row.pelapor, sortable: true, grow: 1 },
-  { name: "No. Pelapor", selector: (row) => row.telp, sortable: true, grow: 1 },
-  { name: "Catatan", selector: (row) => row.catatan, sortable: true, grow: 1 },
-  { name: "Status", selector: (row) => row.status, sortable: true, grow: 1 },
-  { name: "Tipe", selector: (row) => row.tipe, sortable: true, grow: 1 },
-  { name: "Agen L1", selector: (row) => row.agen, sortable: true, grow: 1 },
   {
-    name: "Dinas Terkait",
-    selector: (row) => row.dinas,
+    name: "Alamat",
+    selector: (row) => "KEC. " + row.kecamatan + " KEL. " + row.kelurahan,
     sortable: true,
+    wrap: true,
     grow: 1,
-    allowOverflow: true,
   },
   {
-    name: "Diupdate",
+    name: "Lokasi",
+    selector: (row) => row.lokasi,
+    sortable: true,
+    wrap: true,
+    grow: 2,
+  },
+  {
+    name: "Pelapor",
+    selector: (row) => row.pelapor,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
+  {
+    name: "No. Pelapor",
+    selector: (row) => row.telp,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
+  {
+    name: "Waktu Lapor",
+    selector: (row) => parseDateSQLtoString(row.created_at),
+    sortable: true,
+    wrap: true,
+    grow: 0,
+  },
+  {
+    name: "Status",
+    selector: (row) => row.status,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
+  {
+    name: "Waktu status",
     selector: (row) => parseDateSQLtoString(row.updated_at),
     sortable: true,
     wrap: true,
+    grow: 0,
+  },
+  {
+    name: "Agen L1",
+    selector: (row) => row.agen1,
+    wrap: true,
+    sortable: true,
     grow: 1,
   },
 ];
@@ -80,10 +118,10 @@ createTheme(
 
 const customStyles = {
   table: {
-		style: {
+    style: {
       paddingLeft: "6px", // override the cell padding for head cells
-		},
-	},
+    },
+  },
   headCells: {
     style: {
       paddingLeft: "4px", // override the cell padding for head cells
@@ -97,24 +135,43 @@ const customStyles = {
   },
 };
 
-export default function FilteredLaporan({ data }) {
+export default function FilteredLaporan({ data, keyword }) {
   const isDark = useSelector(selectIsDark);
+  const [pdf, setPDF] = useState(null);
+
+  const toglePdf = () => {
+    setPDF(true);
+    const t = setTimeout(() => {
+      setPDF(false);
+    }, 2000);
+  };
 
   return (
     <div className="flex flex-col my-12">
+      {pdf && <PDFFile data={data} keyword={keyword} name="hasil filter" />}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-        <h2 className="text-subtitle font-medium  text-center">
+        <h2 className="text-subtitle font-medium">
           Hasil pencarian
+          {keyword &&
+            keyword.map((item) => (
+              <p className="text-sm font-extralight" key={item.key}>
+                {item.key} : {item.value}
+              </p>
+            ))}
         </h2>
-        <div className="flex justify-end items-center gap-2">
-          {/* show button if data.length > 0 */}
-          {data && data.length > 0 && (
-            <>
-              <ExportExcel data={data} />
-              <ExportPDF data={data} />
-            </>
-          )}
-        </div>
+
+        {data && data.length > 0 && (
+          <div className="flex justify-end items-center gap-2">
+            <ExportExcel data={data} />
+            <ExportPDF data={data} name="terbaru" />
+            <button
+              className="btn-pri py-1.5 text-sm px-5 tracking-wider"
+              onClick={toglePdf}
+            >
+              PDF no librari
+            </button>
+          </div>
+        )}
       </div>
       <div className="dark-card rounded-xl py-2">
         <DataTable
@@ -126,9 +183,12 @@ export default function FilteredLaporan({ data }) {
           data={data}
           theme={isDark ? "solarized" : "light"}
           noDataComponent={<NoData />}
+          responsive={true}
+          expandableRows
+          expandableRowsComponent={ExpandebleTable}
           highlightOnHover
           customStyles={customStyles}
-          ></DataTable>
+        ></DataTable>
       </div>
     </div>
   );

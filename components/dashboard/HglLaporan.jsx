@@ -40,10 +40,10 @@ createTheme(
 const Hcolumns = [
   {
     name: "Kategori",
-    selector: (row) => row.kategori,
+    selector: (row) => row.kategori.replace("/", " "),
     sortable: true,
     wrap: true,
-    grow: 1,
+    grow: 0,
   },
   {
     name: "Deskripsi",
@@ -54,7 +54,7 @@ const Hcolumns = [
   },
   {
     name: "Alamat",
-    selector: (row) => row.alamat,
+    selector: (row) => "KEC. " + row.kecamatan + " KEL. " + row.kelurahan,
     sortable: true,
     wrap: true,
     grow: 1,
@@ -68,29 +68,17 @@ const Hcolumns = [
   },
   {
     name: "Aksi",
-    selector: (row) => UnHiglightButton(row.id),
+    selector: (row) => UnHiglightButton(row.id_laporan),
     sortable: false,
     grow: 0,
-    // cell: (row) => {
-    //   return (
-    //     <div>
-    //       <button
-    //         className="btn btn-primary btn-sm"
-    //         onClick={() => {
-    //           window.open(`/laporan/${row.id}`, "_blank");
-    //         }}
-    //       >
-    //         Lihat
-    //       </button>
-    //     </div>
-    //   );
-    // },
   },
 ];
 
 const customStyles = {
   rows: {
     style: {
+      // padding: "0px",
+      // margin: "0px",
       // minHeight: "72px", // override the row height
     },
   },
@@ -107,11 +95,9 @@ const customStyles = {
   },
 };
 
+let timerr;
 
-let timerr
-
-export default function HglLaporan() {
-  const [data, setData] = useState([]);
+export default function HglLaporan({dataHg, setDataHg}) {
   const isDark = useSelector(selectIsDark);
   const needRefresh = useSelector(selectIsNeedRefresh);
   const dispatch = useDispatch();
@@ -129,7 +115,7 @@ export default function HglLaporan() {
         throw new Error(data.error || "Tidak bisa mendapat data");
       }
 
-      setData(data);
+      setDataHg(data);
     } catch (error) {
       dispatch(
         showNotif({
@@ -151,9 +137,11 @@ export default function HglLaporan() {
       );
       const data = await result.json();
       if (!result.ok) {
-        throw new Error("Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik");
+        throw new Error(
+          "Tidak bisa mendapat data higlight terbaru, pastikan koneksi kamu baik"
+        );
       }
-      setData(data);
+      setDataHg(data);
     } catch (error) {
       clearInterval(timerr);
       dispatch(
@@ -180,25 +168,45 @@ export default function HglLaporan() {
   }, []);
 
   return (
-    <div className="lg:w-5/12 lg:-mt-206">
-      <h2 className="text-subtitle font-medium lg:text-left mb-5">
-        Highlight Laporan
-      </h2>
-      <div className="dark-card rounded-xl pt-2">
-        <DataTable
-          sort
-          className="dark-card"
-          defaultSortFieldId={1}
-          columns={Hcolumns}
-          data={data}
-          expandableRows
-          expandableRowsComponent={ExpandebleTable}
-          theme={isDark ? "solariz" : "light"}
-          noDataComponent={<NoData />}
-          highlightOnHover
-          customStyles={customStyles}
-        ></DataTable>
-      </div>
-    </div>
+    <>
+      {dataHg && dataHg.length === 0 && (
+        <div className="lg:w-3/12 lg:-mt-206">
+          <h2 className="text-subtitle font-medium lg:text-left mb-5">
+            Highlight Laporan
+          </h2>
+          <div className="dark-card rounded-xl pt-2">
+            <DataTable
+              className="dark-card"
+              data={dataHg}
+              theme={isDark ? "solariz" : "light"}
+              noDataComponent={<NoData />}
+              customStyles={customStyles}
+            ></DataTable>
+          </div>
+        </div>
+      )}
+      {dataHg && dataHg.length > 0 && (
+        <div className="lg:w-1/2 lg:-mt-206">
+          <h2 className="text-subtitle font-medium lg:text-left mb-5">
+            Highlight Laporan
+          </h2>
+          <div className="dark-card rounded-xl pt-2">
+            <DataTable
+              sort
+              className="dark-card"
+              defaultSortFieldId={1}
+              columns={Hcolumns}
+              data={dataHg}
+              expandableRows
+              expandableRowsComponent={ExpandebleTable}
+              theme={isDark ? "solariz" : "light"}
+              noDataComponent={<NoData />}
+              highlightOnHover
+              customStyles={customStyles}
+            ></DataTable>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

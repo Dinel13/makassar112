@@ -8,6 +8,7 @@ import { selectIsDark } from "../../store/themeSlice";
 import ExportExcel from "../button/ExportExcel";
 import ExportPDF from "../button/ExportPDF";
 import Pagination from "../button/Pagination";
+import PDFFile from "../button/PDFFIle";
 import Loading from "../loading/Loading";
 import { NoData } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
@@ -42,7 +43,7 @@ createTheme(
 const columns = [
   {
     name: "Kategori",
-    selector: (row) => row.kategori,
+    selector: (row) => row.kategori && row.kategori.replace("/", " "),
     sortable: true,
     wrap: true,
     grow: 1,
@@ -58,7 +59,7 @@ const columns = [
   },
   {
     name: "Alamat",
-    selector: (row) => row.alamat,
+    selector: (row) => "KEC. " + row.kecamatan + " KEL. " + row.kelurahan,
     sortable: true,
     wrap: true,
     grow: 2,
@@ -96,21 +97,28 @@ const customStyles = {
   },
   cells: {
     style: {
-      paddingLeft: "4px", // override the cell padding for data cells
-      paddingRight: "4px",
+      padding: "4px",
     },
   },
 };
 
 let timer;
 
-export default function LaporanTerbaru() {
+export default function LaporanTerbaru({ dataHg, mustRfrs }) {
   const [total, setTotal] = useState({ loading: true, data: null });
-  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const isDark = useSelector(selectIsDark);
+  const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
+  const [pdf, setPDF] = useState(null);
+
+  const toglePdf = () => {
+    setPDF(true)
+    setTimeout(() => {
+      setPDF(false);
+    }, 2000);
+  };
 
   const getData = async (page) => {
     if (page === undefined) {
@@ -123,12 +131,12 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
-        throw new Error(data.error || "Tidak bisa mendapat data");
+        throw new Error(dataRes.error || "Tidak bisa mendapat data");
       }
 
-      setData(data);
+      setData(dataRes);
     } catch (error) {
       dispatch(
         showNotif({
@@ -149,13 +157,13 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
-        throw new Error(data.error || "Tidak bisa mendapat data");
+        throw new Error(dataRes.error || "Tidak bisa mendapat data");
       }
       setTotal({
         loading: false,
-        data: data.count,
+        data: dataRes.count,
       });
     } catch (error) {
       setTotal({
@@ -183,11 +191,11 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
         throw new Error("Tidak bisa");
       }
-      setData(data);
+      setData(dataRes);
     } catch (error) {
       clearInterval(timer);
       dispatch(
@@ -209,13 +217,13 @@ export default function LaporanTerbaru() {
           method: "GET",
         }
       );
-      const data = await result.json();
+      const dataRes = await result.json();
       if (!result.ok) {
         throw new Error("Tidak bisa");
       }
       setTotal({
         loading: false,
-        data: data.count,
+        data: dataRes.count,
       });
     } catch (error) {
       clearInterval(timer);
@@ -240,7 +248,7 @@ export default function LaporanTerbaru() {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [mustRfrs]);
 
   const prevHandler = () => {
     if (page > 1) {
@@ -275,15 +283,34 @@ export default function LaporanTerbaru() {
   };
 
   return (
-    <div className="w-full lg:w-7/12">
+    <div
+      className={
+        dataHg && dataHg.length == 0 ? "w-full lg:w-8/12" : "w-full lg:w-6/12"
+      }
+    >
+      {pdf && (
+        <PDFFile
+          data={data}
+          name={` tanggal ${parseDateSQLtoString(new Date())}`}
+        />
+      )}
+
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">
           Laporan Terbaru
         </h2>
-        <div className="flex justify-end items-center gap-2">
-          {data && !loading && <ExportPDF data={data} />}
-          {data && !loading && <ExportExcel data={data} />}
-        </div>
+        {data && !loading && (
+          <div className="flex justify-end items-center gap-2">
+            <ExportExcel data={data} name="terbaru" />
+            <ExportPDF data={data} name="terbaru" />
+            <button
+              className="btn-pri py-1.5 text-sm px-5 tracking-wider"
+              onClick={toglePdf}
+            >
+              PDF no librari
+            </button>
+          </div>
+        )}
       </div>
       {!loading && data ? (
         <>

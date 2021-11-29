@@ -2,11 +2,10 @@ import { db } from "../../../../lib/db";
 import { getSession } from "next-auth/client";
 
 async function deleteData(id) {
-  console.log("fasfsa");
   try {
     // delete data if older than 1 hours (3600 seconds) use sql
     const deleteData = await db.query(
-      `DELETE FROM higlights WHERE id = $1 RETURNING *`,
+      `DELETE FROM higlights WHERE laporan_id = $1 RETURNING *`,
       [id]
     );
   } catch (error) {
@@ -31,51 +30,24 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const {
-        id,
-        agen,
-        alamat,
-        catatan,
-        deskripsi,
-        dinas,
-        kategori,
-        lokasi,
-        pelapor,
-        status,
-        telp,
-        tipe,
-      } = body;
+      const { id_laporan } = body;
 
-      if (!id || !alamat || !kategori || !lokasi || !status) {
+      if (!id_laporan ) {
         return res.status(422).send({
           error: ["isisan tidak lengkap"],
         });
       }
 
       const newData = await db.one(
-        `INSERT INTO higlights(lid, agen, alamat, catatan, deskripsi, dinas, kategori, lokasi, pelapor, status, telp, tipe)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 ) 
-        RETURNING *`,
-        [
-          id,
-          agen,
-          alamat,
-          catatan,
-          deskripsi,
-          dinas,
-          kategori,
-          lokasi,
-          pelapor,
-          status,
-          telp,
-          tipe,
-        ]
+        `INSERT INTO higlights(laporan_id) VALUES($1) 
+        RETURNING laporan_id`,
+        [id_laporan]
       );
 
       if (newData) {
         setTimeout(() => {
-          deleteData(newData.id);
-        }, 24 * 60 * 60 * 1000); // 1 hari
+          deleteData(newData.laporan_id);
+      }, 24 * 60 * 60 * 1000); // 1 hari
       }
 
       return res.status(200).json(newData);

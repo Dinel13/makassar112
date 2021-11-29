@@ -15,6 +15,7 @@ export default function Laporan() {
   const router = useRouter();
   const [statusData, setStatus] = useState({});
   const [session, loading] = useSession();
+  const [keyword, setKeyword] = useState(null);
 
   if (!loading && !session) {
     router.push("/masuk");
@@ -26,10 +27,10 @@ export default function Laporan() {
     <div className="container mx-auto px-6 py-8 min-h-screen">
       <h3 className="text-title font-medium">Filter Laporan</h3>
       <div className="flex flex-wrap justify-between items-center gap-y-8 gap-x-6 my-4">
-        <Search setStatus={setStatus} />
-        <SearchName setStatus={setStatus} />
+        <Search setStatus={setStatus} setKeyword={setKeyword} />
+        <SearchName setStatus={setStatus} setKeyword={setKeyword} />
       </div>
-      {statusData.hasil && <FilteredLaporan data={statusData.hasil} />}
+      {statusData.hasil && <FilteredLaporan data={statusData.hasil} keyword={keyword} />}
     </div>
   );
 }
