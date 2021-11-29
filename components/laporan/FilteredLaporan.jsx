@@ -164,13 +164,13 @@ export default function FilteredLaporan({ data, keyword }) {
           <div className="flex justify-end items-center gap-2">
             <ExportExcel data={data} />
             <ExportPDF data={data} name="terbaru" />
-            <button
+            {/* <button
               className="btn-pri py-1.5 text-sm px-5 tracking-wider"
               onClick={toglePdf}
             >
               PDF no librari
-            </button>
-          </div>
+            </button>*/}
+          </div> 
         )}
       </div>
       <div className="dark-card rounded-xl py-2">

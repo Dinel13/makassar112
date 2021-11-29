@@ -1,11 +1,38 @@
 import Script from "next/script";
 
 export default function ExportPDF({ data, name }) {
+
+  // filter data to only include the fields if they are not empty or null or 0 or -
+  const filteredData = data.map(item => {
+    const newItem = {};
+    Object.keys(item).forEach(key => {
+      console.log(item[key]);
+      if (item[key] !== null && item[key] !== "0" && item[key] !== "-") {
+        newItem[key] = item[key];
+      }
+    });
+    return newItem;
+  });
+
+  console.log(filteredData);
+
+  const properties = []
+ 
+  // push to properties as object with key field and displey name
+  Object.keys(filteredData[0]).forEach(key => {
+    properties.push({
+      field: key,
+      displayName: key
+    });
+  });
+
+  console.log(properties);
+
   return (
     <>
       <>
-        <Script  src=" https://printjs-4de6.kxcdn.com/print.min.js" />
-        <Script src=" https://printjs-4de6.kxcdn.com/print.min.css" />
+        <Script  src="https://printjs-4de6.kxcdn.com/print.min.js"/>
+        <Script src="https://printjs-4de6.kxcdn.com/print.min.css"/>
       </>
       <button
         type="button"
@@ -45,8 +72,7 @@ export default function ExportPDF({ data, name }) {
             gridHeaderStyle:
               "background-color: #adb1b4; padding: 5px; border: 1px solid #3971A5;",
             gridStyle: "border: 1px solid #3971A5; padding: 5px; word-wrap: break-word; max-width: 30px" ,
-            css: "font-size: 10ps; word-wrap: break-word;",
-            style : "font-size: 10px; table-layout: fixed; width: 100%",
+            // style : "font-size: 0.7rem; table-layout: fixed; width: 100%; backgound-color: black",
           })
         }
         className="btn-pri py-1.5 text-sm px-5 tracking-wider"
