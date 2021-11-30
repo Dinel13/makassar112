@@ -50,7 +50,7 @@ export default function Dashbord() {
       )}
       {buatHgl && (
         <BuatHiglight
-          setDataHgFr={setDataHgFr}
+          setData={setDataHgFr}
           cancel={() => setBuatHgl(false)}
         />
       )}

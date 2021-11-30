@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { kategori } from "../../data";
+import { showNotif } from "../../store/notifSlice";
 
 import PendingButton from "../button/Pending"
 
@@ -96,6 +97,7 @@ export default function BuatHiglight({ cancel, setData }) {
                     className="input-field-sm w-full mt-1"
                     rows="3"
                     placeholder=""
+                    ref={deskripsiRef}
                     maxLength="1025"
                   />
                 </label>
