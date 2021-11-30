@@ -1,19 +1,111 @@
 export const kategori = [
   {
+    name: "HOME CARE",
     id: 1,
-    nama: "Kesehatan",
   },
   {
+    name: "LAMPU JALAN",
     id: 2,
-    nama: "Keamanan",
   },
   {
+    name: "PENGADUAN PLN",
     id: 3,
-    nama: "Lingkungan",
   },
   {
+    name: "AMBULANS JENAZAH",
     id: 4,
-    nama: "Agama",
+  },
+  {
+    name: "ANJAL, TERLANTAR, PENGEMIS DAN GEPENG",
+    id: 5,
+  },
+  {
+    name: "BANJIR",
+    id: 6,
+  },
+  {
+    name: "BENCANA ALAM",
+    id: 7,
+  },
+  {
+    name: "COVID - 19",
+    id: 8,
+  },
+  {
+    name: "DRAINASE",
+    id: 9,
+  },
+  {
+    name: "EVAKUASI HEWAN LIAR",
+    id: 10,
+  },
+  {
+    name: "FOGGING DBD",
+    id: 11,
+  },
+  {
+    name: "KEAMANAAN DAN KETERTIBAN UMUM / MASYARAKAT",
+    id: 12,
+  },
+  {
+    name: "KEBAKARAN",
+    id: 13,
+  },
+  {
+    name: "KECELAKAAN",
+    id: 14,
+  },
+  {
+    name: "KEKERASAN PEREMPUAN/ANAK/KDRT",
+    id: 15,
+  },
+  {
+    name: "KELURAHAN",
+    id: 16,
+  },
+  {
+    name: "KERUMUNAN",
+    id: 17,
+  },
+  {
+    name: "KERUSUHAN/TAWURAN",
+    id: 18,
+  },
+  {
+    name: "KRIMINALITAS",
+    id: 19,
+  },
+  {
+    name: "ORANG DENGAN GANGGUAN JIWA (ODGJ)",
+    id: 20,
+  },
+  {
+    name: "PARKIR LIAR",
+    id: 21,
+  },
+  {
+    name: "PENGADUAN PDAM",
+    id: 22,
+  },
+  {
+    name: "PERMASALAHAN JALAN RAYA",
+    id: 23,
+  },
+  {
+    name: "PERMASALAHAN SAMPAH",
+    id: 24,
+  },
+  {
+    name: "POHON TUMBANG",
+    id: 25,
+  },
+  {
+    name: "PROTOKOL KESEHATAN",
+    id: 26,
+  },
+  {
+    name: "SEDOT TINJA",
+    id: 27,
   },
 ];
 

@@ -159,8 +159,14 @@ export default function Search({ setStatus, setKeyword }) {
         search: true,
       });
       setKeyword([
-        { key : "kategori", value : kategoriRef.current.value.toLowerCase() },
-        { key : "Waktu", value : parseDateSQLtoStringDate(startDate) + " s/d " + parseDateSQLtoStringDate(endDate) },
+        { key: "kategori", value: kategoriRef.current.value.toLowerCase() },
+        {
+          key: "Waktu",
+          value:
+            parseDateSQLtoStringDate(startDate) +
+            " s/d " +
+            parseDateSQLtoStringDate(endDate),
+        },
       ]);
     } catch (error) {
       setLoading(false);
