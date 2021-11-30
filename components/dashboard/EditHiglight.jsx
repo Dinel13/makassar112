@@ -7,7 +7,6 @@ import { makeRFHglUser } from "../../store/rfSlice";
 import PendingButton from "../button/Pending";
 
 export default function EditHiglight({ cancel, data }) {
-  console.log("EditHiglight", data);
   const kategoriRef = useRef(data.kategori);
   const lokasiRef = useRef(data.lokasi);
   const deskripsiRef = useRef(data.deskripsi);
@@ -33,7 +32,6 @@ export default function EditHiglight({ cancel, data }) {
       );
       const data = await result.json();
       if (!result.ok) {
-        console.log(data);
         throw new Error(data.error || "Tidak bisa buat highlight");
       }
       dispatch(makeRFHglUser());

@@ -18,7 +18,6 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const { id } = req.query;
-      console.log(id);
       const deletedh = await db.oneOrNone(
         `DELETE FROM higlights WHERE laporan_id = $1 RETURNING *`,
         [id]

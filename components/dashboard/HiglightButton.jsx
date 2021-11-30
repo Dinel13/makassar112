@@ -107,7 +107,6 @@ export function UnHiglightButton(dataId) {
 }
 
 export function HiglightUser(row) {
-  console.log(row);
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();

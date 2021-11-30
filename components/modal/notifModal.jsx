@@ -13,7 +13,6 @@ export default function ErrorModal() {
   const realAction = useCallback(() => {
     if (status === "Confirm") {
       const deleteData = async (id) => {
-        console.log(action);
         try {
           const result = await fetch(
             `${process.env.NEXT_PUBLIC_URL}/phonebook/delete`,
@@ -29,7 +28,6 @@ export default function ErrorModal() {
           );
           const data = await result.json();
           if (!result.ok) {
-            console.log(data);
             throw new Error(data.error || "Tidak bisa menghapus data");
           }
           dispatch(
