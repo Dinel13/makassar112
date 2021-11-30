@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             error: "id is required",
           });
         }
-  
+
         const body = JSON.parse(req.body);
         const {
           agen,
@@ -74,7 +74,9 @@ export default async function handler(req, res) {
             status,
             telp,
             tipe,
-            req.params.id])
+            req.params.id,
+          ]
+        );
 
         if (!newData) {
           res.status(500).send({ message: "Tidak bisa menyimpan data" });
@@ -89,4 +91,5 @@ export default async function handler(req, res) {
       }
     }
     run();
+  }
 }

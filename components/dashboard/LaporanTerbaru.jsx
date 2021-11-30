@@ -303,12 +303,12 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
           <div className="flex justify-end items-center gap-2">
             <ExportExcel data={data} name="terbaru" />
             <ExportPDF data={data} name="terbaru" />
-            <button
+            {/* <button
               className="btn-pri py-1.5 text-sm px-5 tracking-wider"
               onClick={toglePdf}
             >
               PDF no librari
-            </button>
+            </button> */}
           </div>
         )}
       </div>

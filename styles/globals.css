@@ -92,73 +92,38 @@
 }
 
 @page {
-  margin: 20px;
-  size: A4 landscape;
-}
-@page :left {
-@top-left {
-  content: "laporan";
-}
-  margin-left: 3px;
-}
-
-@page :right {
-  margin-left: 3px;
-}
-
-@page :blank {
-  @top-center { content: "This page is intentionally left blank." }
+  margin: 10px !important;
+  /* size: A4 landscape; */
+  min-width: 297mm;
+  min-height: 210mm;
 }
 
 @media print {
   html,
   body {
-    /* width: 210mm;
-    height: 297mm; */
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  /* #page {
+    width: 297mm;
+    height: 210mm;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  #page table {
-    page-break-inside: auto;
+  .page {
+    margin: 0 !important;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: 180mm;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+    padding: 0 !important;
   }
 
-  #page tr,
-  #page td {
-    page-break-inside: avoid;
-    page-break-after: auto;
-  } */
-
-  /* Alle Seitenumbrüche definieren */
-  a {
-    page-break-inside: avoid;
-  }
-  blockquote {
-    page-break-inside: avoid;
+  #print-header {
+    display: none;
   }
 
-  p,
-  td,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    page-break-inside: avoid;
-  }
- 
-  table,
-  pre {
-    page-break-inside: alway;
-  }
-
-  #title-table {
-    page-break-before: always;
-    break-before: always;
+  #print-table {
+    display: none;
   }
 }
