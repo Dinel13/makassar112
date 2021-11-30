@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
-import { makeRefresh } from "../../store/rfSlice";
+import { makeRefresh, makeRFHglUser } from "../../store/rfSlice";
 
 import PendingButton from "../button/Pending";
+import EditHiglight from "./EditHiglight";
 
 export default function HiglightButton(data) {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ export default function HiglightButton(data) {
         {
           method: "POST",
           body: JSON.stringify({
-            id_laporan: data.id_laporan
+            id_laporan: data.id_laporan,
           }),
         }
       );
@@ -101,6 +102,65 @@ export function UnHiglightButton(dataId) {
       >
         Hapus
       </button>
+    );
+  }
+}
+
+export function HiglightUser(row) {
+  console.log(row);
+  const [loading, setLoading] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const dispatch = useDispatch();
+
+  const hapus = async (id) => {
+    setLoading(true);
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/highlight/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await result.json();
+      if (!result.ok) {
+        throw new Error(data.error || "Tidak bisa menghapus data");
+      }
+      dispatch(makeRFHglUser());
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      dispatch(
+        showNotif({
+          status: "Error",
+          message: error.message,
+          action: null,
+        })
+      );
+    }
+  };
+
+  if (loading) {
+    return <PendingButton />;
+  } else {
+    return (
+      <>
+        {edit && <EditHiglight data={row} cancel={() => setEdit(false)} />}
+        <div className="flex gap-x-1">
+          <button
+            onClick={() => hapus(row.id)}
+            className="break py-1 px-1.5 rounded btn-ter text-xs"
+          >
+            Hapus
+          </button>
+
+          <button
+            onClick={() => setEdit(true)}
+            className="break py-1 px-1.5 rounded btn-pri text-xs"
+          >
+            Update
+          </button>
+        </div>
+      </>
     );
   }
 }

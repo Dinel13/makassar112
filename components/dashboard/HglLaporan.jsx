@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {  useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
-import { parseDateSQLtoString } from "../../lib/time";
 import { showNotif } from "../../store/notifSlice";
 import { selectIsNeedRefresh } from "../../store/rfSlice";
 import { selectIsDark } from "../../store/themeSlice";
 
-import Loading from "../loading/Loading";
 import { NoData } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
 import { UnHiglightButton } from "./HiglightButton";
@@ -97,7 +95,7 @@ const customStyles = {
 
 let timerr;
 
-export default function HglLaporan({dataHg, setDataHg}) {
+export default function HglLaporan({ dataHg, setDataHg }) {
   const isDark = useSelector(selectIsDark);
   const needRefresh = useSelector(selectIsNeedRefresh);
   const dispatch = useDispatch();
@@ -168,45 +166,25 @@ export default function HglLaporan({dataHg, setDataHg}) {
   }, []);
 
   return (
-    <>
-      {dataHg && dataHg.length === 0 && (
-        <div className="lg:w-3/12 lg:-mt-206">
-          <h2 className="text-subtitle font-medium lg:text-left mb-5">
-            Highlight Laporan
-          </h2>
-          <div className="dark-card rounded-xl pt-2">
-            <DataTable
-              className="dark-card"
-              data={dataHg}
-              theme={isDark ? "solariz" : "light"}
-              noDataComponent={<NoData />}
-              customStyles={customStyles}
-            ></DataTable>
-          </div>
-        </div>
-      )}
-      {dataHg && dataHg.length > 0 && (
-        <div className="lg:w-1/2 lg:-mt-206">
-          <h2 className="text-subtitle font-medium lg:text-left mb-5">
-            Highlight Laporan
-          </h2>
-          <div className="dark-card rounded-xl pt-2">
-            <DataTable
-              sort
-              className="dark-card"
-              defaultSortFieldId={1}
-              columns={Hcolumns}
-              data={dataHg}
-              expandableRows
-              expandableRowsComponent={ExpandebleTable}
-              theme={isDark ? "solariz" : "light"}
-              noDataComponent={<NoData />}
-              highlightOnHover
-              customStyles={customStyles}
-            ></DataTable>
-          </div>
-        </div>
-      )}
-    </>
+    <div className="">
+      <h2 className="text-subtitle font-medium lg:text-left mb-5">
+        Highlight Laporan
+      </h2>
+      <div className="dark-card rounded-xl pt-2">
+        <DataTable
+          sort
+          className="dark-card"
+          defaultSortFieldId={1}
+          columns={Hcolumns}
+          data={dataHg}
+          expandableRows
+          expandableRowsComponent={ExpandebleTable}
+          theme={isDark ? "solariz" : "light"}
+          noDataComponent={<NoData />}
+          highlightOnHover
+          customStyles={customStyles}
+        ></DataTable>
+      </div>
+    </div>
   );
 }
