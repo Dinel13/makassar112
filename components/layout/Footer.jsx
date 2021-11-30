@@ -55,8 +55,9 @@ function Footer() {
             </h2>
             <nav className="list-none mb-10 ">
               <li>Call Center : 112</li>
+              <li>No. WA : 0811-400-112</li>
               <li>Telepon : (0411) 4671729</li>
-              <li>E-mail: diskominfo@makassarkota.go.id</li>
+              <li>E-mail: kominfo@makassar.go.id</li>
             </nav>
           </div>
         </div>
