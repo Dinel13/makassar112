@@ -4,24 +4,24 @@ export default function ExportPDF({ data, name }) {
 
   // filter data to only include the fields if they are not empty or null or 0 or -
   const filteredData = data.map(item => {
-    const newItem = {};
-    Object.keys(item).forEach(key => {
-      console.log(item[key]);
-      if (item[key] !== null && item[key] !== "0" && item[key] !== "-") {
-        newItem[key] = item[key];
-      }
-    });
-    return newItem;
+    // const newItem = {};
+    // Object.keys(item).forEach(key => {
+    //   console.log(item[key]);
+    //   if (item[key] !== null && item[key] !== "0" && item[key] !== "-") {
+    //     newItem[key] = item[key];
+    //   }
+    // });
+    // return newItem;
   });
   const properties = []
  
   // push to properties as object with key field and displey name
-  Object.keys(filteredData[0]).forEach(key => {
-    properties.push({
-      field: key,
-      displayName: key
-    });
-  });
+  // Object.keys(filteredData[0]).forEach(key => {
+  //   properties.push({
+  //     field: key,
+  //     displayName: key
+  //   });
+  // });
 
   return (
     <>
