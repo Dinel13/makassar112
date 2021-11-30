@@ -9,7 +9,14 @@ export default function ExpandebleTable({ data }) {
           <td className="w-36 pl-3 font-medium">Catatan</td>
           <td className="p-2">{data.catatan}</td>
         </tr>
-       
+        <tr>
+          <td className="w-36 pl-3 font-medium">Status</td>
+          <td className="p-2">{data.status}</td>
+        </tr>
+        <tr>
+          <td className="w-36 pl-3 font-medium">Status Time</td>
+          <td className="p-2">{parseDateSQLtoString(data.updated_at)}</td>
+        </tr>
         <tr>
           <td className="w-36 pl-3  font-medium">Channel</td>
           <td className="p-2">{data.channel}</td>
