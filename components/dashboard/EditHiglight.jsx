@@ -2,34 +2,41 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { kategori } from "../../data";
 import { showNotif } from "../../store/notifSlice";
+import { makeRFHglUser } from "../../store/rfSlice";
 
-import PendingButton from "../button/Pending"
+import PendingButton from "../button/Pending";
 
-export default function BuatHiglight({ cancel, setData }) {
-  const kategoriRef = useRef(null);
-  const lokasiRef = useRef(null);
-  const deskripsiRef = useRef(null);
+export default function EditHiglight({ cancel, data }) {
+  console.log("EditHiglight", data);
+  const kategoriRef = useRef(data.kategori);
+  const lokasiRef = useRef(data.lokasi);
+  const deskripsiRef = useRef(data.deskripsi);
   const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setPending(true);
+    const id = data.id;
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/highlight/post`, {
-        method: "POST",
-        body: JSON.stringify({
-          kategori: kategoriRef.current.value,
-          lokasi: lokasiRef.current.value,
-          deskripsi: deskripsiRef.current.value,
-        }),
-      });
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/highlight/update`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            kategori: kategoriRef.current.value,
+            lokasi: lokasiRef.current.value,
+            deskripsi: deskripsiRef.current.value,
+            id,
+          }),
+        }
+      );
       const data = await result.json();
       if (!result.ok) {
         console.log(data);
         throw new Error(data.error || "Tidak bisa buat highlight");
       }
-      setData(data.data);
+      dispatch(makeRFHglUser());
       dispatch(
         showNotif({
           status: "Success",
@@ -59,7 +66,7 @@ export default function BuatHiglight({ cancel, setData }) {
           <div className="md:flex">
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
-                <span className="px-3 text-lg font-bold">Buat Higlight</span>
+                <span className="px-3 text-lg font-bold">Edit Higlight</span>
               </div>
               <form
                 onSubmit={handleSubmit}
@@ -69,6 +76,7 @@ export default function BuatHiglight({ cancel, setData }) {
                   <span className="">Kategori</span>
                   <select
                     ref={kategoriRef}
+                    defaultValue={data.kategori}
                     required
                     className="input-field-sm w-full mt-1"
                     placeholder="Kategori"
@@ -85,6 +93,7 @@ export default function BuatHiglight({ cancel, setData }) {
                   <span className="">Lokasi</span>
                   <input
                     ref={lokasiRef}
+                    defaultValue={data.lokasi}
                     className="input-field-sm w-full mt-1"
                     type="text"
                     maxLength="425"
@@ -97,6 +106,7 @@ export default function BuatHiglight({ cancel, setData }) {
                     className="input-field-sm w-full mt-1"
                     rows="3"
                     placeholder=""
+                    defaultValue={data.deskripsi}
                     ref={deskripsiRef}
                     maxLength="1025"
                   />

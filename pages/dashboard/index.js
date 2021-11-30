@@ -7,9 +7,21 @@ const BuatHiglight = dynamic(
   () => import("../../components/dashboard/BuatHiglight"),
   { loading: () => <p>Loading...</p> }
 );
-import HglLaporan from "../../components/dashboard/HglLaporan";
-import LaporanTerbaru from "../../components/dashboard/LaporanTerbaru";
-import UpdateExcel from "../../components/dashboard/UpdateExcel";
+const HglUser = dynamic(() => import("../../components/dashboard/HglUser"), {
+  loading: () => <p>Loading...</p>,
+});
+const HglLaporan = dynamic(
+  () => import("../../components/dashboard/HglLaporan"),
+  { loading: () => <p>Loading...</p> }
+);
+const LaporanTerbaru = dynamic(
+  () => import("../../components/dashboard/LaporanTerbaru"),
+  { loading: () => <p>Loading...</p> }
+);
+const UpdateExcel = dynamic(
+  () => import("../../components/dashboard/UpdateExcel"),
+  { loading: () => <p>Loading...</p> }
+);
 import Loading from "../../components/loading/Loading";
 
 export default function Dashbord() {
@@ -40,7 +52,17 @@ export default function Dashbord() {
       </div>
       <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
         <LaporanTerbaru dataHg={dataHg} mustRfrs={mustRfrs} />
-        <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
+        {dataHg.length === 0 && dataHgFr.length === 0 ? (
+          <div className="lg:w-3/12 lg:-mt-206">
+            <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
+            <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
+          </div>
+        ) : (
+          <div className="lg:w-1/2 lg:-mt-206 ">
+            <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
+            <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
+          </div>
+        )}
       </div>
       {upload && (
         <UpdateExcel
@@ -49,10 +71,7 @@ export default function Dashbord() {
         />
       )}
       {buatHgl && (
-        <BuatHiglight
-          setData={setDataHgFr}
-          cancel={() => setBuatHgl(false)}
-        />
+        <BuatHiglight setData={setDataHgFr} cancel={() => setBuatHgl(false)} />
       )}
     </div>
   );
