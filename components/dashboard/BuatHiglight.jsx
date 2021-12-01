@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { kategori } from "../../data";
 import { showNotif } from "../../store/notifSlice";
+import { makeRFHglUser } from "../../store/rfSlice";
 
 import PendingButton from "../button/Pending"
 
@@ -26,9 +27,9 @@ export default function BuatHiglight({ cancel, setData }) {
       });
       const data = await result.json();
       if (!result.ok) {
-        console.log(data);
         throw new Error(data.error || "Tidak bisa buat highlight");
       }
+      dispatch(makeRFHglUser())
       setData(data.data);
       dispatch(
         showNotif({

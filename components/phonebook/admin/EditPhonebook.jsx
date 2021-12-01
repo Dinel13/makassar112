@@ -47,7 +47,6 @@ export default function BuatPhoneBook({
       );
       const data = await result.json();
       if (!result.ok) {
-        console.log(data);
         throw new Error(data.error || "Tidak bisa update nomor");
       }
       dispatch(

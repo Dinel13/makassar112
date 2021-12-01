@@ -40,7 +40,6 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
       );
       const data = await result.json();
       if (!result.ok) {
-        console.log(data);
         throw new Error(data.error || "Tidak bisa buat nomor");
       }
       dispatch(

@@ -27,7 +27,6 @@ export default function UpdateBg({ cancel }) {
 
       const data = await result.json();
       if (!result.ok) {
-        console.log(data);
         throw new Error(data.error || "Tidak bisa upload file");
       }
       dispatch(

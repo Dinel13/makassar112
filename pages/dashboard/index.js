@@ -40,39 +40,67 @@ export default function Dashbord() {
   if (loading) return <Loading />;
 
   return (
-    <div className="container mx-auto px-2 py-8 min-h-screen">
-      <div className="flex gap-x-3 gap-y-6 justify-between items-center">
-        <h3 className="text-title font-medium">Dashboard</h3>
-        <button onClick={() => setUpload(true)} className="btn-pri py-1 px-3">
-          Perbaharui
-        </button>
-        <button onClick={() => setBuatHgl(true)} className="btn-pri py-1 px-3">
-          Buat highlight
-        </button>
-      </div>
-      <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
-        <LaporanTerbaru dataHg={dataHg} mustRfrs={mustRfrs} />
-        {dataHg.length === 0 && dataHgFr.length === 0 ? (
-          <div className="lg:w-3/12 lg:-mt-206">
-            <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
-            <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
-          </div>
-        ) : (
-          <div className="lg:w-1/2 lg:-mt-206 ">
-            <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
-            <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
-          </div>
+    <>
+      <div className="container mx-auto px-2 py-8 min-h-screen">
+        <div className="flex gap-x-3 gap-y-6 justify-between items-center">
+          <h3 className="text-title font-medium">Dashboard</h3>
+          <button onClick={() => setUpload(true)} className="btn-pri py-1 px-3">
+            Perbaharui
+          </button>
+        </div>
+        <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
+          <LaporanTerbaru dataHg={dataHg} mustRfrs={mustRfrs} />
+          {dataHg &&
+          dataHg.length === 0 &&
+          dataHgFr &&
+          dataHgFr.length === 0 ? (
+            <div className="lg:w-3/12 lg:-mt-206">
+              <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
+              <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
+            </div>
+          ) : (
+            <div className="lg:w-1/2 lg:-mt-206 ">
+              <HglLaporan dataHg={dataHg} setDataHg={setDataHg} />
+              <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
+            </div>
+          )}
+         
+        </div>
+        {upload && (
+          <UpdateExcel
+            setMustRfrs={setMustRfrs}
+            cancel={() => setUpload(false)}
+          />
+        )}
+        {buatHgl && (
+          <BuatHiglight
+            setData={setDataHgFr}
+            cancel={() => setBuatHgl(false)}
+          />
         )}
       </div>
-      {upload && (
-        <UpdateExcel
-          setMustRfrs={setMustRfrs}
-          cancel={() => setUpload(false)}
-        />
-      )}
-      {buatHgl && (
-        <BuatHiglight setData={setDataHgFr} cancel={() => setBuatHgl(false)} />
-      )}
-    </div>
+      <div className="fixed right-8 bottom-4">
+        <button
+          onClick={() => setBuatHgl(true)}
+          className="btn-pri py-1 px-3 flex flex-col items-center justify-center text-sm rounded-lg shadow-2xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokelinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          Highlight
+        </button>
+      </div>
+    </>
   );
 }
