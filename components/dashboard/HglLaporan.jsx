@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
 import { showNotif } from "../../store/notifSlice";
@@ -96,7 +96,7 @@ const customStyles = {
 let timerr;
 
 export default function HglLaporan({ dataHg, setDataHg }) {
-  const isDark = useSelector(selectIsDark);
+  // const isDark = useSelector(selectIsDark);
   const needRefresh = useSelector(selectIsNeedRefresh);
   const dispatch = useDispatch();
 
