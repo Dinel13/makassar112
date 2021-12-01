@@ -5,13 +5,14 @@ import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { showNotif } from "../../store/notifSlice";
 import PendingInline from "../button/PendingInline";
-import {parseDateSQLtoStringDate } from "../../lib/time";
-import { kategori } from "../../data";
+import { parseDateSQLtoStringDate } from "../../lib/time";
+import { kategori, kecamatan } from "../../data";
 
 export default function Search({ setStatus, setKeyword }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const kategoriRef = useRef(null);
+  const kecamatanRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ export default function Search({ setStatus, setKeyword }) {
           },
           body: JSON.stringify({
             kategori: kategoriRef.current.value.toLowerCase(),
+            kecamatan: kecamatanRef.current.value.toUpperCase(),
             startDate: startDate,
             endDate: endDate,
           }),
@@ -49,8 +51,15 @@ export default function Search({ setStatus, setKeyword }) {
         search: true,
       });
       setKeyword([
-        { key : "kategori", value : kategoriRef.current.value.toLowerCase() },
-        { key : "Waktu", value : parseDateSQLtoStringDate(startDate) + " s/d " + parseDateSQLtoStringDate(endDate) },
+        { key: "kategori", value: kategoriRef.current.value.toLowerCase() },
+        { key: "kecamatan", value: kecamatanRef.current.value.toUpperCase() },
+        {
+          key: "Waktu",
+          value:
+            parseDateSQLtoStringDate(startDate) +
+            " s/d " +
+            parseDateSQLtoStringDate(endDate),
+        },
       ]);
     } catch (error) {
       setLoading(false);
@@ -82,8 +91,8 @@ export default function Search({ setStatus, setKeyword }) {
           className="dark-card shadow-none focus:outline-none rounded-xl text-sm py-2 px-2 ml-2 w-44"
           placeholder="Kategori"
         >
-          <option value="semua">Kategori</option>
-          <option value="semua">Semua</option>
+          <option value="semua">KATEGORI</option>
+          <option value="semua">SEMUA</option>
           {kategori.map((item) => (
             <option key={item.id} value={item.name}>
               {item.name}
@@ -91,6 +100,43 @@ export default function Search({ setStatus, setKeyword }) {
           ))}
         </select>
       </label>
+
+      <label className="inline-flex items-center">
+        {/* <span>Kecamatan</span> */}
+        <select
+          ref={kecamatanRef}
+          required
+          className="dark-card shadow-none focus:outline-none rounded-xl text-sm py-2 px-2 ml-2 w-44"
+          placeholder="KECAMATAN"
+        >
+          <option value="semua">KECAMATAN</option>
+          <option value="semua">SEMUA</option>
+          {kecamatan.map((item) => (
+            <option key={item.id} value={item.nama}>
+              {item.nama}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="inline-flex items-center">
+        {/* <span>KELURAHAN</span> */}
+        <select
+          ref={kecamatanRef}
+          required
+          className="dark-card shadow-none focus:outline-none rounded-xl text-sm py-2 px-2 ml-2 w-44"
+          placeholder="KELURAHAN"
+        >
+          <option value="semua">KELURAHAN</option>
+          <option value="semua">SEMUA</option>
+          {kecamatan.map((item) => (
+            <option key={item.nama} value={item.kelurahan}>
+              {item.kelurahan}
+            </option>
+          ))}
+        </select>
+      </label>
+
       {/* <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-l pl-3 border-gray-400"> */}
       <div className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 ">
         {" "}

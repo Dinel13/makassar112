@@ -38,9 +38,7 @@ export default function SearchName({ setStatus, setKeyword }) {
         hasil: data,
         search: true,
       });
-      setKeyword([
-        { key : "Keyword", value : searchRef.current.value },
-      ]);
+      setKeyword([{ key: "Keyword", value: searchRef.current.value }]);
       if (data) {
         searchRef.current.value = "";
       }
