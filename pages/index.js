@@ -236,13 +236,13 @@ export default function Home() {
       </div>
       <div className="App">
         <FloatingWhatsApp
-          phoneNumber="+62 823-4646-2435"
-          accountName="112"
-          darkMode="true"
+          phoneNumber="+62 811-400-112"
+          accountName="NTPD 112 Kota Makassar"
+          avatar="/logokominfo.jpg"
+          statusMessage="WA ini tidak menjawab panggilan telepon"
           allowClickAway
           notification
           notificationDelay={60000} // 1 minute
-          notificationSound
           placeholder="Laporkan kejadian anda"
           chatMessage="112 Kota Makassar Ada yang bisa kami bantu?"
         />

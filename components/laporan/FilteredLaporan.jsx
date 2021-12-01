@@ -68,20 +68,6 @@ const columns = [
     grow: 0,
   },
   {
-    name: "Status",
-    selector: (row) => row.status,
-    sortable: true,
-    wrap: true,
-    grow: 1,
-  },
-  {
-    name: "Waktu status",
-    selector: (row) => parseDateSQLtoString(row.updated_at),
-    sortable: true,
-    wrap: true,
-    grow: 0,
-  },
-  {
     name: "Agen L1",
     selector: (row) => row.agen1,
     wrap: true,
@@ -170,7 +156,7 @@ export default function FilteredLaporan({ data, keyword }) {
             >
               PDF no librari
             </button>*/}
-          </div> 
+          </div>
         )}
       </div>
       <div className="dark-card rounded-xl py-2">
