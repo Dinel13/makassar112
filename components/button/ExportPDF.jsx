@@ -5,7 +5,6 @@ export default function ExportPDF({ data, name }) {
   const filteredData = data.map((item) => {
     const newItem = {};
     Object.keys(item).forEach((key) => {
-      console.log(item[key]);
       if (item[key] !== null && item[key] !== "0" && item[key] !== "-") {
         newItem[key] = item[key];
       }

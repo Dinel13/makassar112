@@ -18,15 +18,20 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const { kategori, startDate, endDate } = body;
+      const { kategori, kecamatan, kelurahan, startDate, endDate } = body;
 
-      if (!kategori || !startDate || !endDate) {
+      if (!kategori || !kecamatan || !kelurahan || !startDate || !endDate) {
         return res.status(422).send({
           error: "isian tidak lengkap",
         });
       }
 
-      if (kategori === "semua") {
+      // semua kosong
+      if (
+        kategori === "semua" &&
+        kecamatan === "semua" &&
+        kelurahan === "semua"
+      ) {
         const total = await db.query(
           "SELECT * FROM laporans WHERE updated_at BETWEEN $1 AND $2",
           [startDate, endDate]
@@ -34,15 +39,63 @@ export default async function handler(req, res) {
         res.status(200).json(total);
 
         return;
+      } else if ( // kecamatan ada
+        kategori === "semua" &&
+        kecamatan !== "semua" &&
+        kelurahan === "semua"
+      ) {
+        const total = await db.query(
+          "SELECT * FROM laporans WHERE kecamatan = $1 AND updated_at BETWEEN $2 AND $3",
+          [kecamatan, startDate, endDate]
+        );
+        res.status(200).json(total);
+
+        return;
+      }  else if ( // kecamatan dan kelurahan ada
+        kategori === "semua" &&
+        kecamatan !== "semua" &&
+        kelurahan !== "semua"
+      ) {
+        const total = await db.query(
+          "SELECT * FROM laporans WHERE kecamatan = $1 AND kelurahan = $2 AND updated_at BETWEEN $3 AND $4",
+          [kecamatan, kelurahan, startDate, endDate]
+        );
+        res.status(200).json(total);
+
+        return;
+      } else if ( // hanya kategori ada
+        kategori !== "semua" &&
+        kecamatan === "semua" &&
+        kelurahan === "semua"
+      ) {
+        const total = await db.query(
+          "SELECT * FROM laporans WHERE LOWER(kategori) = LOWER($1) AND updated_at BETWEEN $2 AND $3",
+          [kategori, startDate, endDate]
+        );
+        res.status(200).json(total);
+
+        return;
+      } else if ( // hanya kategori dan kecamatan ada
+        kategori !== "semua" &&
+        kecamatan !== "semua" &&
+        kelurahan === "semua"
+      ) {
+        const total = await db.query(
+          "SELECT * FROM laporans WHERE LOWER(kategori) = LOWER($1) AND kecamatan = $2 AND updated_at BETWEEN $3 AND $4",
+          [kategori, kecamatan, startDate, endDate]
+        );
+        res.status(200).json(total);
+
+        return;
+      } else { // semua ada
+        const resultSearch = await db.query(
+          `SELECT * FROM laporans WHERE LOWER(kategori) = LOWER($1) 
+        AND kecamatan = $2 AND kelurahan = $3 AND updated_at BETWEEN $4 AND $5`,
+          [kategori, kecamatan, kelurahan, startDate, endDate]
+        );
+
+        res.status(200).json(resultSearch);
       }
-
-      const resultSearch = await db.query(
-        `SELECT * FROM laporans WHERE LOWER(kategori) = LOWER($1) 
-         AND updated_at BETWEEN $2 AND $3 `,
-        [kategori, startDate, endDate]
-      );
-
-      res.status(200).json(resultSearch);
     } catch (error) {
       console.error(error);
       res

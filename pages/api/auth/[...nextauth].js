@@ -9,7 +9,7 @@ export default NextAuth({
   secret: "sdsadd532dsf54654fgd",
   session: {
     jwt: true,
-    maxAge: 6 * 24 * 60 * 60, // the session will last 6 days
+    maxAge: 24 * 60 * 60, // the session will last 1 days
   },
   providers: [
     Providers.Credentials({
