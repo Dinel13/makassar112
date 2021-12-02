@@ -6,14 +6,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { showNotif } from "../../store/notifSlice";
 import PendingInline from "../button/PendingInline";
 import { parseDateSQLtoStringDate } from "../../lib/time";
-import { kategori, kecamatan } from "../../data";
+import { kategori, kecamatan as kecamatanList } from "../../data";
 
 export default function Search({ setStatus, setKeyword }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const kategoriRef = useRef(null);
-  const kecamatanRef = useRef(null);
+  const kategoriRef = useRef("semua");
+  const kelurahanRef = useRef("semua");
   const [loading, setLoading] = useState(false);
+  const [kecamatan, setKecamatan] = useState("semua");
+  const [kelurahan, setKelurahan] = useState(null);
   const dispatch = useDispatch();
 
   const submitHandler = async (e) => {
@@ -34,7 +36,8 @@ export default function Search({ setStatus, setKeyword }) {
           },
           body: JSON.stringify({
             kategori: kategoriRef.current.value.toLowerCase(),
-            kecamatan: kecamatanRef.current.value.toUpperCase(),
+            kecamatan: kecamatan ? kecamatan: "semua",
+            kelurahan: kelurahanRef.current.value,
             startDate: startDate,
             endDate: endDate,
           }),
@@ -52,7 +55,8 @@ export default function Search({ setStatus, setKeyword }) {
       });
       setKeyword([
         { key: "kategori", value: kategoriRef.current.value.toLowerCase() },
-        { key: "kecamatan", value: kecamatanRef.current.value.toUpperCase() },
+        { key: "kecamatan", value: kecamatan.toLowerCase() },
+        { key: "kelurahan", value: kelurahanRef.current.value },
         {
           key: "Waktu",
           value:
@@ -78,6 +82,17 @@ export default function Search({ setStatus, setKeyword }) {
     }
   };
 
+  // onChange kecamatan set kelurahan data inside kecamatan if kecamatan is selected
+  const onChangeKecamatan = (v) => {
+    setKecamatan(v);
+    kecamatanList.map((kecamatan) => {
+      if (kecamatan.nama === v) {
+        setKelurahan(kecamatan.kelurahan);
+      } else if (v === "semua") {
+        setKelurahan(null);
+      }
+    });
+  };
   return (
     <form
       onSubmit={submitHandler}
@@ -104,14 +119,14 @@ export default function Search({ setStatus, setKeyword }) {
       <label className="inline-flex items-center">
         {/* <span>Kecamatan</span> */}
         <select
-          ref={kecamatanRef}
-          required
+          onChange={(e) => onChangeKecamatan(e.target.value)}
+          value={kecamatan}
           className="dark-card shadow-none focus:outline-none rounded-xl text-sm py-2 px-2 ml-2 w-44"
           placeholder="KECAMATAN"
         >
           <option value="semua">KECAMATAN</option>
-          <option value="semua">SEMUA</option>
-          {kecamatan.map((item) => (
+          <option value="">SEMUA</option>
+          {kecamatanList.map((item) => (
             <option key={item.id} value={item.nama}>
               {item.nama}
             </option>
@@ -122,16 +137,25 @@ export default function Search({ setStatus, setKeyword }) {
       <label className="inline-flex items-center">
         {/* <span>KELURAHAN</span> */}
         <select
-          ref={kecamatanRef}
-          required
+          ref={kelurahanRef}
+          select
           className="dark-card shadow-none focus:outline-none rounded-xl text-sm py-2 px-2 ml-2 w-44"
           placeholder="KELURAHAN"
         >
           <option value="semua">KELURAHAN</option>
           <option value="semua">SEMUA</option>
+<<<<<<< HEAD
           {kecamatan.map((item) => (
             <option key={item.kecamatan} value={item.kelurahan}></option>
           ))}
+=======
+          {kelurahan &&
+            kelurahan.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+>>>>>>> 1595b80e7cc69d524cc71a7c245c2239ba057909
         </select>
       </label>
 
