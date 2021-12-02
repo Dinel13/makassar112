@@ -130,9 +130,7 @@ export default function Search({ setStatus, setKeyword }) {
           <option value="semua">KELURAHAN</option>
           <option value="semua">SEMUA</option>
           {kecamatan.map((item) => (
-            <option key={item.nama} value={item.kelurahan}>
-              {item.kelurahan}
-            </option>
+            <option key={item.kecamatan} value={item.kelurahan}></option>
           ))}
         </select>
       </label>
