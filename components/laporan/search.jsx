@@ -36,7 +36,7 @@ export default function Search({ setStatus, setKeyword }) {
           },
           body: JSON.stringify({
             kategori: kategoriRef.current.value.toLowerCase(),
-            kecamatan: kecamatan ? kecamatan: "semua",
+            kecamatan: kecamatan ? kecamatan : "semua",
             kelurahan: kelurahanRef.current.value,
             startDate: startDate,
             endDate: endDate,
@@ -144,18 +144,12 @@ export default function Search({ setStatus, setKeyword }) {
         >
           <option value="semua">KELURAHAN</option>
           <option value="semua">SEMUA</option>
-<<<<<<< HEAD
-          {kecamatan.map((item) => (
-            <option key={item.kecamatan} value={item.kelurahan}></option>
-          ))}
-=======
           {kelurahan &&
             kelurahan.map((item) => (
               <option key={item} value={item}>
                 {item}
               </option>
             ))}
->>>>>>> 1595b80e7cc69d524cc71a7c245c2239ba057909
         </select>
       </label>
 
