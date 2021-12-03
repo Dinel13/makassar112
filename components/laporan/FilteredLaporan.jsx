@@ -36,8 +36,15 @@ const columns = [
     grow: 2,
   },
   {
-    name: "Alamat",
-    selector: (row) => "KEC. " + row.kecamatan + " KEL. " + row.kelurahan,
+    name: "Kecamatan",
+    selector: (row) => row.kecamatan,
+    sortable: true,
+    wrap: true,
+    grow: 1,
+  },
+  {
+    name: "Kelurahan",
+    selector: (row) => row.kelurahan,
     sortable: true,
     wrap: true,
     grow: 1,
@@ -126,7 +133,7 @@ const customStyles = {
 
 export default function FilteredLaporan({ data, keyword }) {
   const isDark = useSelector(selectIsDark);
-  
+
   return (
     <div className="flex flex-col my-12">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
@@ -142,7 +149,7 @@ export default function FilteredLaporan({ data, keyword }) {
 
         {data && data.length > 0 && (
           <div className="flex justify-end items-center gap-2">
-            <ExportExcel data={data} name="Filter-laporan"  />
+            <ExportExcel data={data} name="Filter-laporan" />
             <ExportPDFF data={data} name="Filter-laporan" />
           </div>
         )}
