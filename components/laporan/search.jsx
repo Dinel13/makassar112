@@ -36,7 +36,7 @@ export default function Search({ setStatus, setKeyword }) {
           },
           body: JSON.stringify({
             kategori: kategoriRef.current.value.toLowerCase(),
-            kecamatan: kecamatan ? kecamatan: "semua",
+            kecamatan: kecamatan ? kecamatan : "semua",
             kelurahan: kelurahanRef.current.value,
             startDate: startDate,
             endDate: endDate,
