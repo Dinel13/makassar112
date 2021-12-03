@@ -72,7 +72,9 @@ export default function ErrorModal() {
 
   React.useEffect(() => {
     let timer;
-    {/* auto hide jika bukan modal confirm */}
+    {
+      /* auto hide jika bukan modal confirm */
+    }
     if (showModal && message && status !== "Confirm") {
       timer = setTimeout(() => hideModal(), 4000);
     }
@@ -111,7 +113,7 @@ export default function ErrorModal() {
                     type="button"
                     onClick={realAction}
                   >
-                    Yakin
+                    Hapus
                   </button>
                 </div>
               ) : (
