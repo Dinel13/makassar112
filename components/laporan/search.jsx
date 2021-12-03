@@ -88,7 +88,7 @@ export default function Search({ setStatus, setKeyword }) {
     kecamatanList.map((kecamatan) => {
       if (kecamatan.nama === v) {
         setKelurahan(kecamatan.kelurahan);
-      } else if (v === "semua") {
+      } else if (v === "semua" || v === "") {
         setKelurahan(null);
       }
     });
