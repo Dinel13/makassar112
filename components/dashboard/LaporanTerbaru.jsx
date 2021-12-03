@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
+import dynamic from "next/dynamic";
 
-import { parseDateSQLtoString } from "../../lib/time";
 import { showNotif } from "../../store/notifSlice";
 import { selectIsDark } from "../../store/themeSlice";
-import ExportExcel from "../button/ExportExcel";
-import ExportPDF from "../button/ExportPDF";
 import Pagination from "../button/Pagination";
-import PDFFile from "../button/PDFFIle";
 import Loading from "../loading/Loading";
 import { NoData } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
 import HiglightButton from "./HiglightButton";
+const ExportExcel = dynamic(() => import("../button/ExportExcel"), {
+  loading: () => <p>Loading...</p>,
+});
+const ExportPDFF = dynamic(() => import("../button/ExportPDFF"), {
+  loading: () => <p>Loading...</p>,
+});
 
 createTheme(
   "solarize",
@@ -111,14 +114,6 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const [pdf, setPDF] = useState(null);
-
-  const toglePdf = () => {
-    setPDF(true)
-    setTimeout(() => {
-      setPDF(false);
-    }, 2000);
-  };
 
   const getData = async (page) => {
     if (page === undefined) {
@@ -282,33 +277,22 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
     }
   };
 
+  const fileName = `Laporan-${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`;
+
   return (
     <div
       className={
         dataHg && dataHg.length == 0 ? "w-full lg:w-8/12" : "w-full lg:w-6/12"
       }
     >
-      {pdf && (
-        <PDFFile
-          data={data}
-          name={` tanggal ${parseDateSQLtoString(new Date())}`}
-        />
-      )}
-
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium  text-center">
           Laporan Terbaru
         </h2>
         {data && !loading && (
           <div className="flex justify-end items-center gap-2">
-            <ExportExcel data={data} name="terbaru" />
-            <ExportPDF data={data} name="terbaru" />
-            {/* <button
-              className="btn-pri py-1.5 text-sm px-5 tracking-wider"
-              onClick={toglePdf}
-            >
-              PDF no librari
-            </button> */}
+            <ExportExcel data={data} name={fileName} />
+            <ExportPDFF data={data} name={fileName} />
           </div>
         )}
       </div>

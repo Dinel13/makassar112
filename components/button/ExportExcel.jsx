@@ -13,10 +13,10 @@ const exportToExcel = (apiData, fileName) => {
   FileSaver.saveAs(data, fileName + fileExtension);
 };
 
-export default function ExportExcel({data}) {
+export default function ExportExcel({data, name}) {
   return (
     <button
-      onClick={() => exportToExcel(data, "Laporan")}
+      onClick={() => exportToExcel(data, name)}
       className="btn-pri py-1.5 text-sm px-5 tracking-wider"
     >
       Excel

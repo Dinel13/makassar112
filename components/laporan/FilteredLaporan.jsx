@@ -1,14 +1,17 @@
-import { useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useSelector } from "react-redux";
+import dynamic from "next/dynamic";
 
 import { parseDateSQLtoString } from "../../lib/time";
 import { selectIsDark } from "../../store/themeSlice";
-import ExportExcel from "../button/ExportExcel";
-import ExportPDF from "../button/ExportPDF";
-import PDFFile from "../button/PDFFIle";
 import { NoData, SortIcon } from "../table/helper";
 import ExpandebleTable from "./ExpandebleTable";
+const ExportExcel = dynamic(() => import("../button/ExportExcel"), {
+  loading: () => <p>Loading...</p>,
+});
+const ExportPDFF = dynamic(() => import("../button/ExportPDFF"), {
+  loading: () => <p>Loading...</p>,
+});
 
 const columns = [
   {
@@ -123,18 +126,9 @@ const customStyles = {
 
 export default function FilteredLaporan({ data, keyword }) {
   const isDark = useSelector(selectIsDark);
-  const [pdf, setPDF] = useState(null);
-
-  const toglePdf = () => {
-    setPDF(true);
-    const t = setTimeout(() => {
-      setPDF(false);
-    }, 2000);
-  };
-
+  
   return (
     <div className="flex flex-col my-12">
-      {pdf && <PDFFile data={data} keyword={keyword} name="hasil filter" />}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium">
           Hasil pencarian
@@ -148,14 +142,8 @@ export default function FilteredLaporan({ data, keyword }) {
 
         {data && data.length > 0 && (
           <div className="flex justify-end items-center gap-2">
-            <ExportExcel data={data} />
-            <ExportPDF data={data} name="terbaru" />
-            {/* <button
-              className="btn-pri py-1.5 text-sm px-5 tracking-wider"
-              onClick={toglePdf}
-            >
-              PDF no librari
-            </button>*/}
+            <ExportExcel data={data} name="Filter-laporan"  />
+            <ExportPDFF data={data} name="Filter-laporan" />
           </div>
         )}
       </div>
