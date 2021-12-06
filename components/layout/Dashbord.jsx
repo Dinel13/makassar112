@@ -1,6 +1,6 @@
-import {useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/client";
 import Link from "next/link";
 
 import DarkModeButton from "./DarkModeButton";
@@ -10,7 +10,7 @@ import Footer from "./Footer";
 
 export default function Dashbord({ children, toggleMode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [session, status] = useSession()
+  const [session, status] = useSession();
 
   const toglesidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -27,14 +27,15 @@ export default function Dashbord({ children, toggleMode }) {
       ></div>
 
       {/* sidebar bg-gray-300 dark:bg-dark2 text-gray-800 dark:text-white */}
-      <div onClick={toglesidebar}
+      <div
+        onClick={toglesidebar}
         className={
           isSidebarOpen
             ? "translate-x-0 ease-out z-20 dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lgg:translate-x-0 lgg:static lgg:inset-0"
             : "-translate-x-full ease-in dark-sidebar fixed inset-y-0 left-0 w-52 transition duration-200 transform overflow-y-auto lgg:translate-x-0 lgg:static lgg:inset-0"
         }
       >
-        <div className="flex items-center justify-center mt-8" >
+        <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
             <Link href="/dashboard">
               <a className="flex items-center text-lg sm:text-xl lg:text-2xl font-medium">
@@ -50,6 +51,9 @@ export default function Dashbord({ children, toggleMode }) {
           </div>
         </div>
         <SideNav />
+        <div className="absolute bottom-4 left-8">
+          <DarkModeButton toggleMode={toggleMode} />
+        </div>
       </div>
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* <header className="flex justify-between items-center py-4 px-6 bg-white dark:bg-dark1 text-gray-800 dark:text-white"> */}
@@ -117,7 +121,6 @@ export default function Dashbord({ children, toggleMode }) {
 
           <div className="flex items-center">
             {session && <UserButton nama={session.user.name} />}
-            <DarkModeButton toggleMode={toggleMode} />
           </div>
         </header>
         <div className="dark-main overflow-y-auto overflow-x-hidden">
