@@ -86,7 +86,7 @@ export default function Dashbord() {
           <div class="flex items-center justify-around p-6  w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
             <div>
               <span class="text-sm font-semibold ">HOMECARE</span>
-              <h1 class="text-xl ">{homecare}</h1>
+              <h1 class="text-xl "></h1>
             </div>
             <div>
               <svg
