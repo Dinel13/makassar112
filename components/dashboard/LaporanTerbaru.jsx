@@ -79,7 +79,7 @@ const columns = [
   {
     name: "Aksi",
     selector: (row) => HiglightButton(row),
-    sortable: true,
+    sortable: false,
     grow: 0,
     // maxWidth: "50px",
   },

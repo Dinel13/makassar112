@@ -11,7 +11,7 @@ export default function ItemForAdmin({ data, onUpdate, removeItem }) {
     dispatch(
       showNotif({
         status: "Confirm",
-        message: "Yakin ",
+        message: "Anda yakin ingin menghapus data ini?",
         action: ["hapusPhone", id, () => removeItem(id)],
       })
     );
