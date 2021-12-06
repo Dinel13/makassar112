@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const BuatHiglight = dynamic(
@@ -23,6 +23,8 @@ const UpdateExcel = dynamic(
   { loading: () => <p>Loading...</p> }
 );
 import Loading from "../../components/loading/Loading";
+import { showNotif } from "../../store/notifSlice";
+import { useDispatch } from "react-redux";
 
 export default function Dashbord() {
   const router = useRouter();
@@ -32,10 +34,40 @@ export default function Dashbord() {
   const [dataHg, setDataHg] = useState([]);
   const [dataHgFr, setDataHgFr] = useState([]); // higight front user
   const [mustRfrs, setMustRfrs] = useState(false);
+  const [dataCard, setDataCard] = useState(null);
+  const dispatch = useDispatch()
 
   if (!loading && !session) {
     router.push("/masuk");
   }
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const result = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/laporan/summary`,
+          {
+            method: "GET",
+          }
+        );
+        const dataRes = await result.json();
+        if (!result.ok) {
+          throw new Error(dataRes.error || "Tidak bisa mendapat data");
+        }
+        console.log(dataRes);
+        setDataCard(dataRes);
+      } catch (error) {
+        dispatch(
+          showNotif({
+            status: "Error",
+            message: error.message,
+            action: null,
+          })
+        );
+      }
+    };
+    getData();
+  }, []);
 
   if (loading) return <Loading />;
 
@@ -64,7 +96,6 @@ export default function Dashbord() {
               <HglUser dataHg={dataHgFr} setDataHg={setDataHgFr} />
             </div>
           )}
-         
         </div>
         {upload && (
           <UpdateExcel
