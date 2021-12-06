@@ -35,7 +35,8 @@ export default function Dashbord() {
   const [dataHgFr, setDataHgFr] = useState([]); // higight front user
   const [mustRfrs, setMustRfrs] = useState(false);
   const [dataCard, setDataCard] = useState(null);
-  const dispatch = useDispatch()
+  const [homecare, setHomecare] = useState(null);
+  const dispatch = useDispatch();
 
   if (!loading && !session) {
     router.push("/masuk");
@@ -80,6 +81,120 @@ export default function Dashbord() {
             Perbaharui
           </button>
         </div>
+
+        <div className="flex gap-5">
+          <div class="flex items-center justify-around p-6  w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
+            <div>
+              <span class="text-sm font-semibold ">HOMECARE</span>
+              <h1 class="text-xl ">{homecare}</h1>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
+            <div>
+              <span class="text-sm font-semibold ">COVID-19</span>
+              <h1 class="text-xl ">20 Kasus</h1>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
+            <div>
+              <span class="text-sm font-semibold ">LAMPU JALAN</span>
+              <h1 class="text-xl">20 Kasus</h1>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
+            <div>
+              <span class="text-sm font-semibold ">KRIMINAL</span>
+              <h1 class="text-xl ">20 Kasus</h1>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
+            <div>
+              <span class="text-sm font-semibold ">KEBAKARAN</span>
+              <h1 class="text-xl ">20 Kasus</h1>
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
           <LaporanTerbaru dataHg={dataHg} mustRfrs={mustRfrs} />
           {dataHg &&
@@ -110,6 +225,7 @@ export default function Dashbord() {
           />
         )}
       </div>
+
       <div className="fixed right-8 bottom-4">
         <button
           onClick={() => setBuatHgl(true)}
