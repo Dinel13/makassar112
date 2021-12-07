@@ -278,17 +278,14 @@ export default function Home() {
           )}
         </div>
       </div>
-      <div className="App">
+      <div className="App dark-card">
         <FloatingWhatsApp
           phoneNumber="+62 811-400-112"
           accountName="NTPD 112 Kota Makassar"
           avatar="/logokominfo.jpg"
           statusMessage="WA ini tidak menjawab panggilan telepon"
-          allowClickAway
-          notification
-          notificationDelay={60000} // 1 minute
           placeholder="Laporkan kejadian anda"
-          chatMessage="112 Kota Makassar Ada yang bisa kami bantu?"
+          chatMessage="NTPD 112 Kota Makassar, ada kejadian darurat apa?"
         />
       </div>
     </>

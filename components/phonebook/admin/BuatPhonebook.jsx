@@ -34,7 +34,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
             wilayah: wilayahRef.current.value,
             alamat: alamatRef.current.value,
             lokasi: lokasiRef.current.value,
-            status
+            status,
           }),
         }
       );
@@ -71,7 +71,9 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
           <div className="md:flex">
             <div className="w-full">
               <div className="p-4 border-b-2 border-gray-400">
-                <span className="px-3 text-lg font-bold">Tambah Nomor Baru</span>
+                <span className="px-3 text-lg font-bold">
+                  Tambah Nomor Baru
+                </span>
               </div>
               <form
                 onSubmit={handleSubmit}
@@ -83,7 +85,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                     ref={namaRef}
                     className="input-field-sm w-full mt-1"
                     type="text"
-                    maxLength="45"
+                    maxLength="100"
                     required
                   />
                 </label>
@@ -172,16 +174,10 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
                     <PendingButton />
                   ) : (
                     <>
-                      <button
-                        onClick={cancel}
-                        className="btn-ter py-2 px-6"
-                      >
+                      <button onClick={cancel} className="btn-ter py-2 px-6">
                         Batal
                       </button>
-                      <button
-                        className="btn-pri py-2 px-6"
-                        type="submit"
-                      >
+                      <button className="btn-pri py-2 px-6" type="submit">
                         Upload
                       </button>
                     </>

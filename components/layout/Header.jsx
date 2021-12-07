@@ -14,10 +14,10 @@ const MainNavigation = ({ toggleMode }) => {
             width="38"
             height="42"
           ></Image>
-          <span className="text-xl font-medium ml-2">Makassar</span>
+          <span className="text-xl font-medium ml-2 ">Makassar 112</span>
         </a>
       </Link>
-      <nav>
+      {/* <nav>
         <ul className="flex justify-end items-center space-x-3 relative">
           <li>
             <Link href="/">Beranda</Link>
@@ -31,7 +31,7 @@ const MainNavigation = ({ toggleMode }) => {
             <DarkModeButton toggleMode={toggleMode} />
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </header>
   );
 };

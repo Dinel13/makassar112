@@ -105,14 +105,16 @@ export default function Dashbord({ children, toggleMode }) {
               /> */}
               <div className="lgg:hidden">
                 <Link href="/dashboard">
-                  <a className="flex items-center text-lg sm:text-xl font-medium">
+                  <a className="flex items-center text-lg sm:text-xl font-medium ">
                     <Image
                       src="/makassar.png"
                       alt="makassar"
                       width="36"
                       height="40"
                     ></Image>
-                    Makassar
+                    <span className="text-xl font-medium ml-2 ">
+                      Makassar 112
+                    </span>
                   </a>
                 </Link>
               </div>
