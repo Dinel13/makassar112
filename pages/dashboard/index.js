@@ -14,17 +14,15 @@ const HglLaporan = dynamic(
   () => import("../../components/dashboard/HglLaporan"),
   { loading: () => <p>Loading...</p> }
 );
-const LaporanTerbaru = dynamic(
-  () => import("../../components/dashboard/LaporanTerbaru"),
-  { loading: () => <p>Loading...</p> }
-);
 const UpdateExcel = dynamic(
   () => import("../../components/dashboard/UpdateExcel"),
   { loading: () => <p>Loading...</p> }
 );
+import LaporanTerbaru from "../../components/dashboard/LaporanTerbaru";
 import Loading from "../../components/loading/Loading";
 import { showNotif } from "../../store/notifSlice";
 import { useDispatch } from "react-redux";
+import CardCategory from "../../components/dashboard/CardCategory";
 
 export default function Dashbord() {
   const router = useRouter();
@@ -67,7 +65,7 @@ export default function Dashbord() {
       }
     };
     getData();
-  }, []);
+  }, [dispatch]);
 
   if (loading) return <Loading />;
 
@@ -81,16 +79,12 @@ export default function Dashbord() {
           </button>
         </div>
 
-        <div className="flex gap-5">
-          <div class="flex items-center justify-around p-6  w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
-            <div>
-              <span class="text-sm font-semibold ">HOMECARE</span>
-              <h1 class="text-xl "></h1>
-            </div>
-            <div>
+        {dataCard && (
+          <div className="flex justify-center flex-wrap gap-5 mt-10 mb-16">
+            <CardCategory title="HOMECARE" total={dataCard.homecare.total}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8"
+                className="h-8 w-8"
                 aria-hidden="true"
                 role="img"
                 preserveAspectRatio="xMidYMid meet"
@@ -105,17 +99,11 @@ export default function Dashbord() {
                   fill="currentColor"
                 />
               </svg>
-            </div>
-          </div>
-          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
-            <div>
-              <span class="text-sm font-semibold ">COVID-19</span>
-              <h1 class="text-xl ">20 Kasus</h1>
-            </div>
-            <div>
+            </CardCategory>
+            <CardCategory title="COVID-19" total={dataCard.covid.total}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                className="h-8 w-8 "
                 aria-hidden="true"
                 role="img"
                 preserveAspectRatio="xMidYMid meet"
@@ -126,17 +114,11 @@ export default function Dashbord() {
                   fill="currentColor"
                 />
               </svg>
-            </div>
-          </div>
-          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
-            <div>
-              <span class="text-sm font-semibold ">LAMPU JALAN</span>
-              <h1 class="text-xl">20 Kasus</h1>
-            </div>
-            <div>
+            </CardCategory>
+            <CardCategory title="LAMPU JALAN" total={dataCard.lampuJalan.total}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                className="h-8 w-8 "
                 aria-hidden="true"
                 role="img"
                 preserveAspectRatio="xMidYMid meet"
@@ -147,17 +129,11 @@ export default function Dashbord() {
                   fill="currentColor"
                 />
               </svg>
-            </div>
-          </div>
-          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
-            <div>
-              <span class="text-sm font-semibold ">KRIMINAL</span>
-              <h1 class="text-xl ">20 Kasus</h1>
-            </div>
-            <div>
+            </CardCategory>
+            <CardCategory title="KRIMINAL" total={dataCard.kriminalitas.total}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                className="h-8 w-8 "
                 aria-hidden="true"
                 role="img"
                 width="1em"
@@ -170,17 +146,11 @@ export default function Dashbord() {
                   fill="currentColor"
                 />
               </svg>
-            </div>
-          </div>
-          <div class="flex items-center justify-around p-6 bg-white w-64 rounded-xl space-x-2 mt-10 shadow-lg dark-card">
-            <div>
-              <span class="text-sm font-semibold ">KEBAKARAN</span>
-              <h1 class="text-xl ">20 Kasus</h1>
-            </div>
-            <div>
+            </CardCategory>
+            <CardCategory title="KEBAKARAN" total={dataCard.kebakaran.total}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 "
+                className="h-8 w-8 "
                 aria-hidden="true"
                 role="img"
                 width="1em"
@@ -193,9 +163,9 @@ export default function Dashbord() {
                   fill="currentColor"
                 />
               </svg>
-            </div>
+            </CardCategory>
           </div>
-        </div>
+        )}
 
         <div className="flex flex-col-reverse lg:flex-row gap-y-10 gap-x-6 xl:gap-y-8 my-10">
           <LaporanTerbaru dataHg={dataHg} mustRfrs={mustRfrs} />
