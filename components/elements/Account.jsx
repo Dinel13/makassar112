@@ -18,18 +18,16 @@ const Account = ({ name }) => {
           <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
         </svg>
       </button>
-      <ul className={`${s.dropdownMenu} absolute hidden text-gray-700 pt-1 w-32 -ml-8`}>
+      <ul
+        className={`${s.dropdownMenu} absolute hidden text-gray-700 pt-1 w-32 -ml-8`}
+      >
         {/* <li className="rounded-t bg-gray-200  hover:bg-gray-400 py-2 px-4 block">
           <Link href="/profile">
               My Profile
           </Link>
         </li> */}
         <li className="rounded-b bg-gray-200  hover:bg-gray-400 py-2 px-4 block">
-          <button
-            onClick={() => dispatch(logout())}
-          >
-            logout
-          </button>
+          <button onClick={() => dispatch(logout())}>Logout</button>
         </li>
       </ul>
     </div>

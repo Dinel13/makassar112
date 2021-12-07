@@ -22,7 +22,7 @@ export default function Laporan() {
       <h3 className="text-title font-medium">Front Page</h3>
       <div className="flex flex-wrap  items-center gap-y-4 gap-x-4 my-4">
         <button onClick={() => setUploadBg(true)} className="btn-pri px-6 py-2">
-          Ganti Backgroud
+          Ganti Background
         </button>
         <Link href="/">
           <a className="btn-pri px-6 py-2">Lihat Front Page</a>

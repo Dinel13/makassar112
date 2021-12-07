@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { showNotif } from "../store/notifSlice";
 import PendingButton from "./button/Pending";
 
-
 export default function UpdateBg({ cancel }) {
   const fileRef = useRef(null);
   const [pending, setPending] = useState(false);
@@ -17,13 +16,10 @@ export default function UpdateBg({ cancel }) {
       const formData = new FormData();
       formData.append("file", fileRef.current.files[0]);
 
-      const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/bg`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/bg`, {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await result.json();
       if (!result.ok) {
@@ -82,7 +78,7 @@ export default function UpdateBg({ cancel }) {
                   ) : (
                     <>
                       <button onClick={cancel} className="w-full btn-sec py-2">
-                        batal
+                        Batal
                       </button>
                       <button className="w-full btn-pri py-2" type="submit">
                         Upload

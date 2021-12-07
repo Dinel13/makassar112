@@ -17,8 +17,8 @@ const MainNavigation = ({ toggleMode }) => {
           <span className="text-xl font-medium ml-2 ">Makassar 112</span>
         </a>
       </Link>
-      {/* <nav>
-        <ul className="flex justify-end items-center space-x-3 relative">
+      <nav>
+        {/* <ul className="flex justify-end items-center space-x-3 relative">
           <li>
             <Link href="/">Beranda</Link>
           </li>
@@ -26,12 +26,12 @@ const MainNavigation = ({ toggleMode }) => {
             <Link href="/masuk">
               <a id="login">Login</a>
             </Link>
-          </li>
-          <li className="flex items-center ">
-            <DarkModeButton toggleMode={toggleMode} />
-          </li>
-        </ul>
-      </nav> */}
+          </li> */}
+        <li className="flex items-center ">
+          <DarkModeButton toggleMode={toggleMode} />
+        </li>
+        {/* </ul> */}
+      </nav>
     </header>
   );
 };

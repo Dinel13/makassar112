@@ -278,7 +278,7 @@ export default function Home() {
           )}
         </div>
       </div>
-      <div className="App dark-card">
+      <div className="App text-gray-800">
         <FloatingWhatsApp
           phoneNumber="+62 811-400-112"
           accountName="NTPD 112 Kota Makassar"
