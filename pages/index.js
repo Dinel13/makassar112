@@ -203,6 +203,50 @@ export default function Home() {
                   />
                 </svg>
               </ButtonKategori>
+              <ButtonKategori
+                className="text-title"
+                text="Transportasi"
+                setStatus={setStatus}
+                resultRef={resultRef}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8"
+                  aria-hidden="true"
+                  role="img"
+                  width="3em"
+                  height="3em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 6c-1.11 0-2 .89-2 2v7h2a3 3 0 0 0 3 3a3 3 0 0 0 3-3h6a3 3 0 0 0 3 3a3 3 0 0 0 3-3h2V8c0-1.11-.89-2-2-2H3m-.5 1.5h4V10h-4V7.5m5.5 0h4V10H8V7.5m5.5 0h4V10h-4V7.5m5.5 0h2.5V13L19 11V7.5m-13 6A1.5 1.5 0 0 1 7.5 15A1.5 1.5 0 0 1 6 16.5A1.5 1.5 0 0 1 4.5 15A1.5 1.5 0 0 1 6 13.5m12 0a1.5 1.5 0 0 1 1.5 1.5a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </ButtonKategori>
+              <ButtonKategori
+                className="text-title"
+                text="Bencana"
+                setStatus={setStatus}
+                resultRef={resultRef}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8"
+                  aria-hidden="true"
+                  role="img"
+                  width="3em"
+                  height="3em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M5 21a1 1 0 0 1-.993-.883L4 20v-9H1l10.327-9.388a1 1 0 0 1 1.246-.08l.1.08L23 11h-3v9a1 1 0 0 1-.883.993L19 21H5zm7-17.298L6 9.156V19h4.357l1.393-1.5L8 14l5-3l-2.5-2l3-3l-.5 3l2.5 2l-4 3l3.5 3l-1.25 2H18V9.157l-6-5.455z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </ButtonKategori>
             </div>
           </div>
         </div>
