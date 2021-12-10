@@ -138,7 +138,7 @@ export default function FilteredLaporan({ data, keyword }) {
     <div className="flex flex-col my-12">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <h2 className="text-subtitle font-medium">
-          Hasil pencarian
+          Hasil Pencarian
           {keyword &&
             keyword.map((item) => (
               <p className="text-sm font-extralight" key={item.key}>

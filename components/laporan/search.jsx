@@ -54,9 +54,9 @@ export default function Search({ setStatus, setKeyword }) {
         search: true,
       });
       setKeyword([
-        { key: "kategori", value: kategoriRef.current.value.toLowerCase() },
-        { key: "kecamatan", value: kecamatan.toLowerCase() },
-        { key: "kelurahan", value: kelurahanRef.current.value },
+        { key: "Kategori", value: kategoriRef.current.value.toUpperCase() },
+        { key: "Kecamatan", value: kecamatan.toUpperCase() },
+        { key: "Kelurahan", value: kelurahanRef.current.value.toUpperCase() },
         {
           key: "Waktu",
           value:
