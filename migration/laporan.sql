@@ -1,6 +1,6 @@
 CREATE TABLE "laporans" (
   "id" bigserial NOT NULL,
-  "id_laporan" VARCHAR NOT NULL,
+  "id_laporan" VARCHAR NOT NULL UNIQUE,
   "kategori" VARCHAR NOT NULL,
   "deskripsi" TEXT NOT NULL,
   "lokasi" VARCHAR,
