@@ -52,7 +52,6 @@ export default function Dashbord() {
         if (!result.ok) {
           throw new Error(dataRes.error || "Tidak bisa mendapat data");
         }
-        console.log(dataRes);
         setDataCard(dataRes);
       } catch (error) {
         dispatch(

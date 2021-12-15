@@ -5,5 +5,8 @@ module.exports = {
   },
   env: {
     ROOT: __dirname,
-  }
+  },
+  images: {
+    domains: ['localhost', '103.151.20.63' ],
+  },
 };
