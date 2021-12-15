@@ -19,4 +19,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /var/www/makassar112
+            sudo su
+            ${{ secrets.SSH_PASSWORD }}
             git pull https://${{ secrets.TOKEN }}@github.com/Dinel13/makassar112.git deploy
