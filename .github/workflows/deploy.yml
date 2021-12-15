@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: SSH and deploy node app
         uses: appleboy/ssh-action@master
+        env:
+         FOO: ${{ secrets.SSH_PASSWORD }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -20,5 +22,5 @@ jobs:
           script: |
             cd /var/www/makassar112
             sudo su
-            ${{ secrets.SSH_PASSWORD }}
+            $FOO
             git pull https://${{ secrets.TOKEN }}@github.com/Dinel13/makassar112.git deploy
