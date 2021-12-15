@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -32,9 +32,9 @@ export default async function handler(req, res) {
       const body = JSON.parse(req.body);
       const { id_laporan } = body;
 
-      if (!id_laporan ) {
+      if (!id_laporan) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["Isian tidak lengkap"],
         });
       }
 
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       if (newData) {
         setTimeout(() => {
           deleteData(newData.laporan_id);
-      }, 24 * 60 * 60 * 1000); // 1 hari
+        }, 24 * 60 * 60 * 1000); // 1 hari
       }
 
       return res.status(200).json(newData);
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
       console.error(error);
       if (error.code === "23505") {
         return res.status(422).send({
-          error: "data sudah ada",
+          error: "Data sudah ada",
         });
       }
       res

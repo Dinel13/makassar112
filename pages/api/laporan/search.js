@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -39,7 +39,8 @@ export default async function handler(req, res) {
         res.status(200).json(total);
 
         return;
-      } else if ( // kecamatan ada
+      } else if (
+        // kecamatan ada
         kategori === "semua" &&
         kecamatan !== "semua" &&
         kelurahan === "semua"
@@ -51,7 +52,8 @@ export default async function handler(req, res) {
         res.status(200).json(total);
 
         return;
-      }  else if ( // kecamatan dan kelurahan ada
+      } else if (
+        // kecamatan dan kelurahan ada
         kategori === "semua" &&
         kecamatan !== "semua" &&
         kelurahan !== "semua"
@@ -63,7 +65,8 @@ export default async function handler(req, res) {
         res.status(200).json(total);
 
         return;
-      } else if ( // hanya kategori ada
+      } else if (
+        // hanya kategori ada
         kategori !== "semua" &&
         kecamatan === "semua" &&
         kelurahan === "semua"
@@ -75,7 +78,8 @@ export default async function handler(req, res) {
         res.status(200).json(total);
 
         return;
-      } else if ( // hanya kategori dan kecamatan ada
+      } else if (
+        // hanya kategori dan kecamatan ada
         kategori !== "semua" &&
         kecamatan !== "semua" &&
         kelurahan === "semua"
@@ -87,7 +91,8 @@ export default async function handler(req, res) {
         res.status(200).json(total);
 
         return;
-      } else { // semua ada
+      } else {
+        // semua ada
         const resultSearch = await db.query(
           `SELECT * FROM laporans WHERE LOWER(kategori) = LOWER($1) 
         AND kecamatan = $2 AND kelurahan = $3 AND updated_at BETWEEN $4 AND $5`,

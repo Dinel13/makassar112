@@ -193,7 +193,7 @@ export default function Phonebook() {
                   </g>
                 </svg>
 
-                <span className="ml-3">Tambah Nomor baru</span>
+                <span className="ml-3">Tambah Nomor Baru</span>
               </button>
             </div>
             <div className="p-3">
@@ -217,7 +217,7 @@ export default function Phonebook() {
                   </g>
                 </svg>
 
-                <span className="ml-3">Tambah kategori baru</span>
+                <span className="ml-3">Tambah Kategori Baru</span>
               </button>
             </div>{" "}
           </div>

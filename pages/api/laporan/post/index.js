@@ -23,7 +23,7 @@ async function auth(req, res, next) {
   const session = await getSession({ req });
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
   next();
