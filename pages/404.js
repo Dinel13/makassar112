@@ -12,7 +12,7 @@ export default function Custom404() {
             Halaman ini tidak ditemukan.
           </p>
           <p className="mb-6">
-            Tapi jangan khawatir, kamu dapat menemukan banyak hal lainya dari
+            Tapi jangan khawatir, kamu dapat menemukan banyak hal lainnya dari
             halaman beranda kami{" "}
           </p>
           <Link href="/">

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -25,12 +25,12 @@ export default async function handler(req, res) {
 
       if (!deletedh) {
         return res.status(404).send({
-          error: "data tidak ditemukan",
+          error: "Data tidak ditemukan",
         });
       }
 
       res.status(200).send({
-        message: "data telah dihapus",
+        message: "Data telah dihapus",
       });
     } catch (error) {
       console.error(error);

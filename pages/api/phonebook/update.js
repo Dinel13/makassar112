@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -18,17 +18,27 @@ export default async function handler(req, res) {
   async function run() {
     try {
       const body = JSON.parse(req.body);
-      const {id, nama, phone, kategori, wilayah, alamat, lokasi, status } = body;
+      const { id, nama, phone, kategori, wilayah, alamat, lokasi, status } =
+        body;
 
-      if (!id|| !nama || !phone || !kategori || !wilayah || !alamat || !lokasi || !status) {
+      if (
+        !id ||
+        !nama ||
+        !phone ||
+        !kategori ||
+        !wilayah ||
+        !alamat ||
+        !lokasi ||
+        !status
+      ) {
         return res.status(422).send({
-          error: ["isian tidak lengkap"],
+          error: ["Isian tidak lengkap"],
         });
       }
 
       const updatedPhonebook = await db.one(
-         `UPDATE phones SET nama = $1, phone = $2, kategori = $3, wilayah = $4, alamat = $5, lokasi = $6, status = $7, updated_at = NOW() WHERE id = $8 RETURNING *`,
-         [nama, phone, kategori, wilayah, alamat, lokasi, status, id]
+        `UPDATE phones SET nama = $1, phone = $2, kategori = $3, wilayah = $4, alamat = $5, lokasi = $6, status = $7, updated_at = NOW() WHERE id = $8 RETURNING *`,
+        [nama, phone, kategori, wilayah, alamat, lokasi, status, id]
       );
 
       res.status(200).json(updatedPhonebook);

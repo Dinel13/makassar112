@@ -1,7 +1,6 @@
 import { db } from "../../lib/db";
 import { hash } from "bcryptjs";
 
-
 export default function handler(req, res) {
   if (req.method !== "POST") {
     res.status(400).send({ message: "Only POST requests allowed" });
@@ -12,12 +11,19 @@ export default function handler(req, res) {
       const body = JSON.parse(req.body);
       const { nama, email, password, kode } = body;
 
-      if (!nama || !email.includes("@") || password.trim().length < 5 || !kode) {
-        return res.status(422).send({ error: "Isian tidak lengkap atau password terlalu pendek" });
+      if (
+        !nama ||
+        !email.includes("@") ||
+        password.trim().length < 5 ||
+        !kode
+      ) {
+        return res
+          .status(422)
+          .send({ error: "Isian tidak lengkap atau password terlalu pendek" });
       }
 
       if (kode !== "Rahassia@112") {
-        return res.status(422).send({ error: "kode operator tidak sesuai" });
+        return res.status(422).send({ error: "Kode operator tidak sesuai" });
       }
 
       const userExits = await db.oneOrNone(
@@ -26,7 +32,7 @@ export default function handler(req, res) {
       );
 
       if (userExits) {
-        return res.status(422).send({ error: ["email sudah terdaftar"] });
+        return res.status(422).send({ error: ["Email sudah terdaftar"] });
       }
 
       const hashPassword = await hash(password, 12);

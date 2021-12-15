@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
         if (!id) {
           return res.status(422).send({
-            error: "id is required",
+            error: "ID is required",
           });
         }
 
@@ -82,7 +82,7 @@ export default async function handler(req, res) {
           res.status(500).send({ message: "Tidak bisa menyimpan data" });
         }
 
-        res.status(200).send({ message: "ok" });
+        res.status(200).send({ message: "Ok" });
       } catch (error) {
         console.error(error);
         res

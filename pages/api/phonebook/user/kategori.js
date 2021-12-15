@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       const { kategori } = body;
       if (!kategori) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["Isian tidak lengkap"],
         });
       }
       // get the data from the database

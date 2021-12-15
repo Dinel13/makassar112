@@ -9,10 +9,10 @@ export default function Custom500() {
             500
           </div>
           <p className="text-2xl md:text-3xl py-2 font-light leading-normal">
-            Server sedang bermasah.
+            Server sedang bermasalah.
           </p>
           <p className="mb-6">
-            Tapi jangan khawatir, kamu dapat menemukan banyak hal lainya dari
+            Tapi jangan khawatir, kamu dapat menemukan banyak hal lainnya dari
             halaman beranda kami{" "}
           </p>
           <Link href="/">

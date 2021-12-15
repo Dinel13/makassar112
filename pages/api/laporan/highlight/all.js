@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 

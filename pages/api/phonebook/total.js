@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -23,9 +23,7 @@ export default async function handler(req, res) {
       page = 14 * (page - 1);
     }
     try {
-      const total = await db.one(
-        "SELECT COUNT(*) FROM phones"
-      );
+      const total = await db.one("SELECT COUNT(*) FROM phones");
       res.status(200).json(total);
     } catch (error) {
       console.error(error);

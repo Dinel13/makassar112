@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       const { query } = body;
       if (!query) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["Isian tidak lengkap"],
         });
       }
 

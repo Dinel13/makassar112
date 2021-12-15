@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (!session) {
     res.status(200).json({
-      message: "You must signin.",
+      message: "You must sign in.",
     });
   }
 
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
       if (!nama) {
         return res.status(422).send({
-          error: ["isisan tidak lengkap"],
+          error: ["Isian tidak lengkap"],
         });
       }
 
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       );
 
       if (isExits) {
-        return res.status(422).send({ error: ["kategori sudah ada"] });
+        return res.status(422).send({ error: ["Kategori sudah ada"] });
       }
 
       const newKategori = await db.one(

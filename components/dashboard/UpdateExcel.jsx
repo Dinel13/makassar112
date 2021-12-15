@@ -160,7 +160,7 @@ export default function UpdateExcel({ setMustRfrs, cancel }) {
 
                 <div className="flex text-center justify-end pt-4 gap-x-3">
                   <button onClick={cancel} className="btn-sec py-2 px-4">
-                    batal
+                    Batal
                   </button>
                   <button className="btn-pri py-2 px-3" type="submit">
                     Perbaharui
