@@ -27,25 +27,17 @@ function Footer() {
             </h2>
             <nav className="list-none mb-10 ">
               <li>
-                <Link href="https://makassarkota.go.id/">
-                  <a href="" className="">
-                    Makassarkota.go.id
-                  </a>
-                </Link>
+                <a href="https://makassarkota.go.id/">Makassarkota.go.id</a>
               </li>
               <li>
-                <Link href="https://opendata.makassar.go.id/">
-                  <a href="" className="">
-                    Opendata.makassar.go.id
-                  </a>
-                </Link>
+                <a href="https://opendata.makassar.go.id/">
+                  Opendata.makassar.go.id
+                </a>
               </li>
               <li>
-                <Link href="http://portalkerjasama.makassarkota.go.id/">
-                  <a href="" className="">
-                    Portal kerjasama
-                  </a>
-                </Link>
+                <a href="http://portalkerjasama.makassarkota.go.id/">
+                  Portal kerjasama
+                </a>
               </li>
             </nav>
           </div>
