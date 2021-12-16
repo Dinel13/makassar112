@@ -108,7 +108,7 @@ export default async function handler(req, res) {
 
   async function run() {
     try {
-      const browser = await puppeteer.launch({ headless: true });
+      const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
       const page = await browser.newPage();
       await page.goto("https://makassar.sakti112.id/login", {
         waitUntil: "load",
