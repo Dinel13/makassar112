@@ -5,6 +5,7 @@ export default function ExportPDFF({ data, name }) {
   const doc = new jsPDF("l", "mm", [297, 210]);
 
   // Or use javascript directly:
+  console.error = () => {}; // to hide error messages from console
   doc.autoTable({
     theme: "grid",
     styles: {

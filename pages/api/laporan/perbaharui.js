@@ -153,7 +153,7 @@ export default async function handler(req, res) {
         .status(500)
         .send({ message: "Error creating on the server", error: error });
     } finally {
-      // removeFile(path.join(basedir, "/report", fileName));
+      removeFile(path.join(basedir, "/report", fileName));
     }
   }
   run();
