@@ -1,10 +1,10 @@
 module.exports = {
   reactStrictMode: true,
   serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname,
+    PROJECT_ROOT: "/home/din/project/makassar112",
   },
   env: {
-    ROOT: __dirname,
+    ROOT: "/home/din/project/makassar112",
   },
   images: {
     domains: ['localhost', '103.151.20.63' ],

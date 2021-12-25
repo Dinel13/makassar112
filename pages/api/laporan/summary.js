@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       );
 
       const covid = await db.one(
-        `SELECT COUNT(*) as total FROM laporans WHERE kategori = 'COVID-19'`
+        `SELECT COUNT(*) as total FROM laporans WHERE kategori = 'COVID - 19'`
       );
 
       const kebakaran = await db.one(
