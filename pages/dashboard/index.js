@@ -43,7 +43,7 @@ export default function Dashbord() {
     const getData = async () => {
       try {
         const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/laporan/summary`,
+          `api/laporan/summary`,
           {
             method: "GET",
           }

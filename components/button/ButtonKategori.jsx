@@ -23,7 +23,7 @@ export default function ButtonKategori({
     });
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/user/kategori`,
+        `api/phonebook/user/kategori`,
         {
           method: "POST",
           headers: {

@@ -87,7 +87,7 @@ export default function HglUser({ dataHg, setDataHg }) {
   const getData = useCallback(async () => {
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/highlight/get`,
+        `api/highlight/get`,
         {
           method: "GET",
         }

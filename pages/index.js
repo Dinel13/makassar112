@@ -37,7 +37,7 @@ export default function Home() {
     });
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/user/search`,
+        `api/phonebook/user/search`,
         {
           method: "POST",
           headers: {

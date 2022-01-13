@@ -21,7 +21,7 @@ export default function BuatPhoneBook({ cancel, kategoriList }) {
 
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/post`,
+        `api/phonebook/post`,
         {
           method: "POST",
           headers: {

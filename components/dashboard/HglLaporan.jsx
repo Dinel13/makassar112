@@ -103,7 +103,7 @@ export default function HglLaporan({ dataHg, setDataHg }) {
   const getData = async () => {
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/all`,
+        `api/laporan/highlight/all`,
         {
           method: "GET",
         }
@@ -128,7 +128,7 @@ export default function HglLaporan({ dataHg, setDataHg }) {
   const getDataAgain = async () => {
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/all`,
+        `api/laporan/highlight/all`,
         {
           method: "GET",
         }

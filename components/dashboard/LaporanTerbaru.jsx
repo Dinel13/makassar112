@@ -121,7 +121,7 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
     }
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
+        `api/laporan/all/${page}`,
         {
           method: "GET",
         }
@@ -147,7 +147,7 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
     setTotal((s) => ({ ...s, loading: true }));
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/total`,
+        `api/laporan/total`,
         {
           method: "GET",
         }
@@ -181,7 +181,7 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
     }
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/all/${page}`,
+        `api/laporan/all/${page}`,
         {
           method: "GET",
         }
@@ -207,7 +207,7 @@ export default function LaporanTerbaru({ dataHg, mustRfrs }) {
   const getTotalAgain = async () => {
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/laporan/total`,
+        `api/laporan/total`,
         {
           method: "GET",
         }

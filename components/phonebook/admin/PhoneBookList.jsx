@@ -18,7 +18,7 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
     async (page) => {
       try {
         const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/phonebook/all-admin/${page}`,
+          `api/phonebook/all-admin/${page}`,
           {
             method: "GET",
           }
@@ -52,7 +52,7 @@ export default function PhoneBookList({ onUpdate, needRefh, needRefsh }) {
     setTotal((s) => ({ ...s, loading: true }));
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/total`,
+        `api/phonebook/total`,
         {
           method: "GET",
         }

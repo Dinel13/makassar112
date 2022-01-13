@@ -15,7 +15,7 @@ export default function BuatKategori({ cancel, updateKategorilist }) {
 
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/phonebook/kategori/post`,
+        `api/phonebook/kategori/post`,
         {
           method: "POST",
           headers: {

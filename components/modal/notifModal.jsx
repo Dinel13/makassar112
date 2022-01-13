@@ -15,7 +15,7 @@ export default function ErrorModal() {
       const deleteData = async (id) => {
         try {
           const result = await fetch(
-            `${process.env.NEXT_PUBLIC_URL}/phonebook/delete`,
+            `api/phonebook/delete`,
             {
               method: "DELETE",
               headers: {

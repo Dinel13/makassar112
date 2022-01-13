@@ -32,7 +32,7 @@ export default function Login() {
       return;
     }
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/daftar`, {
+      const response = await fetch(`api/daftar`, {
         method: "POST",
         headers: {
           // "Content-Type": "application/json",

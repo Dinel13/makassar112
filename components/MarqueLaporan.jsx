@@ -13,7 +13,7 @@ export default function MarqueLaporan() {
   const getData = useCallback(async (page) => {
       try {
         const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/laporan/highlight/user`,
+          `api/laporan/highlight/user`,
           {
             method: "GET",
           }
@@ -40,7 +40,7 @@ export default function MarqueLaporan() {
   const getDataKhusus = useCallback(async (page) => {
       try {
         const result = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/highlight/get`,
+          `api/highlight/get`,
           {
             method: "GET",
           }

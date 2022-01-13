@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   serverRuntimeConfig: {
-    PROJECT_ROOT: "/home/din/project/makassar112",
+    PROJECT_ROOT: __dirname,
   },
   env: {
     ROOT: "/home/din/project/makassar112",
