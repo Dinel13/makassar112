@@ -41,7 +41,7 @@ export default function Phonebook() {
   const getKategori = async () => {
     try {
       const result = await fetch(
-        `api/phonebook/kategori/get`,
+        `../api/phonebook/kategori/get`,
         {
           method: "GET",
         }
@@ -69,7 +69,7 @@ export default function Phonebook() {
     });
     try {
       const result = await fetch(
-        `api/phonebook/search`,
+        `../api/phonebook/search`,
         {
           method: "POST",
           headers: {

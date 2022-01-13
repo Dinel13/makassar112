@@ -14,7 +14,7 @@ export default function HiglightButton(data) {
     setLoading(true);
     try {
       const result = await fetch(
-        `api/laporan/highlight`,
+        `../api/laporan/highlight`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -69,7 +69,7 @@ export function UnHiglightButton(dataId) {
     setLoading(true);
     try {
       const result = await fetch(
-        `api/laporan/highlight/${dataId}`,
+        `../api/laporan/highlight/${dataId}`,
         {
           method: "DELETE",
         }
@@ -115,7 +115,7 @@ export function HiglightUser(row) {
     setLoading(true);
     try {
       const result = await fetch(
-        `api/highlight/${id}`,
+        `../api/highlight/${id}`,
         {
           method: "DELETE",
         }

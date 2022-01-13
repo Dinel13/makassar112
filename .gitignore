@@ -41,5 +41,5 @@ next.config.js
 .idea/
 
 /upload
-/public/files
+/public/files/bg.jpeg
 /report

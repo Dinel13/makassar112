@@ -15,7 +15,7 @@ export default function ErrorModal() {
       const deleteData = async (id) => {
         try {
           const result = await fetch(
-            `api/phonebook/delete`,
+            `../api/phonebook/delete`,
             {
               method: "DELETE",
               headers: {

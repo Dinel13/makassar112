@@ -16,7 +16,7 @@ export default function UpdateBg({ cancel }) {
       const formData = new FormData();
       formData.append("file", fileRef.current.files[0]);
 
-      const result = await fetch(`api/bg`, {
+      const result = await fetch(`../api/bg`, {
         method: "POST",
         body: formData,
       });

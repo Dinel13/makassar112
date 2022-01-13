@@ -17,7 +17,7 @@ export default function BuatHiglight({ cancel, setData }) {
     e.preventDefault();
     setPending(true);
     try {
-      const result = await fetch(`api/highlight/post`, {
+      const result = await fetch(`../api/highlight/post`, {
         method: "POST",
         body: JSON.stringify({
           kategori: kategoriRef.current.value,

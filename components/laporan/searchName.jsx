@@ -18,7 +18,7 @@ export default function SearchName({ setStatus, setKeyword }) {
     });
     try {
       const result = await fetch(
-        `api/laporan/searchByName`,
+        `../api/laporan/searchByName`,
         {
           method: "POST",
           headers: {

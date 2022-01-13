@@ -28,7 +28,7 @@ export default function UpdateExcel({ setMustRfrs, cancel }) {
       formData.append("file", file);
 
       const result = await fetch(
-        `api/laporan/post`,
+        `../api/laporan/post`,
         {
           method: "POST",
           body: formData,
@@ -81,7 +81,7 @@ export default function UpdateExcel({ setMustRfrs, cancel }) {
     setPending(true);
     try {
       const result = await fetch(
-        `api/laporan/perbaharui`,
+        `../api/laporan/perbaharui`,
         {
           method: "POST",
         }

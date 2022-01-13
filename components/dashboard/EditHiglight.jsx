@@ -19,7 +19,7 @@ export default function EditHiglight({ cancel, data }) {
     const id = data.id;
     try {
       const result = await fetch(
-        `api/highlight/update`,
+        `../api/highlight/update`,
         {
           method: "PUT",
           body: JSON.stringify({

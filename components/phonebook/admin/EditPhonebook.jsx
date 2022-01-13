@@ -27,7 +27,7 @@ export default function BuatPhoneBook({
 
     try {
       const result = await fetch(
-        `api/phonebook/update`,
+        `../api/phonebook/update`,
         {
           method: "PUT",
           headers: {
