@@ -22,7 +22,7 @@ export default function handler(req, res) {
           .send({ error: "Isian tidak lengkap atau password terlalu pendek" });
       }
 
-      if (kode !== "Rahassia@112") {
+      if (kode !== process.env.KODE_REGISTRASI) {
         return res.status(422).send({ error: "Kode operator tidak sesuai" });
       }
 

@@ -114,8 +114,8 @@ export default async function handler(req, res) {
         waitUntil: "load",
         timeout: 0,
       });
-      await page.type("#email", "spvmakassar@sakti112.id");
-      await page.type("#password", "spv12345");
+      await page.type("#email", process.env.SAKTI_EMAIL);
+      await page.type("#password", process.env.SAKTI_PASS);
       await page.click(".btnColor");
       await page.waitForTimeout(2500);
       await page.goto(
